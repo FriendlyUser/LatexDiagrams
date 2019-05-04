@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage[american]{circuitikz}
+\usepackage{graphicx}
+\usepackage{mathrsfs} 
+\usepackage{latexsym,amssymb,amsmath}
+\newcommand{\equal}{=}
+\begin{document}
+	
+			\begin{circuitikz}
+				\draw (0,2) to [V,l_=$\mathscr{F}\equal NI$] (0,0) 
+				(0,0) to [R,l^=$\mathscr{R}_{g}$, v_<=$\mathscr{F}_1$, color=green] (4,0)
+				(0,2) to [R,l_=$0.5\mathscr{R}_{s}$, v^>=$\mathscr{F}_2$, color=blue] (4,2)
+				(4,2) -- (4,0);
+			\node (phi) at (3.0,0.25) {$\phi$};
+			\draw[-stealth]  (3.25,1.75) to [bend left=90] (phi); 
+			\end{circuitikz}
+\end{document}

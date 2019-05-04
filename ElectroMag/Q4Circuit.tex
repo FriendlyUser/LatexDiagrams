@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage[american]{circuitikz}
+\usepackage{graphicx}
+\usepackage{mathrsfs} 
+\usepackage{latexsym,amssymb,amsmath}
+\newcommand{\equal}{=}
+\begin{document}
+	
+			\begin{circuitikz}
+				\draw (4,0) to [V,l_=$\mathscr{F}\equal NI$, -*] (6,0) 
+				(2,0) -- (2,2)
+				(2,2) to [R,l^=$\mathscr{R}_{l}$,i^>=$\phi_l$, v_>=$\mathscr{F}_1$, color=purple] (6,2)
+				(6,2) -- (6,0)
+				(2,0) to [R,l^=$\mathscr{R}_{l2}$,i^<=$\phi_t$, v_<=$\mathscr{F}_{l2}$, *-, color=blue] (4,0)
+				(2,0) -- (0,0)
+				(0,0) to [R,l^=$\mathscr{R}_{l1}$, v_>=$\mathscr{F}_{l1}$, color=red]  (0,4)
+				(6,0) -- (8,0)
+				(8,4) to [R,l^=$\mathscr{R}_{l1}$, v_>=$\mathscr{F}_{l1}$, color=red]  (8,0)
+				(0,4) -- (3,4)
+				(3,4) to [R,l^=$\mathscr{R}_{g}$,i^>=$\phi_g$, v_>=$\mathscr{F}_{g}$, color=green] (5,4) 
+				(5,4) -- (8,4);
+%				(0,0) to [R,l^=$\mathscr{R}_{g}$, v_<=$\mathscr{F}_1$, color=green] (4,0)
+%				(0,2) to [R,l_=$0.5\mathscr{R}_{s}$, v^>=$\mathscr{F}_2$, color=blue] (4,2)
+%				(4,2) -- (4,0)
+			\node (phi) at (7.0,1.25) {$\phi_{Meme}$};
+			\draw[-stealth]  (1,1.25) to [bend left=90] (phi);
+			\end{circuitikz}
+\end{document}
