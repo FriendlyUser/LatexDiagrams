@@ -203,8 +203,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
     \end{tikzpicture}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Exampl1Circuit.png?raw=true "Exampl1Circuit")
 
 ```tex
@@ -231,8 +229,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 		;\end{circuitikz}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Exampl2Circuit.png?raw=true "Exampl2Circuit")
 
 ```tex
@@ -256,8 +252,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/phasor.png?raw=true "phasor")
 
 ```tex
@@ -295,8 +289,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \end{tikzpicture}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/PrimarySide.png?raw=true "PrimarySide")
 
 ```tex
@@ -364,8 +356,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q1Circuit.png?raw=true "Q1Circuit")
 
 ```tex
@@ -390,8 +380,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q1Circuit2.png?raw=true "Q1Circuit2")
 
 ```tex
@@ -416,8 +404,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q2Circuit.png?raw=true "Q2Circuit")
 
 ```tex
@@ -458,8 +444,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q3Circuit.png?raw=true "Q3Circuit")
 
 ```tex
@@ -489,8 +473,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 			\end{circuitikz}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q3Circuit2.png?raw=true "Q3Circuit2")
 
 ```tex
@@ -512,8 +494,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 			\end{circuitikz}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q4Circuit.png?raw=true "Q4Circuit")
 
 ```tex
@@ -546,8 +526,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 			\end{circuitikz}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q5Circuit.png?raw=true "Q5Circuit")
 
 ```tex
@@ -569,8 +547,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q6Circuit.png?raw=true "Q6Circuit")
 
 ```tex
@@ -597,8 +573,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q7Circuit.png?raw=true "Q7Circuit")
 
 ```tex
@@ -623,8 +597,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q7Circuit2.png?raw=true "Q7Circuit2")
 
 ```tex
@@ -649,8 +621,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Q8Circuit.png?raw=true "Q8Circuit")
 
 ```tex
@@ -679,8 +649,6 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	\label{fig:q1fig}
 \end{document}
 ```
-# ElectroMag
-
 ![ElectroMag](ElectroMag/Transformer3Windings.png?raw=true "Transformer3Windings")
 
 ```tex

@@ -94,9 +94,9 @@ echo "## Latex Diagrams" >> $OUTPUT_FILE
 echo "This repo contains all the diagrams I have generated for my academic career at the University Of Victoria." >> $OUTPUT_FILE
 echo "" >> $OUTPUT_FILE
 # Generate markdown file containing relative url to image and perhgaps path to tex code.
+prev_dir=''
 for tex in $(find $dir -name "*.tex")
 do
-  prev_dir=''
   # echo $tex
   cur_dir=$(dirname $tex)
   rel_folder_path=$(realpath --relative-to="$dir" "$cur_dir")
@@ -105,9 +105,11 @@ do
   
   if [ "$prev_dir" != "$rel_folder_path" ]
   then
-    prev_dir=rel_folder_path
+    prev_dir=$rel_folder_path
     echo "# $rel_folder_path" >> $OUTPUT_FILE
     echo "" >> $OUTPUT_FILE
+  else
+    echo "Parsing $rel_path_file from $rel_folder_path"
   fi
   ### Add diagram to markdown file 
   # ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
