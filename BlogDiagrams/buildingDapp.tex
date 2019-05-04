@@ -1,0 +1,30 @@
+\documentclass[tikz]{standalone}
+\usepackage{smartdiagram}
+\usetikzlibrary{shapes.geometric,calc}
+\begin{document}
+\tikzset{
+  planet/.append style={regular polygon, regular polygon sides=6},
+  satellite/.append style={regular polygon, regular polygon sides=6},
+  every picture/.append style={rotate=30},
+  connection planet satellite/.style={
+    bend right/.style=,
+    every edge/.style={fill=\col},
+    to path={
+      \pgfextra
+        \path[draw=none, fill=none] (\tikztostart) 
+          -- coordinate[at start] (@start@) coordinate[at end] (@target@) (\tikztotarget);
+      \endpgfextra
+      \ifnum\xi<\maxsmitem % to disable the last arrow
+        ($(@start@)!.6cm!90:(@target@)$) -- ($(@target@)!.25cm!-90:(@start@)$)
+          -- ($(@target@)!.25cm!90:(@start@)$) -- ($(@start@)!.6cm!-90:(@target@)$)
+          -- cycle
+      \fi}}}
+\smartdiagram[connected constellation diagram]{
+  Build a Dapp,
+  Set up truffle box,
+  Build Smart Contracts,
+  Automated Testing,
+  Build Front /\\ End,
+  CI/CD,
+  Documentation / \\ Polishing}
+\end{document}

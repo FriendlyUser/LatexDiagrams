@@ -1,0 +1,6 @@
+phase,taskid,name,position,size
+initial,initialmeeting,Initial Meeting,-2,4
+planning,needsassesment,Needs Assesment,0,7
+planning,research,Research,3,15
+planning,siteoutline,Site Outline,5,7
+content,contentoutline,Content Outline,10,7

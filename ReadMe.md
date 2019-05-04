@@ -3,6 +3,1372 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 {:toc}
 
+### BlogDiagrams
+
+![BlogDiagrams](BlogDiagrams/buildingDapp.png?raw=true "buildingDapp")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{smartdiagram}
+\usetikzlibrary{shapes.geometric,calc}
+\begin{document}
+\tikzset{
+  planet/.append style={regular polygon, regular polygon sides=6},
+  satellite/.append style={regular polygon, regular polygon sides=6},
+  every picture/.append style={rotate=30},
+  connection planet satellite/.style={
+    bend right/.style=,
+    every edge/.style={fill=\col},
+    to path={
+      \pgfextra
+        \path[draw=none, fill=none] (\tikztostart) 
+          -- coordinate[at start] (@start@) coordinate[at end] (@target@) (\tikztotarget);
+      \endpgfextra
+      \ifnum\xi<\maxsmitem % to disable the last arrow
+        ($(@start@)!.6cm!90:(@target@)$) -- ($(@target@)!.25cm!-90:(@start@)$)
+          -- ($(@target@)!.25cm!90:(@start@)$) -- ($(@start@)!.6cm!-90:(@target@)$)
+          -- cycle
+      \fi}}}
+\smartdiagram[connected constellation diagram]{
+  Build a Dapp,
+  Set up truffle box,
+  Build Smart Contracts,
+  Automated Testing,
+  Build Front /\\ End,
+  CI/CD,
+  Documentation / \\ Polishing}
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/chat-decision-tree.png?raw=true "chat-decision-tree")
+
+```tex
+% Decision Tree for conversation
+
+\documentclass[border=10pt,multi,tikz,dvipsnames,svgnames,rgb]{standalone}
+\usepackage[edges]{forest}
+\usetikzlibrary{arrows.meta}
+\forestset{
+  declare dimen register=gap,
+  gap'=10mm,
+  declare count register=twist,
+  twist'=2,
+  family tree/.style={
+    forked edges,
+    for tree={
+      rounded corners,
+      minimum width/.wrap pgfmath arg={##1}{(\textwidth-6*(gap))/3},
+      minimum height=4ex,
+      edge={-Latex},
+      font=\sffamily,
+      text centered,
+      % blur shadow,
+      edge=thick,
+    },
+    where={level()<(twist)}{%
+      parent anchor=children,
+      l sep+=10pt,
+      s sep'+=10pt,
+    }{%
+      folder,
+      grow'=0,
+      l sep'+=2pt,
+      if={level()==(twist)}{%
+        before typesetting nodes={child anchor=north},
+        !u.s sep'+=10pt,
+        edge path'={%
+          (!u.parent anchor) -- ++(0,-10pt) -| (.child anchor)
+        },
+      }{},
+    },
+  },
+  branch shade/.style args={from #1 to #2}{
+    before typesetting nodes={
+      tempcountc/.max={level}{current,tree},
+      tempcountb/.option=level,
+      tempcounta=(tempcountc)-(tempcountb)+1,
+      temptoksa/.option=name,
+      TeX/.wrap pgfmath arg={
+        \colorlet{##1col1}{#1}
+        \colorlet{##1col2}{#2}
+      }{name()},
+      for tree={
+        rounded corners,
+        top color/.wrap 2 pgfmath args={##2col2!##1!##2col1}{100*((level()-(tempcountb))/(tempcounta))}{(temptoksa)},
+        +edge/.wrap 2 pgfmath args={##2col2!##1!##2col1}{100*((level()-(tempcountb))/(tempcounta))}{(temptoksa)},
+        bottom color/.wrap 2 pgfmath args={##2col2!##1!##2col1}{100*((level()-(tempcountb)+1)/(tempcounta))}{(temptoksa)},
+        draw/.wrap 2 pgfmath args={##2col2!##1!##2col1}{100*((level()-(tempcountb)+1)/(tempcounta))}{(temptoksa)},
+        thick,
+      },
+    }
+  },
+}
+\begin{document}
+\begin{forest}
+  family tree,
+   [Chatbot, left color=cyan, right color=SpringGreen, middle color=Pink, draw=Silver
+     [Resume, branch shade=from cyan to blue
+       [Co-op
+         [ENGR 001 \& 002
+         	[ENGR 003 \& 004]
+         ]
+       ]
+       [Github
+       	 [Projects]
+       	 [Academic]
+       ]
+     ]
+     [Education, branch shade=from Pink to WildStrawberry
+       [UVIC
+         [SENG]
+         [CENG]
+       ]
+     ]
+     [Personal, branch shade=from SpringGreen to ForestGreen
+       [Blockchain
+         [Ethereum]
+         [Hashgraph]
+       ]
+     ]
+   ]
+\end{forest}
+%\begin{forest}
+%  family tree,
+%   [Grandparent, fill=darkgray, text=Silver, double=Silver, draw=darkgray
+%     [Parent 1, branch shade=from blue!80 to blue!20
+%       [Child 1
+%         [Grandchild 1]
+%       ]
+%     ]
+%     [Parent 2, branch shade=from WildStrawberry!80 to WildStrawberry!20
+%       [Child 2
+%         [Grandchild 2]
+%       ]
+%     ]
+%     [Parent 3, branch shade=from ForestGreen!80 to ForestGreen!20
+%       [Child 3
+%         [Grandchild 3]
+%       ]
+%     ]
+%   ]
+%\end{forest}
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[border=10pt]{standalone}
+%\usepackage{tikz}
+%\usepackage{forest}
+%\begin{document}
+%\begin{forest}
+%  roundish filling/.style={%
+%    draw=#1,
+%    inner color=#1!25,
+%    outer color=#1,
+%  },
+%  for tree={%
+%    double,
+%    rounded corners,
+%  },
+%  where level=0{% for the root node
+%    minimum size=20pt,
+%    roundish filling=red,
+%    ultra thick,
+%  }{%
+%    if level=1{% middle nodes
+%      minimum size=15pt,
+%      semithick,
+%      roundish filling=blue!50!cyan,
+%    }
+%    {% remaining nodes
+%      delay={%
+%        if n children=0{%
+%          label/.wrap pgfmath arg={-90:#1}{content},
+%          !u.s sep'+=5pt,
+%          !uu.s sep'+=10pt,
+%          content=,
+%        }{},
+%      },
+%      green!75!black,
+%      circle,
+%      fill,
+%      fill opacity=.5,
+%      draw opacity=1,
+%      draw,
+%      minimum size=5pt,
+%      inner sep=0pt,
+%    },
+%  },
+%  [ChatBot
+%    [B [C][Ch]]
+%    [D [Dd][E][F][Ff [black]]]
+%  ]
+%\end{forest}
+%\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reference Decision tree
+% Author: Stefan Kottwitz
+% https://www.packtpub.com/hardware-and-creative/latex-cookbook
+%\documentclass[border=10pt]{standalone}
+%\usepackage{tikz}
+%\tikzset{
+%  treenode/.style = {shape=rectangle, rounded corners,
+%                     draw, align=center,
+%                     top color=white, bottom color=blue!20},
+%  root/.style     = {treenode, font=\Large, bottom color=red!30},
+%  env/.style      = {treenode, font=\ttfamily\normalsize},
+%  dummy/.style    = {circle,draw}
+%}
+%\begin{document}
+%\begin{tikzpicture}
+%  [
+%    grow                    = down,
+%    sibling distance        = 6em,
+%    level distance          = 10em,
+%    edge from parent/.style = {draw, -latex},
+%    every node/.style       = {font=\footnotesize},
+%    sloped
+%  ]
+%  \node [root] {Formula}
+%    child { node [env] {equation}
+%      edge from parent node [below] {single-line?} }
+%    child { node [dummy] {}
+%      child { node [dummy] {}
+%        child { node [env] {align\\flalign}
+%          edge from parent node [above] {at relation sign?} }
+%        child { node [env] {alignat}
+%          edge from parent node [above] {at several}
+%                           node [below] {places?} }
+%        child { node [env] {gather}
+%                edge from parent node [above] {centered?} }
+%        edge from parent node [below] {aligned?} }
+%      child { node [env] {multline}
+%              edge from parent node [above, align=center]
+%                {first left,\\centered,}
+%              node [below] {last right}}
+%              edge from parent node [above] {multi-line?} };
+%\end{tikzpicture}
+%\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/ciComparsionTable.png?raw=true "ciComparsionTable")
+
+```tex
+\documentclass{standalone}
+\usepackage{xcolor}
+\usepackage{tabu}
+\usepackage{colortbl}
+
+\begin{document}
+
+\taburowcolors[2]{white .. black!20}
+
+\sffamily\footnotesize
+\tabulinesep=6pt
+\begin{tabu}{|>{\cellcolor{black!60}\color{white}}r|X[cm]|X[cm]|X[cm]|}
+\hline
+\rowcolor{black!80}\strut  & \color{white}Travis CI & \color{white} GitLab CI & \color{white} CircleCI \\
+Docker Images & \color{black}No & \color{black}Yes & \color{black}Yes \\
+Private Builds & Yes (Education) & Yes & Yes \\
+Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
+\hline
+\end{tabu}
+
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/circle-ci-pipeline.png?raw=true "circle-ci-pipeline")
+
+```tex
+\documentclass[border=10pt]{standalone}
+\usepackage{fontawesome}
+\usepackage{tikz}
+\usetikzlibrary{fit,arrows,calc,positioning}
+
+\begin{document}
+
+\tikzstyle{block} = [rectangle, draw, fill=white,text width=16em,  text centered, minimum height=4em, thick]
+
+\tikzstyle{blks} = [rectangle, draw, fill=white, text width=6em,  text centered, minimum height=4em, dashed]
+
+\tikzstyle{big} = [rectangle, draw, inner sep=0.5cm]
+
+\tikzstyle{line} = [draw, -latex',thick]
+
+\begin{tikzpicture}[auto]
+\node [block](exe) {\textbf{Git Commit}};
+\node [block, below=of exe] (mgm) {\textbf{CI Pipeline}};
+\node [blks, below=2cm of mgm] (fin) {Truffle Tests};
+\node [blks, right=of fin] (prod) {Documentation};
+\node [blks, left=of fin] (resch) {Test Coverage};
+
+\node[above =0.2cm of  fin] (A) {\textbf{Jobs}};
+\node [below = 0.3 of mgm, big,fit=(fin) (prod)(resch)(A), inner sep=0.5cm] (dept) {};
+
+\node [blks, below=2.5cm of fin] (ropsten) {\faThumbsUp Ropsten};
+\node [blks, right=of ropsten] (rinkeby) {\faThumbsUp Rinkeby};
+\node [blks, left=of ropsten] (kovan) {Kovan};
+
+\node[above =0.2cm of  ropsten] (B) {\textbf{Infura Deployment}};
+\node [below = 0.3 of mgm, big,fit=(ropsten) (rinkeby)(kovan)(B), inner sep=0.5cm] (infura) {};
+
+
+
+\path [line] (exe)--(mgm);
+\path [line] (mgm) -- (dept);
+\path [line] (resch)--(fin);
+\path [line] (fin)--(prod);
+\path [line] (dept) -- (infura); 
+
+\end{tikzpicture}
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/circleDia.png?raw=true "circleDia")
+
+```tex
+\documentclass[border=5pt]{standalone}
+\usepackage{xcolor}
+\definecolor{ocre}{HTML}{800000}
+\definecolor{sky}{HTML}{C6D9F1}
+\definecolor{skybox}{HTML}{5F86B3}
+\usepackage{tikz}
+\usepackage{pgfmath}
+\usetikzlibrary{decorations.text, arrows.meta,calc,shadows.blur,shadings}
+\renewcommand*\familydefault{\sfdefault} % Set font to serif family
+
+% arctext from Andrew code with modifications:
+%Variables: 1: ID, 2:Style 3:box height 4: Radious 5:start-angl 6:end-angl 7:text {format along path} 
+\def\arctext[#1][#2][#3](#4)(#5)(#6)#7{
+
+\draw[#2] (#5:#4cm+#3) coordinate (above #1) arc (#5:#6:#4cm+#3)
+             -- (#6:#4) coordinate (right #1) -- (#6:#4cm-#3) coordinate (below right #1) arc (#6:#5:#4cm-#3) coordinate (below #1)
+             -- (#5:#4) coordinate (left #1) -- cycle;
+            \def\a#1{#4cm+#3}
+            \def\b#1{#4cm-#3}
+\path[
+    decoration={
+        raise = -0.5ex, % Controls relavite text height position.
+        text  along path,
+        text = {#7},
+        text align = center,        
+    },
+    decorate
+    ]
+    (#5:#4) arc (#5:#6:#4);
+}
+
+%arcarrow, this is mine, for beerware purpose...
+%Function: Draw an arrow from arctex coordinate specific nodes to another 
+%Arrow start at the start of arctext box and could be shifted to change the position
+%to avoid go over another box.
+%Var: 1:Start coordinate 2:End coordinate 3:angle to shift from acrtext box  
+\def\arcarrow(#1)(#2)[#3]{
+    \draw[thick,->,>=latex] 
+        let \p1 = (#1), \p2 = (#2), % To access cartesian coordinates x, and y.
+            \n1 = {veclen(\x1,\y1)}, % Distance from the origin
+            \n2 = {veclen(\x2,\y2)}, % Distance from the origin
+            \n3 = {atan2(\y1,\x1)} % Angle where acrtext starts.
+        in (\n3-#3: \n1) -- (\n3-#3: \n2); % Draw the arrow.
+}
+
+\begin{document}
+    \begin{tikzpicture}[
+        % Environment Cfg
+        font=\sf    \scriptsize,
+        % Styles
+        myarrow/.style={
+            thick,
+            -latex,
+        },
+        Center/.style ={
+            circle,
+            fill=ocre,
+            text=white,
+            align=center,
+            font =\footnotesize\bf,
+            inner sep=1pt,          
+        },
+        RedArc/.style ={
+            color=black,
+            thick,
+            fill=ocre,
+            blur shadow, %Tikzedt not suport online view
+        },
+        SkyArc/.style ={
+            color=skybox,
+            thick,
+            fill=sky,
+            blur shadow, %Tikzedt not suport online view
+        },
+    ]
+
+    % Drawing the center
+    \node[Center](SOSA) at (0,0) { Sensor \\ Observation, \\ Sample, and \\ Actuator \\(SOSA)};
+    \coordinate (SOSA-R) at (0:1.2); % To make compatible with \arcarrow macro.
+
+    % Drawing the Tex Arcs
+
+    % \Arctext[ID][box-style][box-height](radious)(start-angl)(end-angl){|text-styles| Text}
+
+    \arctext[SSN][RedArc][8pt](2.25)(180)(60){|\footnotesize\bf\color{white}| Semantic Sensor Network (SSN)};
+    \arctext[SCap][RedArc][8pt](2.25)(50)(-20){|\footnotesize\bf\color{white}| System Capabilities};
+    \arctext[SRel][SkyArc][8pt](2.25)(190)(255){|\footnotesize\color{black}| System Relation};
+    \arctext[OMAM][RedArc][5pt](3.5)(205)(265){|\scriptsize\bf\color{white}| O{\&}M Alignment Module};
+    \arctext[PROV][SkyArc][5pt](3.5)(270)(320){|\scriptsize| PROV Alignment Module};
+    \arctext[OBOE][SkyArc][5pt](3.5)(-35)(20){|\scriptsize| OBOE Alignment Module};
+    \arctext[DUAM][SkyArc][5pt](4.5)(215)(150){|\scriptsize| Dolce-UltraLite Alingment Module};
+    \arctext[SSNX][SkyArc][5pt](4.5)(145)(80){|\scriptsize| SSNX Alingment Module};
+
+    %ADITIONAL
+    \arctext[NEW][
+        color=white,
+        shade,      
+        upper left=red,
+        upper right=black!50,
+        lower left=blue,
+        lower right=blue!50,
+        rounded corners = 8pt
+        ][8pt](5.2)(100)(-20){|\footnotesize\bf\color{white}| You can create and use all the style options for shapes and text};
+
+    %Drawing the Arrows
+    %\arcarrow(above/below ID)(abobe/below ID)[shift]
+    \arcarrow(below DUAM)(above SRel)[15];
+    \arcarrow(below SSNX)(above SSN)[35];
+    \arcarrow(below SSN)(SOSA-R)[60];
+    \arcarrow(below right OMAM)(SOSA-R)[4];
+    \arcarrow(below right PROV)(SOSA-R)[25];
+    \arcarrow(below OBOE)(SOSA-R)[-5];
+
+    %Same level Arrows
+    \draw[myarrow] (left SSNX) -- (right DUAM);
+    \draw[myarrow] (left SSN) -- (left SRel);
+    \draw[myarrow] (left SCap) -- (right SSN);
+
+     \draw[myarrow] (-5,-3.5) coordinate (legend) -- ++(.8,0) node[anchor=west] {owl: imports (extends)};
+     \draw[RedArc] (legend)++(0,-0.4) rectangle ++(.8,-.3)++(0,.2) node[anchor=west] {normative};
+     \draw[SkyArc] (legend)++(0,-1) rectangle ++(.8,-.3)++(0,.2) node[anchor=west, color=black] {non-normative};
+
+    \end{tikzpicture}
+
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/discordDiagram.png?raw=true "discordDiagram")
+
+```tex
+\documentclass{standalone}
+\usepackage{fontawesome}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+
+\definecolor{bluei}{RGB}{83,116,191}
+\definecolor{blueii}{RGB}{207,212,232}
+\definecolor{greeni}{RGB}{135,200,81}
+\definecolor{greenii}{RGB}{216,235,207}
+\definecolor{redi}{RGB}{238, 150, 140}
+\definecolor{redii}{RGB}{100,60,50}
+
+\definecolor{purpi}{RGB}{141, 108, 171}
+\definecolor{purpii}{RGB}{100,60,50}
+\tikzset{
+  myiblock/.style 2 args={
+    draw=white,
+    fill=#1,
+    line width=1pt,
+    rounded corners,
+    minimum height=1cm,
+    align=center,
+    text=white,
+    font=\sffamily,
+    text width=#2
+  },
+  myoblock/.style={
+     matrix of nodes,
+    fill=#1,
+    rounded corners,
+    align=center,
+    inner xsep=10pt,
+    draw=none,
+    row sep=0.5cm
+  },
+  mylabel/.style={
+    black, 
+    minimum height=0pt
+    }
+}
+
+\begin{document}
+
+
+%\resizebox{14cm}{3cm}{%
+\begin{tikzpicture}
+	\node[inner sep=0pt] (russell) at (6.5,3)
+	    { {\Huge RSS \ \faRss \ Discord }};
+	    
+	\matrix (A) [myoblock={blueii}, nodes={myiblock={bluei}{2cm}}]
+	  {|[label={[mylabel]Code Repos}]|{ \faBitbucket \ Bitbucket }\\ 
+	  \faGithub \ Github \\ 
+	  \faGitlab \ Gitlab \\
+	  };
+	
+	\matrix (B) [myoblock={greenii}, nodes={myiblock={greeni}{2.5cm}}, 
+	   row sep=3pt, right=5mm of A.north east, anchor=north west]
+	  {|[label={[mylabel]Entertainment}]|
+	   \faBook \ Tech Books \\
+	   \faGamepad \ Games\\ 	   
+	   \faStackOverflow \ Rep \& Elo \\
+	   \faReddit \ EthDev \\
+	  };
+	  
+	\matrix (C) [myoblock={redi}, nodes={myiblock={redii}{2cm}}, 
+	   row sep=15pt, right=5mm of B.north east, anchor=north west]
+	  {|[label={[mylabel]\faInfo \ Information}]|
+	   \faBitcoin \ BChain \\
+	   \faTrophy \ AI \\ 	   
+	   \faCode \ Code \\
+	  };
+	  
+	\matrix (D) [myoblock={purpi}, nodes={myiblock={purpii}{2cm}}, 
+			 right=5mm of C.north east, anchor=north west]
+		  {|[label={[mylabel] Tracking}]|
+		   \faTrello \ Web Hooks \\
+		   \faTicket \ Redmine \\ 	   
+		   \faThLarge \ Apis \\
+		  };
+\end{tikzpicture}
+
+%}
+
+
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/folderSetup.png?raw=true "folderSetup")
+
+```tex
+\documentclass[border=10pt]{standalone}
+\usepackage{forest}
+
+\definecolor{fblue}{RGB}{92,144,192}
+\definecolor{fgreen}{RGB}{34,162,70}
+
+\newcommand\myfolder[2][fblue]{%
+\begin{tikzpicture}[overlay]
+\begin{scope}[xshift=20pt]
+\filldraw[rounded corners=1pt,fill=#1,draw=white,double=black]
+  (-23pt,10pt) -- ++(3pt,5pt) -- ++(18pt,0pt) -- ++(40:3pt) -- ++(9pt,0pt) -- ++(-40:3pt)
+  -- (20pt,15pt) -- (23pt,10pt) -- cycle;
+\filldraw[rounded corners,draw=white,double=black,top color=#1,bottom color=#1!30]
+  (-22pt,-12pt) -- ++(44pt,0pt) -- (25pt,12pt) coordinate (topr) -- ++(-50pt,0pt) coordinate (topl) -- cycle;
+\end{scope}  
+\end{tikzpicture}%
+\makebox[35pt]{\raisebox{-3pt}{{\ttfamily/#2}}}%
+}
+
+\begin{document}
+
+\begin{forest}
+  for tree={
+    font=\sffamily,
+    minimum height=0.75cm,
+    rounded corners=4pt,
+    grow'=0,
+    inner ysep=8pt,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge={rounded corners},
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(12.5pt,0) |- (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom,minimum height=18pt]}}
+        {}
+    },
+    fit=band,
+    s sep=12pt,
+    before computing xy={l=25pt},
+  }
+[\myfolder{}
+  [\myfolder{jhunt}]
+  [\myfolder{dev}
+  	[{\myfolder[fgreen]{bchain}}]
+  	[{\myfolder[fgreen]{other}}]
+  ]
+  [{\myfolder[fgreen]{games}}
+    [{\myfolder[fgreen]{vns}}]
+    [{\myfolder[fgreen]{other}}]
+  ]
+  [\myfolder{music}]
+  [\myfolder{other}]
+]
+\end{forest}
+
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/ipfs-dapp.png?raw=true "ipfs-dapp")
+
+```tex
+\documentclass[border=3mm]{standalone}
+    \usepackage{tikz}
+    \usetikzlibrary{backgrounds,shadows,positioning,fit,matrix,shapes.geometric, shapes.arrows} % add shadows #1
+
+    % a way to cut shadows in a cell #2
+    %https://tex.stackexchange.com/questions/129318/remove-drop-shadow-from-one-node
+    \makeatletter
+    \tikzset{no shadows/.code=\let\tikz@preactions\pgfutil@empty}
+    \makeatother
+
+    \tikzset{background/.style={rectangle, fill=red!10, inner sep=0.2cm},
+              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	
+	\tikzset{back/.style={rectangle, fill=blue!10, inner sep=0.2cm},
+	              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+	              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	              	
+    \definecolor{mybluei}{RGB}{124,156,205}
+    \definecolor{myblueii}{RGB}{73,121,193}
+    \definecolor{mygreen}{RGB}{202,217,126}
+    \definecolor{mypink}{RGB}{233,198,235}
+    \definecolor{rinkeby}{HTML}{F6C343}
+    \definecolor{kovan}{HTML}{7057ff}
+    \definecolor{ropsten}{HTML}{FF4A8D}
+    \definecolor{mainnet}{HTML}{29B6AF}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{darkbyzantium}{rgb}{0.36, 0.22, 0.33}
+\definecolor{jasper}{rgb}{0.84, 0.23, 0.24}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{pinkpearl}{rgb}{0.91, 0.67, 0.81}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+
+    \newcommand\widernode[5][widebox]{
+    \node[
+        #1,
+        fit={(#2) (#3)},
+        label=center:{\sffamily\bfseries\color{black}#4}] (#5) {};
+    }
+
+    \begin{document}
+
+    \begin{tikzpicture}[node distance=2pt,outer sep=0pt, % just do nothing after modification
+    boxstyle/.style={
+    draw=white,
+    fill=#1,
+    rounded corners, drop shadow, %to get a shadow in below a node
+    font={\sffamily\bfseries\color{white}},
+    align=center,
+    minimum height=30pt
+    },
+    box/.style={
+    boxstyle=#1,
+    text width=2.5cm},
+    box/.default=mybluei,
+    title/.style={font={\sffamily\bfseries\color{black}}},
+    widebox/.style={draw=white,inner sep=0pt, rounded corners,fill=#1,drop shadow},
+    widebox/.default=mybluei,
+    mylabel/.style={font={\sffamily\bfseries\color{black}}},
+    database/.style={
+      cylinder,
+      cylinder uses custom fill,
+      cylinder body fill=yellow!50,
+      cylinder end fill=yellow!50,
+      shape border rotate=90,
+      aspect=0.25,
+      draw
+    }
+    ]
+
+
+    \matrix (stack) [%  boxstyle=mybluei!40,%will overpaint blocks with background
+    column sep=10pt, row sep=10pt, inner sep=4mm,%
+        matrix of nodes,
+            nodes={box, outer sep=0pt, anchor=center, inner sep=3pt},%  
+            nodes in empty cells=false,% #3
+        row 1/.style={nodes={fill=none,draw=none,minimum height=3mm}},
+    ]
+    {
+    |[no shadows]| & & & [1cm] & & |[no shadows]| \\ % #5
+    %RCP main & Authoring & Browsing & Publishing & Search&|[no shadows]| \\
+    |[no shadows]| & & |[no shadows]| & |[no shadows]|&  &|[no shadows]| \\
+     |[no shadows]|  &  |[no shadows]|  &  |[no shadows]|  &|[no shadows]| & |[no shadows]|& |[box=blue(pigment)]| Web3 \\
+     |[no shadows]|& |[no shadows]| &|[no shadows]| & |[no shadows]| &|[no shadows]| & |[box=blue(pigment)]| Truffle \\
+    ||[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[box=blue(pigment)]| React \\};
+
+
+    \widernode[]{stack-1-1}{stack-1-6}{File track Dapp Architecture Architecture}{EPF} %#5
+	
+	\widernode[widebox=mygreen]{stack-2-1}{stack-2-3}{Blockchain Stack}{SM}
+	
+	\widernode[widebox=pastelred]{stack-2-4}{stack-2-6}{Front End Stack}{FE}
+	\widernode[widebox=mainnet]{stack-3-1}{stack-3-3}{Infura}{Ethereum}
+	
+    \widernode{stack-3-4}{stack-3-5}{Metamask}{MM}
+  % \widernode{stack-3-6}{stack-3-6}{Web3}{AA}
+  	\widernode[widebox=rinkeby]{stack-4-1}{stack-4-3}{Solidity}{Solidity}
+    \widernode{stack-4-4}{stack-4-5}{Webpack}{BB}
+  %  \widernode{stack-4-6}{stack-4-6}{Truffle}{CC}
+    
+    \widernode[widebox=kovan]{stack-5-1}{stack-5-3}{IPFS}{IPFS}
+    \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
+  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
+    
+    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
+    %\widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
+    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
+    %\widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
+    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
+
+
+%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
+%
+
+    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
+
+%
+%
+
+%
+		
+		\begin{pgfonlayer}{background}
+		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+		            \node [back,
+		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
+		            ] {};
+		            %\node [backgroundN,
+		            %    fit=(stack-3-5) ] {};
+		            %\node [backgroundNN,draw, drop shadow,
+		            %    fit=(stack-3-5) ] {};                                       
+	   \end{pgfonlayer}
+	   
+	   %    % smth to create an arbitrary block with a border and shadow
+	   %Background for smart contracts
+	           \begin{pgfonlayer}{background}
+	           \coordinate (aux) at ([xshift=1mm]stack-5-3.east);
+	               \node [background,
+	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
+	               ] {};
+	               %\node [backgroundN,
+	               %    fit=(stack-3-5) ] {};
+	               %\node [backgroundNN,draw, drop shadow,
+	               %    fit=(stack-3-5) ] {};                                       
+	           \end{pgfonlayer}
+	  
+       \begin{pgfonlayer}{background}
+       \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+           \node [background,
+               fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
+           ] {};
+           %\node [backgroundN,
+           %    fit=(stack-3-5) ] {};
+           %\node [backgroundNN,draw, drop shadow,
+           %    fit=(stack-3-5) ] {};                                       
+       \end{pgfonlayer}
+    \end{tikzpicture}
+
+    \end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/latex_user_sw_levels.png?raw=true "latex_user_sw_levels")
+
+```tex
+% Interaction diagram, LaTeX user level and TeX system software level
+% Author: Agostino De Marco
+% Based on diagram from Marco Miani and Pascal Seppecher.
+\documentclass{article}
+\usepackage{tikz}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\usetikzlibrary{positioning}
+
+\newcommand{\yslant}{0.5}
+\newcommand{\xslant}{-0.6}
+\begin{document}
+\begin{tikzpicture}[scale=1.1,every node/.style={minimum size=1cm},on grid]
+
+	% Software level
+	\begin{scope}[
+		yshift=-120,
+		every node/.append style={yslant=\yslant,xslant=\xslant},
+		yslant=\yslant,xslant=\xslant
+	] 
+		% The lower frame:
+		\draw[black, dashed, thick] (-1.3,0) rectangle (8.2,4.8); 
+		% Agents:
+		\draw[fill=red]  
+			(7.5,2) circle (.1) % .pdf file
+			(5,2) circle (.1) % .ps file
+			(2,2) circle (.1) % .dvi file
+			(-0.5,2) circle (.1); % .tex file
+		% Flows:
+		\draw[-latex,ultra thick,shorten <=5pt,shorten >=5pt] 
+			(-0.5,2) to[out=0,in=-180] (2,2); % latex
+		\draw[-latex,ultra thick,shorten <=5pt,shorten >=5pt] 
+			(2,2) to[out=0,in=-180] (5,2); % dvi2ps
+		\draw[latex-latex,ultra thick,shorten <=5pt,shorten >=5pt] 
+			(5,2) to[out=0,in=-180] (7.5,2); % ps2pdf, pdf2ps
+		\draw[-latex,ultra thick,shorten <=5pt,shorten >=5pt] 
+			(-0.5,2) to[out=90,in=-180] (3.5,3.8) to[out=0,in=90] (7.5,2); % pdflatex
+		\draw[-latex,ultra thick,shorten <=5pt,shorten >=5pt] 
+			(2,2) to[out=90,in=-180] (2.7,3.0) to[out=0,in=-180] (6.7,3.0) to[out=0,in=135] (7.5,2); % ps2pdfm
+		 % Labels:
+		\fill[black]
+			(1.0,2) node[above=-3pt, scale=0.9] {\textsf{\bfseries file}}			
+			(3.5,2) node[above=-5pt, scale=0.9] {\textsf{\bfseries hash}}
+			(6.25,2) node[above=-5pt, scale=0.9] {\textsf{\bfseries interacts}}
+			%(6.25,2) node[xshift=-1ex,below=-5pt, scale=0.9] {\textsf{\bfseries pdf2ps}}
+			(3.5,3.8) node[xshift=2ex,below=-5pt, scale=0.9] {\textsf{\bfseries logic contained in}}
+			(4.3,3.0) node[xshift=2ex,below=-5pt, scale=0.9] {\textsf{\bfseries complements}}
+			(1.3,0.1) node[above=-2pt, scale=1.1] {\textbf{Blockchain/Ethereum Level}}
+			(-0.5,2) node[below,scale=.9]{\textsf{\bfseries Dapp} }
+			(2,2) node[below,scale=.9]{\textsf{\bfseries IPFS}}
+			(5,2) node[below,scale=.9]{\textsf{\bfseries Metamask}}
+			(7.5,2) node[below,scale=.9]{\textsf{\bfseries Solidity}};	
+	\end{scope}
+	
+	% vertical lines for linking agents on the 2 levels
+	\draw[thick](6.3,5.1) to (6.3,0.9);
+	\draw[thick](3.8,4) to (3.8,-0.32);
+	\draw[thick](0.8,2.4) to (.8,-1.8);
+	\draw[thick](-1.70,1.02) to (-1.70,-3);
+	
+	% User level
+	\begin{scope}[
+		yshift=0,
+		every node/.append style={yslant=\yslant,xslant=\xslant},
+		yslant=\yslant,xslant=\xslant
+	]
+		% The upper frame:
+		\fill[white,fill opacity=.70] (-3.1,0) rectangle (9.9,6); % Opacity
+		\draw[black, dashed, thick] (-3.1,0) rectangle (9.9,6); 
+		 % Agents:
+		\draw [fill=red]
+			(7.5,2) circle (.1) % .pdf file
+			(5,2) circle (.1) % .ps
+			(2,2) circle (.1) % .dvi
+			(-0.5,2) circle (.1); % .tex file
+
+		% the icons
+		\node[anchor=south,inner sep=0,xshift=-20pt,yshift=10pt,fill=white] at (-0.5,2)
+			{\includegraphics[width=2.5cm]{truffle.png}};
+		\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt] at (2,2)
+			{\includegraphics[width=2.5cm]{ipfs-logo.png}};
+		\node[anchor=south,inner sep=0,xshift=-5pt,yshift=8pt] at (5,2)
+			{\includegraphics[width=3.0cm]{metamask.png}};
+		\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt] at (7.5,2)
+			{\includegraphics[width=3.5cm]{ethereum.png}};
+
+		\fill[black]
+			(7.5,2) node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
+				{\textsf{\bfseries \mbox{Smart Contracts}}\\ \textsf{\bfseries IPFS Hashes}
+				\\ \textsf{\bfseries Authentication}}
+			(-2.5,5.5) node[anchor=west,inner sep=0, scale=1.1] {\textbf{User level}}
+			(5.1,1.9) node[below right,xshift=-20pt,scale=.9,text width=2cm,align=left,fill=white]
+				{\textsf{\bfseries Transactions}\\ \textsf{\bfseries Ethereum Browser} }
+			(1.9,1.9) node[below right,xshift=-10pt,scale=.9,text width=2cm,align=left,fill=white]
+				{\textsf{\bfseries File Storage}\\ \textsf{\bfseries Peer to Peer}}
+			(-0.5,2) node[below right,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
+				{\textsf{\bfseries Drizzle}\\ \textsf{\bfseries React}\\
+					\textsf{\bfseries Truffle}} 
+		;
+	\end{scope} 
+\end{tikzpicture}
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/osiModel.png?raw=true "osiModel")
+
+```tex
+\documentclass[border=2mm]{standalone}
+
+\usepackage[most]{tcolorbox}
+\usepackage{lmodern}
+\usepackage{lipsum}
+%\usepackage{geometry}
+
+\standaloneenv{tcbposter}
+
+%\pagestyle{empty}
+\begin{document}
+
+\begin{tcbposter}[%
+    poster = {columns=8, rows=9, width=17cm, height=8cm, spacing=1mm},% showframe},
+    boxes = {colback=cyan!80!black, 
+        boxrule=0pt, arc=2mm,
+        colframe=cyan!80!black, 
+        halign=center, valign=center,   
+        colupper=white,
+        fontupper=\sffamily\bfseries, size=small}
+]
+%1st row
+\posterbox{column=1, row=1}{HTTP}
+\posterbox{column=2, row=1}{HTTP/2}
+\posterbox{column=3, row=1}{MQTT}
+\posterbox{column=4, row=1}{CoAP}
+\posterbox{column=5, row=1}{FTP}
+\posterbox{column=6, row=1}{TFTP}
+
+%2nd row
+\posterbox{column=1, row=2}{SMTP}
+\posterbox{column=2, row=2}{SNTP}
+\posterbox{column=3, row=2}{DNS}
+\posterbox{column=4, row=2}{NetBIOS}
+\posterbox{column=5, row=2, span=2}{SNMPv1/v2c/v3}
+
+%3rd row
+\posterbox{column=1, row=3, span=2}{WebSocket}
+\posterbox{column=3, row=3}{mDNS}
+\posterbox{column=4, row=3}{DNS-SD}
+\posterbox{column=5, row=3}{DHCP}
+\posterbox{column=6, row=3}{DHCPv6}
+
+%4th row
+\posterbox{column=1, row=4,span=6}{Socket}
+
+%5th row
+\posterbox{column=1, row=5, span=2.5}{TCP}
+\posterbox{column*=5, row=5, span=2.5}{UDP}
+\posterbox{column=6, row=5}{RAW}
+
+%6th row
+\posterbox{column=1, row=6, span=3}{IPv4}
+\posterbox{column=4, row=6, span=3}{IPv6}
+
+%7th row
+\posterbox{column=1, row=7, span=1.5}{ARP}
+\posterbox{column*=3, row=7, span=1.5}{Auto-IP}
+\posterbox{column=4, row=7, span=1.5}{NDP}
+\posterbox{column*=6, row=7, span=1.5}{SLAAC}
+
+%8th row
+\posterbox{column=1, row=8, span=1.5}{ICMP}
+\posterbox{column*=3, row=8, span=1.5}{IGMPv2}
+\posterbox{column=4, row=8, span=1.5}{ICMPv6}
+\posterbox{column*=6, row=8, span=1.5}{MLDv1}
+
+%9th row
+%5 boxes and 4 separations should use 
+%equivalent to 6 original boxes plus 5 
+%separations 
+\newlength{\mylength}
+\pgfmathsetlength{\mylength}{(6*\tcbpostercolwidth+\tcbpostercolspacing)/5}%
+
+%Use `width` instead of `span` to fix box size
+\posterbox[width=\mylength]{name=91, column=1, row=9}{Ethernet}
+\posterbox[width=\mylength]{name=92, column=1, row=9, xshift=\mylength+\tcbpostercolspacing}{Wi-Fi}
+\posterbox[width=\mylength]{name=92, column=1, row=9, xshift=2*\mylength+2*\tcbpostercolspacing}{PPP}
+\posterbox[width=\mylength]{name=92, column=1, row=9, xshift=3*\mylength+3*\tcbpostercolspacing}{USB/RNDIS}
+\posterbox[width=\mylength]{column*=6, row=9}{G3-PLC}
+
+%Right column
+\posterbox[colback=gray, colframe=gray, colupper=black]{column=7, row=1, span=2, rowspan=3}{7 - Application}
+\posterbox[colback=gray!80, colframe=gray!80, colupper=black]{column=7, row=4, span=2}{5 - Session}
+\posterbox[colback=gray!60, colframe=gray!60, colupper=black]{column=7, row=5, span=2}{4 - Transport}
+\posterbox[colback=gray!40, colframe=gray!40, colupper=black]{column=7, row=6, span=2, rowspan=3}{3 - Network}
+\posterbox[colback=gray!20, colframe=gray!20, colupper=black]{column=7, row=9, span=2}{2 - Data Link}
+
+\end{tcbposter}
+
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/redmineOrg.png?raw=true "redmineOrg")
+
+```tex
+% ateb: https://tex.stackexchange.com/a/271349/ addaswyd o gwestiwn OOzy Pal: https://tex.stackexchange.com/q/271170/
+\documentclass[border=20pt,tikz]{standalone}
+\usepackage[edges]{forest}
+
+\forestset{
+  direction switch/.style={
+    for tree={edge+=thick, font=\sffamily},
+    where level>=1{folder, grow'=0}{for children=forked edge},
+    where level=3{}{draw},
+  },
+}
+\begin{document}
+
+\begin{forest}
+  % forest preamble: determine layout and format of tree
+  direction switch
+  [Redmine Project Organization
+    [Blockchain
+      [HashGraph
+      ]
+      [Vue-Dapp
+        [Docsaurus]
+        [Deploy to MainNet]
+        [Update Todolist]
+      ]
+      [IPFS Dapp
+      	[Drizzle Truffle]
+      	[Solidity Contract]
+      	[Deploy to Surge]
+      ]
+    ]
+    [Academic
+      [ENGR Year 4
+      	[CENG 4B]
+      	[CENG 4A]
+      ]
+      [Tutorials
+        [Voting Dapp]
+      ]
+      [Article Summary
+      	[Vyper + Truffle]
+      	[Tensorflow]
+      	[HashGraph]
+      ]
+    ]
+    [Job Hunt
+      [First Job
+        [Blockchain]
+        [AI]
+      ]
+      [Scripts
+      	[Go-api]
+      	[Indeed Scrapper]
+      	[Uvic Scrapper]
+      ]
+    ]
+    [AI
+    	[Chatbots]
+    	[Tensorflow]
+    ]
+    [Projects
+    	[Portfolio Website]
+    	[Notes --- Vuepress]
+    ]
+  ]
+\end{forest}
+\end{document}
+
+```
+
+![BlogDiagrams](BlogDiagrams/tech-stack.png?raw=true "tech-stack")
+
+```tex
+\documentclass[border=3mm]{standalone}
+    \usepackage{tikz}
+    \usetikzlibrary{backgrounds,shadows,positioning,fit,matrix,shapes.geometric, shapes.arrows} % add shadows #1
+
+    % a way to cut shadows in a cell #2
+    %https://tex.stackexchange.com/questions/129318/remove-drop-shadow-from-one-node
+    \makeatletter
+    \tikzset{no shadows/.code=\let\tikz@preactions\pgfutil@empty}
+    \makeatother
+
+    \tikzset{background/.style={rectangle, fill=red!10, inner sep=0.2cm},
+              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	
+	\tikzset{back/.style={rectangle, fill=blue!10, inner sep=0.2cm},
+	              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+	              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	              	
+    \definecolor{mybluei}{RGB}{124,156,205}
+    \definecolor{myblueii}{RGB}{73,121,193}
+    \definecolor{mygreen}{RGB}{202,217,126}
+    \definecolor{mypink}{RGB}{233,198,235}
+    \definecolor{rinkeby}{HTML}{F6C343}
+    \definecolor{kovan}{HTML}{7057ff}
+    \definecolor{ropsten}{HTML}{FF4A8D}
+    \definecolor{mainnet}{HTML}{29B6AF}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{darkbyzantium}{rgb}{0.36, 0.22, 0.33}
+\definecolor{jasper}{rgb}{0.84, 0.23, 0.24}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{pinkpearl}{rgb}{0.91, 0.67, 0.81}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+
+    \newcommand\widernode[5][widebox]{
+    \node[
+        #1,
+        fit={(#2) (#3)},
+        label=center:{\sffamily\bfseries\color{black}#4}] (#5) {};
+    }
+
+    \begin{document}
+
+    \begin{tikzpicture}[node distance=2pt,outer sep=0pt, % just do nothing after modification
+    boxstyle/.style={
+    draw=white,
+    fill=#1,
+    rounded corners, drop shadow, %to get a shadow in below a node
+    font={\sffamily\bfseries\color{white}},
+    align=center,
+    minimum height=30pt
+    },
+    box/.style={
+    boxstyle=#1,
+    text width=2.5cm},
+    box/.default=mybluei,
+    title/.style={font={\sffamily\bfseries\color{black}}},
+    widebox/.style={draw=white,inner sep=0pt, rounded corners,fill=#1,drop shadow},
+    widebox/.default=mybluei,
+    mylabel/.style={font={\sffamily\bfseries\color{black}}},
+    database/.style={
+      cylinder,
+      cylinder uses custom fill,
+      cylinder body fill=yellow!50,
+      cylinder end fill=yellow!50,
+      shape border rotate=90,
+      aspect=0.25,
+      draw
+    }
+    ]
+
+
+    \matrix (stack) [%  boxstyle=mybluei!40,%will overpaint blocks with background
+    column sep=10pt, row sep=10pt, inner sep=4mm,%
+        matrix of nodes,
+            nodes={box, outer sep=0pt, anchor=center, inner sep=3pt},%  
+            nodes in empty cells=false,% #3
+        row 1/.style={nodes={fill=none,draw=none,minimum height=3mm}},
+    ]
+    {
+    |[no shadows]| & & & [1cm] & & |[no shadows]| \\ % #5
+    %RCP main & Authoring & Browsing & Publishing & Search&|[no shadows]| \\
+    |[no shadows]| & & |[no shadows]| & |[no shadows]|&  &|[no shadows]| \\
+     |[no shadows]|  &  |[no shadows]|  &  |[no shadows]|  &|[no shadows]| & |[no shadows]|& |[box=blue(pigment)]| Web3 \\
+     |[no shadows]|& |[no shadows]| &|[no shadows]| & |[no shadows]| &|[no shadows]| & |[box=blue(pigment)]| Truffle \\
+    ||[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[box=blue(pigment)]| React \\};
+
+
+    \widernode[]{stack-1-1}{stack-1-6}{File track Dapp Architecture Architecture}{EPF} %#5
+	
+	\widernode[widebox=mygreen]{stack-2-1}{stack-2-3}{Blockchain Stack}{SM}
+	
+	\widernode[widebox=pastelred]{stack-2-4}{stack-2-6}{Front End Stack}{FE}
+	\widernode[widebox=mainnet]{stack-3-1}{stack-3-3}{Infura}{Ethereum}
+	
+    \widernode{stack-3-4}{stack-3-5}{Metamask}{MM}
+  % \widernode{stack-3-6}{stack-3-6}{Web3}{AA}
+  	\widernode[widebox=rinkeby]{stack-4-1}{stack-4-3}{Solidity}{Solidity}
+    \widernode{stack-4-4}{stack-4-5}{Webpack}{BB}
+  %  \widernode{stack-4-6}{stack-4-6}{Truffle}{CC}
+    
+    \widernode[widebox=kovan]{stack-5-1}{stack-5-3}{IPFS}{IPFS}
+    \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
+  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
+    
+    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
+    %\widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
+    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
+    %\widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
+    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
+
+
+%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
+%
+
+    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
+
+%
+%
+
+%
+		
+		\begin{pgfonlayer}{background}
+		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+		            \node [back,
+		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
+		            ] {};
+		            %\node [backgroundN,
+		            %    fit=(stack-3-5) ] {};
+		            %\node [backgroundNN,draw, drop shadow,
+		            %    fit=(stack-3-5) ] {};                                       
+	   \end{pgfonlayer}
+	   
+	   %    % smth to create an arbitrary block with a border and shadow
+	   %Background for smart contracts
+	           \begin{pgfonlayer}{background}
+	           \coordinate (aux) at ([xshift=1mm]stack-5-3.east);
+	               \node [background,
+	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
+	               ] {};
+	               %\node [backgroundN,
+	               %    fit=(stack-3-5) ] {};
+	               %\node [backgroundNN,draw, drop shadow,
+	               %    fit=(stack-3-5) ] {};                                       
+	           \end{pgfonlayer}
+	  
+       \begin{pgfonlayer}{background}
+       \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+           \node [background,
+               fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
+           ] {};
+           %\node [backgroundN,
+           %    fit=(stack-3-5) ] {};
+           %\node [backgroundNN,draw, drop shadow,
+           %    fit=(stack-3-5) ] {};                                       
+       \end{pgfonlayer}
+    \end{tikzpicture}
+
+    \end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/webApp.png?raw=true "webApp")
+
+```tex
+\documentclass[tikz,border=3.14mm]{standalone}
+\usetikzlibrary{shapes.geometric,shapes.symbols,fit,positioning,shadows}
+% https://tex.stackexchange.com/a/12039/121799
+\makeatletter
+\pgfkeys{/pgf/.cd,
+  parallelepiped offset x/.initial=2mm,
+  parallelepiped offset y/.initial=2mm
+}
+\pgfdeclareshape{parallelepiped}
+{
+  \inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+  \inheritanchorborder[from=rectangle]
+  \inheritanchor[from=rectangle]{north}
+  \inheritanchor[from=rectangle]{north west}
+  \inheritanchor[from=rectangle]{north east}
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  \inheritanchor[from=rectangle]{mid}
+  \inheritanchor[from=rectangle]{mid west}
+  \inheritanchor[from=rectangle]{mid east}
+  \inheritanchor[from=rectangle]{base}
+  \inheritanchor[from=rectangle]{base west}
+  \inheritanchor[from=rectangle]{base east}
+  \inheritanchor[from=rectangle]{south}
+  \inheritanchor[from=rectangle]{south west}
+  \inheritanchor[from=rectangle]{south east}
+  \backgroundpath{
+    % store lower right in xa/ya and upper right in xb/yb
+    \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgfmathsetlength\pgfutil@tempdima{\pgfkeysvalueof{/pgf/parallelepiped offset x}}
+    \pgfmathsetlength\pgfutil@tempdimb{\pgfkeysvalueof{/pgf/parallelepiped offset y}}
+    \def\ppd@offset{\pgfpoint{\pgfutil@tempdima}{\pgfutil@tempdimb}}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathclose
+    \pgfpathmoveto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@ya}}{\ppd@offset}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@yb}}{\ppd@offset}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xa}{\pgf@yb}}{\ppd@offset}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xa}{\pgf@yb}}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpointadd{\pgfpoint{\pgf@xb}{\pgf@yb}}{\ppd@offset}}
+  }
+}
+% https://tex.stackexchange.com/a/103691/121799
+\pgfdeclareshape{document}{
+\inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+\inheritanchorborder[from=rectangle]
+\inheritanchor[from=rectangle]{center}
+\inheritanchor[from=rectangle]{north}
+\inheritanchor[from=rectangle]{north east}
+\inheritanchor[from=rectangle]{north west}
+\inheritanchor[from=rectangle]{south}
+\inheritanchor[from=rectangle]{south east}
+\inheritanchor[from=rectangle]{south west}
+\inheritanchor[from=rectangle]{west}
+\inheritanchor[from=rectangle]{east}
+\backgroundpath{%
+\southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+\northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+\pgf@xc=\pgf@xb \advance\pgf@xc by-5pt % this should be a parameter
+\pgf@yc=\pgf@ya \advance\pgf@yc by5pt
+\pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+\pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@ya}}
+\pgfpathclose
+% add little corner
+\pgfpathmoveto{\pgfpoint{\pgf@xc}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+\pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yc}}
+\pgfpathclose
+}
+}
+\makeatother
+\begin{document}
+\tikzset{doc/.style={document,fill=blue!10,draw,thin,minimum
+height=1.2cm,align=center},
+pics/.cd,
+pack/.style={code={%
+\draw[fill=blue!50,opacity=0.2] (0,0) -- (0.5,-0.25) -- (0.5,0.25) -- (0,0.5) -- cycle;
+\draw[fill=blue!50,opacity=0.2] (0,0) -- (-0.5,-0.25) -- (-0.5,0.25) -- (0,0.5) -- cycle;
+\draw[fill=blue!60,opacity=0.2] (0,0) -- (-0.5,-0.25) -- (0,-0.5) -- (0.5,-0.25) -- cycle;
+\draw[fill=blue!60] (0,0) -- (0.25,0.125) -- (0,0.25) -- (-0.25,0.125) -- cycle;
+\draw[fill=blue!50] (0,0) -- (0.25,0.125) -- (0.25,-0.125) -- (0,-0.25) -- cycle;
+\draw[fill=blue!50] (0,0) -- (-0.25,0.125) -- (-0.25,-0.125) -- (0,-0.25) -- cycle;
+\draw[fill=blue!50,opacity=0.2] (0,-0.5) -- (0.5,-0.25) -- (0.5,0.25) -- (0,0) -- cycle;
+ \draw[fill=blue!50,opacity=0.2] (0,-0.5) -- (-0.5,-0.25) -- (-0.5,0.25) -- (0,0) -- cycle;
+\draw[fill=blue!60,opacity=0.2] (0,0.5) -- (-0.5,0.25) -- (0,0) -- (0.5,0.25) -- cycle;
+}}}
+\begin{tikzpicture}[font=\sffamily,every label/.append
+style={font=\small\sffamily,align=center}]
+\node[cylinder, cylinder uses custom fill, cylinder end fill=blue!25,
+cylinder body fill=blue!50,shape border rotate=90,text=white,
+aspect=0.4,minimum width=1cm,minimum height=1.4cm](Store){Store};
+\node[right=1cm of Store,regular polygon,regular polygon sides=6,fill=orange,
+xscale=1.2,text=white] (Router) {Router};
+\node[fit=(Store) (Router)](fit1){};
+\node[below=1cm of fit1,tape, draw,thin, tape bend top=none,fill=purple,
+text=white,minimum width=2.2cm,double copy shadow,minimum height=1.5cm]
+(Components) {Components};
+\node[draw,dashed,rounded corners,fit=(Store) (Router) (Components),inner
+sep=10pt,label={above:{Universal\\ Application Code}}](fit2){};
+\node[right=1cm of fit2,doc] (js) {app.js};
+\node[above right=1cm of js,doc] (Server) {Server\\ entity};
+\node[below right=1cm of js,doc] (Client) {Client\\ entry};
+\draw(fit2.east) -- (js);
+\draw[-latex] (js) |- (Server);
+\draw[-latex] (js) |- (Client);
+\draw[-] (Client) -- ++ (1,0) |- (Server) coordinate[pos=0.25] (aux1);
+\node[draw,dashed,rounded corners,fit=(fit2) (aux1),inner
+xsep=10pt,inner ysep=30pt,label={above:{Source}}](fit3){};
+%
+\pic[right=2cm of aux1,local bounding box=Webpack,scale=2] (Webpack) {pack};
+\node[below=1mm of Webpack,font=\small\sffamily,align=center]{Webpack\\ build};
+%
+\node[above right=1cm and 2cm of Webpack.east,doc,fill=red!10] (ServerBundle)
+{Server\\ bundle};
+\node[below right=1cm and 2cm of Webpack.east,doc,fill=red!10] (ClientBundle) {Client\\
+bundle};
+\node[right=2cm of ServerBundle,parallelepiped,draw=yellow,fill=red!80,
+  minimum width=2cm,minimum height=1.5cm,align=center,text=white]
+  (BundleRenderer)   {Bundle\\ Renderer};
+\node[right=2cm of ClientBundle,doc,fill=yellow,minimum width=2cm,minimum height=1.5cm] (HTML) {HTML};
+\draw[-latex] (aux1) -- (Webpack);
+\draw[-latex] (Webpack) -- ++ (2,0) coordinate(aux2) |- (ServerBundle);
+\draw[-latex] (aux2) |- (ClientBundle);
+\draw[-latex] (ClientBundle) -- (HTML) node[midway,below,font=\small\sffamily]{Hydrate};
+\draw (ServerBundle) -- (BundleRenderer);
+\draw[-latex] (BundleRenderer) -- (HTML) node[midway,right,font=\small\sffamily]{Render};
+% 
+\node[draw,dashed,rounded corners,fit=(ServerBundle) (BundleRenderer),inner
+sep=10pt,label={above:{Node server}}](fit4){};
+\node[draw,dashed,rounded corners,fit=(ClientBundle) (HTML),inner
+sep=10pt,label={below:{Browser}}](fit5){};
+\end{tikzpicture}
+\end{document}
+```
+
 ### ControlSystems/CSI
 
 ![ControlSystems/CSI](ControlSystems/CSI/BlockDiagramex2.png?raw=true "BlockDiagramex2")
@@ -3075,6 +4441,44 @@ width=\textwidth,
 
 ```
 
+### DVP
+
+![DVP](DVP/latex-diagram.png?raw=true "latex-diagram")
+
+```tex
+\documentclass[tikz,border=3.14mm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\pgfplotsset{width=5.5in,compat=1.10}
+\begin{document}
+  \begin{tikzpicture}
+  \begin{axis}[axis lines=middle,
+  xmin=-6, xmax=6,
+        ymin=-6,ymax=6,
+                xlabel = $x$,
+                ylabel = $y$]
+\addplot [->, thick,  red]
+        coordinates { (0,0) (sqrt(3),1)} node[above right,pos=1] {$v_1$};
+\addplot [->, thick,  blue]
+        coordinates { (0,0) (0,2)} node[above right,pos=1] {$v_2$};
+
+\addplot+ [mark=none,black] table {
+0.5 1
+-0.5 1
+-1 0
+-0.5 -1 
+0.5 -1
+1 0
+0.5 1
+};
+\pgfplotsinvokeforeach{-6,-4,...,6}{
+\addplot[only marks, mark=o, samples
+at={-5.19,-3.46,-1.73,0,1.73,3.46,5.19}]{-0.55*x + #1};}
+\end{axis}
+\end{tikzpicture}
+\end{document}
+```
+
 ### ElectroMag
 
 ![ElectroMag](ElectroMag/BHCurve.png?raw=true "BHCurve")
@@ -4673,21 +6077,57 @@ single arrow head extend=.4cm,}}
 \end{document}
 ```
 
-![EngineeringSoftwareDesign](EngineeringSoftwareDesign/Queue.png?raw=true "Queue")
+![EngineeringSoftwareDesign](EngineeringSoftwareDesign/QueuePictures.png?raw=true "QueuePictures")
 
 ```tex
+\documentclass{standalone}
 
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\def\cells#1#2#3{%
+% #1 = total number of cells
+% #2 = number of grey cells
+% #3 = index for "front" ("back" is mod(#3+#2-1, #1))
+  \foreach [count=\i from 0] \j  in {1,...,#1} {
+    % \node[cell,label=above:\i] (cell\i) at (\i,0) {};
+    \node[cell] (cell\i) at (\i,0) {};
+  }
+  \pgfmathsetmacro{\last}{#3+#2-1}
+  \foreach \i in {#3,...,\last} {
+    \pgfmathsetmacro{\back}{mod(\i,#1)}
+    \node[shaded cell] (back) at (\back,0) {};
+  }
+  \node[below] at (cell#3.south) {front};
+  \node[below] at (back.south) {back};
+}
+
+\tikzset{
+  cell/.style = {draw, minimum width=1cm, minimum height=0.8cm},
+  shaded cell/.style = {cell, fill=black!30},
+}
+
+\begin{document}
+%\begin{tikzpicture}
+%\cells{6}{3}{0}
+%\end{tikzpicture} \\
+%
+%\begin{tikzpicture}
+%\cells{6}{3}{3}
+%\end{tikzpicture} \\
+%
+%\begin{tikzpicture}
+%\cells{6}{3}{4}
+%\end{tikzpicture} \\
+
+\begin{tikzpicture}
+\cells{8}{7}{0}
+\foreach [count=\i from 0] \number in {$P_1[0]$, $P_2[0]$, $P_3[0]$, 299, 8, 14, 53, 78}
+\node at (cell\i) {\number};
+\end{tikzpicture}
+
+\end{document}
 ```
-
-### .
-
-![.](./Pictures.png?raw=true "Pictures")
-
-```tex
-
-```
-
-### EngineeringSoftwareDesign
 
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/SeqDia1.png?raw=true "SeqDia1")
 
@@ -4994,5 +6434,2746 @@ single arrow head extend=.4cm,}}
         [Bending, tnode] ] ]
 \end{forest}
 \end{document}
+```
+
+### PCC
+
+![PCC](PCC/crazyDia.png?raw=true "crazyDia")
+
+```tex
+\documentclass[varwidth=true,varwidth=\maxdimen]{standalone}
+\usepackage{lmodern}
+% (2) specify encoding
+\usepackage[T1]{fontenc}
+
+% (3) load symbol definitions
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usetikzlibrary{arrows,positioning}
+
+% Load tikz library in file "tikzlibraryBES.code.tex"
+\tikzset{
+   % House
+   hcnode/.style={circle,draw,fill=blue!30, minimum size=30},
+   hclink/.style={text=blue!30,fill=blue!30},
+   hclabel/.style={text width= 2cm, align=center},
+   % hypercube label pics
+   pics/hclabels/.style args={#1/#2/#3}{
+   code={
+ 
+      % for convience using 0 to 7
+      % \node[hclabel] (h10) at (0,0)
+      \foreach \c [count=\x from 0] in {{0\textunderscore0},{0\textunderscore1},{0\textunderscore2},{0\textunderscore3},{1\textunderscore1},{1\textunderscore0}, {1\textunderscore3},{1\textunderscore2}} 
+        \ifthenelse{\x = #1}
+            {}
+            {
+                % loop through list of colored nodes
+                \foreach\n/\co in {#3}
+                \ifthenelse{\x = \n}
+                {\node[text=\co!60] at (0,-0.5*\x) {#2 $ \rightarrow $ \c};}
+                {\node at (0,-0.5*\x) {#2 $ \rightarrow $ \c};}
+                ;
+            }
+        ;
+    }},
+   pics/hclabels/.default=0/0\textunderscore0/35,
+   % hypercube
+   pics/hypercube/.style args={#1/#2/#3}{
+   code={
+      % Define house parameters
+      \newcommand\wallheight{#1}  % 0.65
+      \newcommand\roofoverhang{#2}  % 0.15
+      \newcommand\roofangle{#3}  % 35
+
+      % Calculate some dependent sizes
+      \pgfmathsetmacro\lengthroof{0.5/cos(\roofangle)+\roofoverhang}
+
+      % draw profile of house
+      % \draw[line width=1pt] (-0.5,\wallheight) -- (-0.5,0) --  (0.5,0) -- (0.5,\wallheight) -- ++(-\roofangle:\roofoverhang) -- ++(180-\roofangle:\lengthroof) -- ++(180+\roofangle:\lengthroof) -- cycle;
+      \node[hcnode] at (0, 0) (00) {0\textunderscore0};
+      \node[hcnode] at (3, 0) (01) {0\textunderscore1};
+      \node[hcnode] at (0, -3) (02) {0\textunderscore2};
+      \node[hcnode] at (3, -3) (03) {0\textunderscore3};
+      
+      \node[hcnode] at (10, 0) (11) {1\textunderscore1};
+      \node[hcnode] at (13, 0) (10) {1\textunderscore0};
+      \node[hcnode] at (10, -3) (13) {1\textunderscore3};
+      \node[hcnode] at (13, -3) (12) {1\textunderscore2};
+      
+      % Arrows last
+      % Draw blue links
+      \path[draw,blue!30] (00) -- (01) -- (03) -- (02) -- (00);
+      \path[draw,blue!30] (11) -- (10) -- (12) -- (13) -- (11);
+      % inner links
+      \draw [-,blue!30] (01) to [out=30,in=150] (11);
+      \draw [-,blue!30] (03) to [out=-30,in=-150] (13);
+      % outer links
+      \draw [-,blue!30] (00) to [out=30,in=150] (10);
+      \draw [-,blue!30] (02) to [out=-30,in=-150] (12);
+      % Draw green links
+      
+      % Draw Red links
+    }},
+    pics/hypercube/.default=0.65/0.15/35
+}
+
+\begin{document}
+\begin{tikzpicture}
+ \path (+1.5,-0.85) pic[scale=1.0] {hypercube};
+  % Labels for Node 0 
+ \path (0,1.5) pic[scale=1.0] {hclabels=0/0\textunderscore0/{0/black}};
+  % Labels for Node 2
+ \path (0,-3.5) pic[scale=1.0] {hclabels=2/0\textunderscore2/{2/black}};
+  % Labels for Node 1
+  \path (6,2.5) pic[scale=1.0] {hclabels=1/0\textunderscore1/{1/black}};
+  % Labels for Node 3
+  \path (6,-3.5) pic[scale=1.0] {hclabels=3/0\textunderscore3/{3/black}};
+  
+% Labels for Node 0 
+ \path (16.5,1.5) pic[scale=1.0] {hclabels=5/1\textunderscore0/{5/black}};
+  % Labels for Node 2
+ \path (16.5,-3.5) pic[scale=1.0] {hclabels=7/1\textunderscore2/{7/black}};
+  % Labels for Node 1
+  \path (9.5,2.5) pic[scale=1.0] {hclabels=4/1\textunderscore1/{4/black}};
+  % Labels for Node 3
+  \path (9.5,-3.5) pic[scale=1.0] {hclabels=6/1\textunderscore3/{6/black}};
+\end{tikzpicture}
+% 
+% \newline
+% \begin{tikzpicture}
+% \path (0,0) pic[scale=1.0] {hclabels=0/0\textunderscore0/{1/red,4/green}};
+%  \path (+1.5,-0.85) pic[scale=1.0] {hypercube};
+% \end{tikzpicture}
+% \begin{tikzpicture}
+
+% \path (+1.5,-0.85) pic[scale=1.0] {hypercube};
+
+% \end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/Cube4.png?raw=true "Cube4")
+
+```tex
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords]
+\def\BigSide{5}
+\def\SmallSide{1.5}
+\pgfmathsetmacro{\CalcSide}{\BigSide-\SmallSide}
+
+% The vertex at V
+\tdplotsetcoord{P}{sqrt(3)*\BigSide}{55}{45}
+
+\coordinate (sxl) at (\BigSide,\CalcSide,\BigSide);
+\coordinate (syl) at (\CalcSide,\CalcSide,\BigSide);
+\coordinate (szl) at (\CalcSide,\BigSide,\BigSide);
+
+\draw[dashed] 
+  (0,0,0) -- (Px)
+  (0,0,0) -- (Py)
+  (0,0,0) -- (Pz);
+\draw[->] 
+  (Px) -- ++ (1,0,0) node[anchor=north east]{$x$};
+\draw[->]
+   (Py) -- ++(0,1,0) node[anchor=north west]{$y$};
+\draw[->] 
+  (Pz) -- ++(0,0,1) node[anchor=south]{$z$};
+
+\draw[thick]
+  (Pxz) -- (P) -- (Pxy) -- (Px) -- (Pxz) -- (Pz) -- (Pyz) -- (P); 
+\draw[thick]
+  (Pyz) -- (Py) -- (Pxy);
+
+
+\end{tikzpicture}
+
+\end{document}
+```
+
+![PCC](PCC/epos27.png?raw=true "epos27")
+
+```tex
+\documentclass{standalone}
+
+  \usepackage{pgfplots}
+  \pgfplotsset{compat=newest}
+  %% the following commands are needed for some matlab2tikz features
+  \usetikzlibrary{plotmarks}
+  \usetikzlibrary{arrows.meta}
+  \usepgfplotslibrary{patchplots}
+  \usepackage{grffile}
+  \usepackage{amsmath}
+
+  %% you may also want the following commands
+  %\pgfplotsset{plot coordinates/math parser=false}
+  %\newlength\figureheight
+  %\newlength\figurewidth
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=2.856in,
+height=3.04in,
+at={(0.532in,0.41in)},
+scale only axis,
+xmin=-100000000000,
+xmax=100000000000,
+tick align=outside,
+xlabel style={font=\color{white!15!black}},
+xlabel={x},
+ymin=-100099789790,
+ymax=100221383780,
+ylabel style={font=\color{white!15!black}},
+ylabel={y},
+zmin=-100000000000,
+zmax=100000000000,
+zlabel style={font=\color{white!15!black}},
+zlabel={z},
+view={-37.5}{30},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={Final State for Bodies},
+axis x line*=bottom,
+axis y line*=left,
+axis z line*=left,
+xmajorgrids,
+ymajorgrids,
+zmajorgrids,
+legend style={at={(1.03,1)}, anchor=north west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot3[scatter, only marks, mark=o, color=mycolor1, mark options={}, scatter/use mapped color=mycolor1, visualization depends on={\thisrow{size} \as \perpointmarksize}, scatter/@pre marker code/.append style={/tikz/mark size=\perpointmarksize}] table[row sep=crcr]{%
+x	y	z	size\\
+-99997680035	-99855857673	-99997638019	2.53722289127305\\
+-99995820981	-100078368310	-58635.022346	2.53722289127305\\
+-99997695110	-100009034110	99997623812	2.51246890528022\\
+-99995843643	226503275.05	-99995779505	2.52487623459052\\
+-99988412223	-179555862.51	-32819.532687	2.52487623459052\\
+-99995844851	-181718398.34	99995769983	2.5\\
+-99997702127	99812198113	-99997628815	2.51246890528022\\
+-99995834363	100002281340	28394.932892	2.53722289127305\\
+-99997688220	100066622950	99997631716	2.52487623459052\\
+-38982.610169	-100099789790	-99995805526	2.52487623459052\\
+-48117.853869	-100038411320	-32185.880326	2.52487623459052\\
+24109.366574	-99841676469	99995788472	2.51246890528022\\
+11726.151807	12985306.256	-99988385554	2.51246890528022\\
+-28519.319386	195477542.09	-15684.045798	5.59016994374947\\
+27742.353864	-21179197.996	99988377381	2.51246890528022\\
+8934.5609253	100197328670	-99995811305	2.51246890528022\\
+-45136.404472	99925853996	17134.979224	2.51246890528022\\
+-37145.860615	100011674450	99995806820	2.52487623459052\\
+99997669088	-99781825884	-99997684828	2.52487623459052\\
+99995807964	-99925688910	4436.776345	2.51246890528022\\
+99997695013	-100027683570	99997681472	2.52487623459052\\
+99995838034	-135798071.12	-99995820437	2.53722289127305\\
+99988403193	228679228.99	-16782.459343	2.51246890528022\\
+99995842575	-30315078.36	99995814229	2.52487623459052\\
+99997700542	100089944940	-99997679122	2.52487623459052\\
+99995828402	100221383780	-17685.690958	2.52487623459052\\
+99997679305	100068347900	99997674675	2.51246890528022\\
+};
+\end{axis}
+\end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/epos7.png?raw=true "epos7")
+
+```tex
+\documentclass{standalone}
+
+  \usepackage{pgfplots}
+  \pgfplotsset{compat=newest}
+  %% the following commands are needed for some matlab2tikz features
+  \usetikzlibrary{plotmarks}
+  \usetikzlibrary{arrows.meta}
+  \usepgfplotslibrary{patchplots}
+  \usepackage{grffile}
+  \usepackage{amsmath}
+
+  %% you may also want the following commands
+  %\pgfplotsset{plot coordinates/math parser=false}
+  %\newlength\figureheight
+  %\newlength\figurewidth
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
+\begin{document}
+
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=2.894in,
+height=3.04in,
+at={(0.487in,0.41in)},
+scale only axis,
+xmin=0,
+xmax=1500000000000,
+tick align=outside,
+xlabel style={font=\color{white!15!black}},
+xlabel={x},
+ymin=0,
+ymax=2374061464.1,
+ylabel style={font=\color{white!15!black}},
+ylabel={y},
+zmin=0,
+zmax=60000000,
+zlabel style={font=\color{white!15!black}},
+zlabel={z},
+view={-37.5}{30},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={Final State for Bodies},
+axis x line*=bottom,
+axis y line*=left,
+axis z line*=left,
+xmajorgrids,
+ymajorgrids,
+zmajorgrids,
+legend style={at={(1.03,1)}, anchor=north west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot3[scatter, only marks, mark=o, color=mycolor1, mark options={}, scatter/use mapped color=mycolor1, visualization depends on={\thisrow{size} \as \perpointmarksize}, scatter/@pre marker code/.append style={/tikz/mark size=\perpointmarksize}] table[row sep=crcr]{%
+x	y	z	size\\
+355.01516663	0.45633240291	3.1373940057e-05	5.59016994374947\\
+57860329160	2374061464.1	0.00013618376453	2.51246890528022\\
+108185770600	1773462602.7	0.0014797416918	2.51246890528022\\
+149592556230	1502928808.9	2189.5755515	2.51246890528022\\
+149592556110	1143477886.9	51023397.742	2.5\\
+227916793400	1327644037.8	0.00021862720095	2.51246890528022\\
+778499725250	656310053.74	4.2228335855e-07	2.51246890528022\\
+1352549908400	484968085.96	6.0340446e-08	2.51246890528022\\
+};
+
+\end{axis}
+\end{tikzpicture}%
+\end{document}
+```
+
+![PCC](PCC/Hypercube.png?raw=true "Hypercube")
+
+```tex
+\documentclass[tikz,convert=false]{standalone}
+% a little support for all the keys
+\def\hyperset{\pgfqkeys{/tikz/hyper}}
+\tikzset{hypher/.code=\hyperset{#1}}
+
+% Dimension setup
+\hyperset{
+  set color/.code 2 args={\colorlet{tikz@hyper@dimen@#1}{#2}},
+  set color={0}{black},
+  set color={1}{blue!50!black},
+  set color={2}{red},
+  set color={3}{green},
+  set color={4}{yellow!80!black}}
+\hyperset{
+  set dimens/.style args={#1:(#2)}{
+    dimen #1/.style={/tikz/shift={(#2)}}},
+  set dimens=0:(0:0),
+  set dimens=1:(right:1),
+  set dimens=2:(up:1),
+  set dimens=3:(30:.75),
+  set dimens=4:(180+70:.5),
+  every hyper node/.style 2 args={%
+    shape=circle,
+    inner sep=+0pt,
+    fill,
+    draw,
+    minimum size=+3pt,
+    color=tikz@hyper@dimen@#1,
+    label={[hyper/label #1/.try, hyper/dimen #1 style/.try]#1-#2}
+  },
+  every hyper edge/.style={draw},
+  every hyper shift edge/.style={->,tikz@hyper@dimen@#1!80},
+  every normal hyper edge/.style={<->,tikz@hyper@dimen@#1!40},
+}
+\newcommand*{\hyper}[1]{% #3 = max level
+  \def\currentTransform{}
+  \node[hyper/every hyper node/.try={0}{0}, hyper/dimen 0 node/.try] (0-0) {};
+  \hyperhyper{0}{0}{#1}}
+\newcommand*{\hyperhyper}[3]{% #1 = current level
+                             % #2 = current number
+                             % #3 = maxlevel
+  \foreach \dimension in {#3,...,\the\numexpr#1+1\relax} {
+    \edef\newNumber{\the\numexpr#2+\dimension\relax}
+    \node[hyper/every hyper node/.try={\dimension}{\newNumber}, hyper/dimen \dimension node/.try, hyper/dimen \dimension\space style/.try] at ([hyper/dimen \dimension] #1-#2) (\dimension-\newNumber) {};
+    \path (#1-#2) edge[hyper/every hyper edge/.try=\dimension, hyper/every hyper shift edge/.try=\dimension, hyper/dimen \dimension\space style/.try] (\dimension-\newNumber);
+    \ifnum\newNumber>\dimension\relax
+      \foreach \oldShift in \currentTransform {
+        \if\relax\detokenize\expandafter{\oldShift}\relax\else
+          \path (\dimension-\newNumber) edge[hyper/every hyper edge/.try=\dimension, hyper/every normal hyper edge/.try=\dimension, hyper/dimen \dimension\space style/.try] (\dimension-\the\numexpr\newNumber-\oldShift\relax);
+        \fi
+      }
+    \fi
+    \edef\currentTransform{\dimension,\currentTransform}%
+    \ifnum\dimension<#3\relax
+      \edef\temp{{\dimension}{\the\numexpr#2+\dimension\relax}{#3}}
+      \expandafter\hyperhyper\temp
+    \fi
+  }
+}
+\tikzset{
+  @only for the animation/.style={
+    hyper/dimen #1 style/.style={opacity=0}}}
+\begin{document}
+\foreach \DIM in {0,...,4,4,3,...,0} {
+\begin{tikzpicture}[
+  >=stealth,
+  scale=3,
+  every label/.append style={font=\tiny,inner sep=+0pt}, label position=above left,
+  @only for the animation/.list={\the\numexpr\DIM+1\relax,...,5}
+  ]
+  \hyper{4}
+\end{tikzpicture}}
+\end{document}
+```
+
+![PCC](PCC/interconnect-diagram.png?raw=true "interconnect-diagram")
+
+```tex
+\documentclass{article}
+\usepackage[left=0.5in,right=0.5in,top=0in,bottom=0in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows, positioning, calc}
+% Define block styles used later
+
+% Interconnection network block
+\tikzstyle{intn}=[draw, fill=blue!20, text width=15em, 
+    text centered, minimum height=2em]
+    
+% Directory block
+\tikzstyle{d} = [text width=3em, text centered, minimum height=2em,rounded corners,fill=green!20]
+% memory block
+\tikzstyle{m} = [text width=3em, align=left, minimum height=2em,rounded corners,fill=blue!20]
+
+% Caches
+\tikzstyle{ca} = [text width=3em, text centered, minimum height=2em,rounded corners, fill=red!20]
+
+% CPU Blocks
+
+\tikzstyle{cpu} = [text width=3em, text centered, minimum height=2em,fill=yellow!20]
+\usepackage{subcaption}
+
+\begin{document}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+            \begin{tikzpicture}[node distance=1.75cm and 1cm] 
+            % Block nodes
+            \node (in1) [draw, intn] {Interconnection Network};
+            \node (d2) [yshift=-0.9cm, draw, d] {};
+            \node (d1) [left of = d2, draw, d] {};
+            \node (d3) [right of = d2, draw, d] {};
+            
+            \node (m2) [yshift=-1.8cm, draw, m] {};
+            \node (m1) [left of = m2, draw, m] {};
+            \node (m3) [right of = m2, draw, m] {X};
+            
+            
+            \node (ca2) [yshift=-2.7cm, draw, ca] {};
+            \node (ca1) [left of = ca2, draw, ca] {};
+            \node (ca3) [right of = ca2, draw, ca] {};
+            
+            \node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+            \node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+            \node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+            
+            % Node within nodes
+            % Label inside node
+            \node[draw,fill=white!30] at (d3.center) {U000};
+            \node[draw,fill=white!30] at (m3.center) {4};
+            % Label nodes, comment out for preceeding diagrams
+            \node (dlabel) [left of = d1] {\small{Directories}};
+            \node (mlabel) [left of = m1] {\small{Memories}};
+            \node (calabel) [left of = ca1] {\small{Caches}};
+            
+            % Paths to connect all nodes for first column
+            \draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+            \draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+            \draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+            
+            % Paths for second column
+            \draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+            \draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+            \draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+            
+            % Paths for third column
+            \draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+            \draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+            \draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+            
+            % CPU Connections
+            \draw (ca1) -- (cpu1);
+            \draw (ca2) -- (cpu2);
+            \draw (ca3) -- (cpu3);
+            
+            % arrow outside 
+            \node (ulabel) [right = 0.5cm of d3, text width=2cm] {\small{Information about cache block \\ containing X}};
+            
+            \draw [->] (ulabel) -- (d3.east);
+            
+            %\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+            \end{tikzpicture}
+            \caption{}
+        \end{subfigure}
+\hfill %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+\begin{subfigure}[b]{0.45\textwidth}
+\begin{tikzpicture}[node distance=1.75cm and 1cm] 
+% Block nodes
+\node (in1) [draw, intn] {Interconnection Network};
+\node (d2) [yshift=-0.9cm, draw, d] {};
+\node (d1) [left of = d2, draw, d] {};
+\node (d3) [right of = d2, draw, d] {};
+
+\node (m2) [yshift=-1.8cm, draw, m] {};
+\node (m1) [left of = m2, draw, m] {};
+\node (m3) [right of = m2, draw, m] {X};
+
+
+\node (ca2) [yshift=-2.7cm, draw, ca] {};
+\node (ca1) [left of = ca2, draw, ca] {};
+\node (ca3) [right of = ca2, draw, ca] {};
+
+\node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+\node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+\node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+
+% Node within nodes
+% Label inside node
+\node[draw,fill=white!30] at (d3.center) {S001};
+\node[draw,fill=white!30] at (m3.center) {4};
+
+\node[xshift=-0.4cm] at (ca3.center) {X};
+\node[draw,fill=white!30] at (ca3.center) {4};
+% Label nodes, comment out for preceeding diagrams
+% \node (dlabel) [left of = d1] {\small{Directories}};
+% \node (mlabel) [left of = m1] {\small{Memories}};
+% \node (calabel) [left of = ca1] {\small{Caches}};
+
+% Paths to connect all nodes for first column
+\draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+\draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+\draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+
+% Paths for second column
+\draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+\draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+\draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+
+% Paths for third column
+\draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+\draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+\draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+
+% CPU Connections
+\draw (ca1) -- (cpu1);
+\draw (ca2) -- (cpu2);
+\draw (ca3) -- (cpu3);
+
+%\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+% Row two
+\begin{subfigure}[b]{0.3\textwidth}
+\begin{tikzpicture}[node distance=1.75cm and 1cm] 
+% Block nodes
+\node (in1) [draw, intn] {Interconnection Network};
+\node (d2) [yshift=-0.9cm, draw, d] {};
+\node (d1) [left of = d2, draw, d] {};
+\node (d3) [right of = d2, draw, d] {};
+
+\node (m2) [yshift=-1.8cm, draw, m] {};
+\node (m1) [left of = m2, draw, m] {};
+\node (m3) [right of = m2, draw, m] {X};
+
+
+\node (ca2) [yshift=-2.7cm, draw, ca] {};
+\node (ca1) [left of = ca2, draw, ca] {};
+\node (ca3) [right of = ca2, draw, ca] {};
+
+\node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+\node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+\node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+
+% Node within nodes
+% Label inside node
+\node[draw,fill=white!30] at (d3.center) {E001};
+\node[draw,fill=white!30] at (m3.center) {4};
+
+\node[xshift=-0.4cm] at (ca3.center) {X};
+\node[draw,fill=white!30] at (ca3.center) {5};
+% Label nodes, comment out for preceeding diagrams
+% \node (dlabel) [left of = d1] {\small{Directories}};
+% \node (mlabel) [left of = m1] {\small{Memories}};
+% \node (calabel) [left of = ca1] {\small{Caches}};
+
+% Paths to connect all nodes for first column
+\draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+\draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+\draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+
+% Paths for second column
+\draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+\draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+\draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+
+% Paths for third column
+\draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+\draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+\draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+
+% CPU Connections
+\draw (ca1) -- (cpu1);
+\draw (ca2) -- (cpu2);
+\draw (ca3) -- (cpu3);
+
+%\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line), object d
+\begin{subfigure}[b]{0.3\textwidth}
+\begin{tikzpicture}[node distance=1.75cm and 1cm] 
+% Block nodes
+\node (in1) [draw, intn] {Interconnection Network};
+\node (d2) [yshift=-0.9cm, draw, d] {};
+\node (d1) [left of = d2, draw, d] {};
+\node (d3) [right of = d2, draw, d] {};
+
+\node (m2) [yshift=-1.8cm, draw, m] {};
+\node (m1) [left of = m2, draw, m] {};
+\node (m3) [right of = m2, draw, m] {X};
+
+
+\node (ca2) [yshift=-2.7cm, draw, ca] {};
+\node (ca1) [left of = ca2, draw, ca] {};
+\node (ca3) [right of = ca2, draw, ca] {};
+
+\node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+\node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+\node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+
+% Node within nodes
+% Label inside node
+\node[draw,fill=white!30] at (d3.center) {S011};
+\node[draw,fill=white!30] at (m3.center) {5};
+
+\node[xshift=-0.4cm] at (ca2.center) {X};
+\node[draw,fill=white!30] at (ca2.center) {5};
+
+\node[xshift=-0.4cm] at (ca3.center) {X};
+\node[draw,fill=white!30] at (ca3.center) {5};
+% Label nodes, comment out for preceeding diagrams
+% \node (dlabel) [left of = d1] {\small{Directories}};
+% \node (mlabel) [left of = m1] {\small{Memories}};
+% \node (calabel) [left of = ca1] {\small{Caches}};
+
+% Paths to connect all nodes for first column
+\draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+\draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+\draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+
+% Paths for second column
+\draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+\draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+\draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+
+% Paths for third column
+\draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+\draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+\draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+
+% CPU Connections
+\draw (ca1) -- (cpu1);
+\draw (ca2) -- (cpu2);
+\draw (ca3) -- (cpu3);
+
+%\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+~ 
+\begin{subfigure}[b]{0.3\textwidth}
+\begin{tikzpicture}[node distance=1.75cm and 1cm] 
+% Block nodes
+\node (in1) [draw, intn] {Interconnection Network};
+\node (d2) [yshift=-0.9cm, draw, d] {};
+\node (d1) [left of = d2, draw, d] {};
+\node (d3) [right of = d2, draw, d] {};
+
+\node (m2) [yshift=-1.8cm, draw, m] {};
+\node (m1) [left of = m2, draw, m] {};
+\node (m3) [right of = m2, draw, m] {X};
+
+
+\node (ca2) [yshift=-2.7cm, draw, ca] {};
+\node (ca1) [left of = ca2, draw, ca] {};
+\node (ca3) [right of = ca2, draw, ca] {};
+
+\node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+\node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+\node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+
+% Node within nodes
+% Label inside node
+\node[draw,fill=white!30] at (d3.center) {S111};
+\node[draw,fill=white!30] at (m3.center) {5};
+
+\node[xshift=-0.4cm] at (ca1.center) {X};
+\node[draw,fill=white!30] at (ca1.center) {5};
+
+\node[xshift=-0.4cm] at (ca2.center) {X};
+\node[draw,fill=white!30] at (ca2.center) {5};
+
+\node[xshift=-0.4cm] at (ca3.center) {X};
+\node[draw,fill=white!30] at (ca3.center) {5};
+% Label nodes, comment out for preceeding diagrams
+% \node (dlabel) [left of = d1] {\small{Directories}};
+% \node (mlabel) [left of = m1] {\small{Memories}};
+% \node (calabel) [left of = ca1] {\small{Caches}};
+
+% Paths to connect all nodes for first column
+\draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+\draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+\draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+
+% Paths for second column
+\draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+\draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+\draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+
+% Paths for third column
+\draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+\draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+\draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+
+% CPU Connections
+\draw (ca1) -- (cpu1);
+\draw (ca2) -- (cpu2);
+\draw (ca3) -- (cpu3);
+
+%\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+% Row 3
+\begin{subfigure}[b]{0.3\textwidth}
+\begin{tikzpicture}[node distance=1.75cm and 1cm] 
+% Block nodes
+\node (in1) [draw, intn] {Interconnection Network};
+\node (d2) [yshift=-0.9cm, draw, d] {};
+\node (d1) [left of = d2, draw, d] {};
+\node (d3) [right of = d2, draw, d] {};
+
+\node (m2) [yshift=-1.8cm, draw, m] {};
+\node (m1) [left of = m2, draw, m] {};
+\node (m3) [right of = m2, draw, m] {X};
+
+
+\node (ca2) [yshift=-2.7cm, draw, ca] {};
+\node (ca1) [left of = ca2, draw, ca] {};
+\node (ca3) [right of = ca2, draw, ca] {};
+
+\node (cpu2) [yshift=-3.6cm, draw, cpu] {CPU 1};
+\node (cpu1) [left of = cpu2,draw, cpu] {CPU 0};
+\node (cpu3) [right of = cpu2, draw, cpu] {CPU 2};
+
+% Node within nodes
+% Label inside node
+\node[draw,fill=white!30] at (d3.center) {E010};
+\node[draw,fill=white!30] at (m3.center) {5};
+
+\node[xshift=-0.4cm] at (ca2.center) {X};
+\node[draw,fill=white!30] at (ca2.center) {9};
+
+% Label nodes, comment out for preceeding diagrams
+% \node (dlabel) [left of = d1] {\small{Directories}};
+% \node (mlabel) [left of = m1] {\small{Memories}};
+% \node (calabel) [left of = ca1] {\small{Caches}};
+
+% Paths to connect all nodes for first column
+\draw ($(in1.south west) +(0.2,0)$) |- (d1.west);
+\draw  (m1.west) -| ($(in1.south west) +(0.2,0) $);
+\draw  (ca1.west) -| ($(in1.south west) +(0.2,0) $);
+
+% Paths for second column
+\draw ($(in1.south west) +(1.95,0)$) |- (d2.west);
+\draw  (m2.west) -| ($(in1.south west) +(1.95,0) $);
+\draw  (ca2.west) -| ($(in1.south west) +(1.95,0) $);
+
+% Paths for third column
+\draw ($(in1.south west) +(3.7,0)$) |- (d3.west);
+\draw  (m3.west) -| ($(in1.south west) +(3.7,0) $);
+\draw  (ca3.west) -| ($(in1.south west) +(3.7,0) $);
+
+% CPU Connections
+\draw (ca1) -- (cpu1);
+\draw (ca2) -- (cpu2);
+\draw (ca3) -- (cpu3);
+
+%\draw  (cpu1.west) -| ($(in1.south west) +(0.1,0) $);
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+~ 
+\begin{subfigure}[b]{0.5\textwidth}
+\begin{tikzpicture}[node distance=1.5cm and 1cm] 
+\node[text width=25 em] (u){\textbf{Uncached(U)} --- not currently in any processor's cache.};
+\node[text width=25 em, below of = u ] (s) {\textbf{Shared(S)} --- cached by one or more processors and the copy in memory is correct.};
+\node[text width=25 em, below of = s ] {\textbf{Cached(C)} --- cached by exactly one processor that has written the block, so that the copy in money is obsolete.};
+\end{tikzpicture}
+\caption{}
+\end{subfigure}
+%\caption*{Directory-based Cache Operations. (a) Starting Cache from Figure 2.19. (b) State after CPU 2 reads X. (c) State after CPU 2 writes value 5 to X. (d) State after CPU 1 reads X. (e) State after CPU 0 reads X. (f) State after CPU 1 writes value 9 to X.}
+\end{figure}
+\end{document}
+```
+
+![PCC](PCC/omega_flip.png?raw=true "omega_flip")
+
+```tex
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{sa-tikz}
+\usetikzlibrary{positioning}
+\begin{document}
+\tikzset{module size=0.6cm,pin length factor=0.6,
+module ysep=1.0, module xsep=3.5}
+
+\begin{tikzpicture}[P=16]
+
+\node[banyan omega={module label opacity=0}] {};
+\newcounter{portb}
+\setcounter{portb}{0}
+\foreach \module in {1,...,8}{
+    \foreach \port in {1,...,2}{
+    \stepcounter{portb}
+    \pgfmathbin{\theportb-1}
+    \node[left] at (r0-\module-front input-\port)
+    {\scriptsize{\pgfmathresult}};
+    \node[right] at (r4-\module-front output-\port)
+    {\scriptsize{\pgfmathresult}};
+    }
+}
+\draw[red,ultra thick] (r0-2-front input-1) -- (r0-2-front output-1)--
+(r1-3-front input-1) -- (r1-3-front output-2)-- (r2-6-front input-1)--
+(r2-6-front output-1) -- (r3-3-front input-2) -- (r3-3-front output-1)--
+(r4-5-front input-1) -- (r4-5-front output-1);
+\end{tikzpicture}
+
+\end{document}
+```
+
+![PCC](PCC/q4Torus.png?raw=true "q4Torus")
+
+```tex
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows,chains,positioning,scopes,quotes,bending,calc,intersections}
+
+\tikzset{
+    block/.style={draw,minimum width=1em,minimum height=1em,align=center,fill=blue!30},
+    arrow/.style={->},
+    line/.style={-}
+}
+
+\begin{document}
+    \begin{tikzpicture}[>=stealth',node distance=0.5cm]
+    % Creating rows of blocks
+    {[start chain]
+        \node[on chain] (s0) {};
+        \node[on chain] (s1) {};
+        \node[on chain] (s2) {};
+        \node[on chain] (s3) {};
+        \node[on chain] (s4) {};
+    }
+    {[start chain]
+        \node[block,on chain, below = 0.15 cm of s0] (A0) {};
+        \node[block,on chain, join =by {line}] (A1) {};
+        \node[block,on chain, join =by {line}] (A2) {};
+        \node[block,on chain, join =by {line}] (A3) {};
+        \node[block,on chain, join =by {line}] (A4) {};
+    }
+    {[start chain]
+        \node[block,on chain, below = of A0] (B0) {};
+        \node[block,on chain, join =by {line}] (B1) {};
+        \node[block,on chain, join =by {line}] (B2) {};
+        \node[block,on chain, join =by {line}] (B3) {};
+        \node[block,on chain, join =by {line}] (B4) {};
+    }
+    {[start chain]
+        \node[block,on chain, below = of B0] (C0) {};
+        \node[block,on chain, join =by {line}] (C1) {};
+        \node[block,on chain, join =by {line}] (C2) {};
+        \node[block,on chain, join =by {line}] (C3) {};
+        \node[block,on chain, join =by {line}] (C4) {};
+    }
+    {[start chain]
+        \node[block,on chain, below = of C0] (D0) {};
+        \node[block,on chain, join =by {line}] (D1) {};
+        \node[block,on chain, join =by {line}] (D2) {};
+        \node[block,on chain, join =by {line}] (D3) {};
+        \node[block,on chain, join =by {line}] (D4) {};
+    }
+    % {[start chain]
+    %     \node[block,on chain, below = of D0] (E0) {};
+    %     \node[block,on chain, join =by {line}] (E1) {};
+    %     \node[block,on chain, join =by {line}] (E2) {};
+    %     \node[block,on chain, join =by {line}] (E3) {};
+    %     \node[block,on chain, join =by {line}] (E4) {};
+    % }
+    % Drawing vertical lines
+    \draw (A0) -- (B0) -- (C0) -- (D0); % -- (E0);
+    \draw (A1) -- (B1) -- (C1) -- (D1); % -- (E1);
+    \draw (A2) -- (B2) -- (C2) -- (D2); % -- (E2);
+    \draw (A3) -- (B3) -- (C3) -- (D3); % -- (E3);
+    \draw (A4) -- (B4) -- (C4) -- (D4); % -- (E4);
+    % Drawing loop backs horizontal
+    \draw (A0.west) -- ($(A0.west) - (0.15, 0)$);
+    \draw ($(A0.west) - (0.15, 0)$) -- ($(A0.west) - (0.15, 0)+(0,0.5)$);
+    \draw ($(A0.west) - (0.15, 0)+(0,0.5)$) -- ($(A0.west) +(4,0.5)$);
+    \draw ($(A0.west) +(4,0.5)$) |- (A4.east);
+    % \draw (A0.north) |- (s2.north east) -| (A4.north);
+    % B row
+    \draw (B0.west) -- ($(B0.west) - (0.15, 0)$);
+    \draw ($(B0.west) - (0.15, 0)$) -- ($(B0.west) - (0.15, 0)+(0,0.5)$);
+    \draw ($(B0.west) - (0.15, 0)+(0,0.5)$) -- ($(B0.west) +(4,0.5)$);
+    \draw ($(B0.west) +(4,0.5)$) |- (B4.east);
+    % C row
+    \draw (C0.west) -- ($(C0.west) - (0.15, 0)$);
+    \draw ($(C0.west) - (0.15, 0)$) -- ($(C0.west) - (0.15, 0)+(0,0.5)$);
+    \draw ($(C0.west) - (0.15, 0)+(0,0.5)$) -- ($(C0.west) +(4,0.5)$);
+    \draw ($(C0.west) +(4,0.5)$) |- (C4.east);
+    % D row
+    \draw (D0.west) -- ($(D0.west) - (0.15, 0)$);
+    \draw ($(D0.west) - (0.15, 0)$) -- ($(D0.west) - (0.15, 0)+(0,0.5)$);
+    \draw ($(D0.west) - (0.15, 0)+(0,0.5)$) -- ($(D0.west) +(4,0.5)$);
+    \draw ($(D0.west) +(4,0.5)$) |- (D4.east);
+     % E row
+    %\draw (E0.west) -- ($(E0.west) - (0.15, 0)$);
+    %\draw ($(E0.west) - (0.15, 0)$) -- ($(E0.west) - (0.15, 0)+(0,0.5)$);
+    %\draw ($(E0.west) - (0.15, 0)+(0,0.5)$) -- ($(E0.west) +(4,0.5)$);
+    %\draw ($(E0.west) +(4,0.5)$) |- (E4.east);
+    % Vertical Loopbacks
+    
+    % 0 column
+    \draw (A0.north) -- ($(A0.north) + (0.0, 0.15)$);
+    \draw ($(A0.north) + (0, 0.15)$) -- ($(A0.north) + (0, 0.15)+(-0.5,0)$);
+    \draw ($(A0.north) + (0, 0.15)+(-0.5,0)$) -- ($(D0.north) +(-0.5,-0.65)$);
+    \draw ($(D0.north) +(-0.5,-0.65)$) -| (D0.south);
+    % 1 column
+    \draw (A1.north) -- ($(A1.north) + (0.0, 0.15)$);
+    \draw ($(A1.north) + (0, 0.15)$) -- ($(A1.north) + (0, 0.15)+(-0.5,0)$);
+    \draw ($(A1.north) + (0, 0.15)+(-0.5,0)$) -- ($(D1.north) +(-0.5,-0.65)$);
+    \draw ($(D1.north) +(-0.5,-0.65)$) -| (D1.south);
+    % 2 column
+    \draw (A2.north) -- ($(A2.north) + (0.0, 0.15)$);
+    \draw ($(A2.north) + (0, 0.15)$) -- ($(A2.north) + (0, 0.15)+(-0.5,0)$);
+    \draw ($(A2.north) + (0, 0.15)+(-0.5,0)$) -- ($(D2.north) +(-0.5,-0.65)$);
+    \draw ($(D2.north) +(-0.5,-0.65)$) -| (D2.south);
+    
+    % 3 column
+    \draw (A3.north) -- ($(A3.north) + (0.0, 0.15)$);
+    \draw ($(A3.north) + (0, 0.15)$) -- ($(A3.north) + (0, 0.15)+(-0.5,0)$);
+    \draw ($(A3.north) + (0, 0.15)+(-0.5,0)$) -- ($(D3.north) +(-0.5,-0.65)$);
+    \draw ($(D3.north) +(-0.5,-0.65)$) -| (D3.south);
+    
+    % 4 column
+    \draw (A4.north) -- ($(A4.north) + (0.0, 0.15)$);
+    \draw ($(A4.north) + (0, 0.15)$) -- ($(A4.north) + (0, 0.15)+(-0.5,0)$);
+    \draw ($(A4.north) + (0, 0.15)+(-0.5,0)$) -- ($(D4.north) +(-0.5,-0.65)$);
+    \draw ($(D4.north) +(-0.5,-0.65)$) -| (D4.south);
+    \end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/reduc11.png?raw=true "reduc11")
+
+```tex
+\documentclass[tikz]{standalone}
+\tikzset{near start abs/.style={xshift=1cm}}
+
+\usetikzlibrary{positioning}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm]
+    % place nodes
+    \node[circle,draw=black, fill=white, inner sep=0pt,minimum size=10pt] (r) {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r, minimum size=10pt] (r1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r, minimum size=10pt] (r2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r2a, minimum size=10pt] (r2b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=r2a, minimum size=10pt] (r3a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r3a, minimum size=10pt] (r3b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r3a, minimum size=10pt] (r4a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r4a, minimum size=10pt] (r4b)  {};
+    % Extension from 7 nodes
+    % Blank node
+    \node[inner sep=0pt,below right of=r, minimum size=10pt] (t)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,below right of=t, minimum size=10pt] (t1)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=t1, minimum size=10pt] (t2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=t1, minimum size=10pt] (t2b)  {};
+    \draw (r) -- node[above] {\small{1}} ++(r1a);
+    \draw (r) -- node[above] {\small{2}} ++(r2a);
+    \draw (r3a) -- node[above] {\small{3}} ++(r);
+    \draw (r2a) -- node[above] {\small{1}} ++(r2b);
+    \draw (r3a) -- node[above] {\small{1}} ++(r3b);
+    \draw (r3a) -- node[above] {\small{2}} ++(r4a);
+    \draw (r4a) -- node[above] {\small{1}} ++(r4b);
+    
+    \draw[->, thick] (r) -- node[above] {\small{4}} ++(t1);
+    \draw (t1) -- node[above] {\small{3}} ++(t2a);
+    \draw (t1) -- node[above] {\small{2}} ++(t2b);
+\end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/reduc21.png?raw=true "reduc21")
+
+```tex
+\documentclass[tikz]{standalone}
+\tikzset{near start abs/.style={xshift=1cm}}
+
+\usetikzlibrary{positioning}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm]
+    % place nodes
+    \node[circle,draw=black, fill=white, inner sep=0pt,minimum size=10pt] (r) {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r, minimum size=10pt] (r1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r, minimum size=10pt] (r2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r2a, minimum size=10pt] (r2b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=r2a, minimum size=10pt] (r3a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r3a, minimum size=10pt] (r3b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r3a, minimum size=10pt] (r4a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r4a, minimum size=10pt] (r4b)  {};
+    % Extension from 7 nodes
+    % Blank node
+    \node[inner sep=0pt,below right of=r, minimum size=10pt] (t)  {};
+    
+    \node[circle,draw=black, fill=white, inner sep=0pt,below right of=t, minimum size=10pt] (t1)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=t1, minimum size=10pt] (t1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=t1, minimum size=10pt] (t2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=t2a, minimum size=10pt] (t2b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=t2a, minimum size=10pt] (t3a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=t3a, minimum size=10pt] (t3b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=t3a, minimum size=10pt] (t4a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=t4a, minimum size=10pt] (t4b)  {};
+    
+    % Third group
+    \node[inner sep=0pt,below right of=t1, minimum size=10pt] (v)  {};
+    
+    \node[circle,draw=black, fill=white, inner sep=0pt,below right of=v, minimum size=10pt] (v1)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=v1, minimum size=10pt] (v1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=v1, minimum size=10pt] (v2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=v1,yshift=1cm, minimum size=10pt] (v3a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=v3a, minimum size=10pt] (v4a)  {};
+    \draw (r) -- node[above] {\small{1}} ++(r1a);
+    \draw (r) -- node[above] {\small{2}} ++(r2a);
+    \draw (r3a) -- node[above] {\small{3}} ++(r);
+    \draw (r2a) -- node[above] {\small{1}} ++(r2b);
+    \draw (r3a) -- node[above] {\small{1}} ++(r3b);
+    \draw (r3a) -- node[above] {\small{2}} ++(r4a);
+    \draw (r4a) -- node[above] {\small{1}} ++(r4b);
+    
+    % Second nodes
+    \draw (t1) -- node[above] {\small{1}} ++(t1a);
+    \draw (t1) -- node[above] {\small{2}} ++(t2a);
+    \draw (t3a) -- node[above] {\small{3}} ++(t1);
+    \draw (t2a) -- node[above] {\small{1}} ++(t2b);
+    \draw (t3a) -- node[above] {\small{1}} ++(t3b);
+    \draw (t3a) -- node[above] {\small{2}} ++(t4a);
+    \draw (t4a) -- node[above] {\small{1}} ++(t4b);
+    
+    % Third node
+    \draw (v1) -- node[above] {\small{1}} ++(v1a);
+    \draw (v1) -- node[above] {\small{2}} ++(v2a);
+    \draw (v3a) -- node[above] {\small{3}} ++(v1);
+    \draw (v4a) -- node[above] {\small{2}} ++(v3a);
+    \draw (r) -- node[above] {\small{4}} ++(t1);
+    \draw[->, thick] (v1) -- node[above] {\small{5}} ++(t1);
+    % \draw (t1) -- node[above] {\small{3}} ++(t2a);
+    % \draw (t1) -- node[above] {\small{2}} ++(t2b);
+\end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/reduc7.png?raw=true "reduc7")
+
+```tex
+\documentclass[tikz]{standalone}
+\tikzset{near start abs/.style={xshift=1cm}}
+
+\usetikzlibrary{positioning}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm]
+    % place nodes
+    \node[circle,draw=black, fill=white, inner sep=0pt,minimum size=10pt] (r) {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r, minimum size=10pt] (r1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r, minimum size=10pt] (r2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r2a, minimum size=10pt] (r2b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=r2a, minimum size=10pt] (r3a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r3a, minimum size=10pt] (r3b)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r3a, minimum size=10pt] (r4a)  {};
+    \draw (r) -- node[above] {\small{1}} ++(r1a);
+    \draw (r) -- node[above] {\small{2}} ++(r2a);
+    \draw[->,thick] (r3a) -- node[above] {\small{3}} ++(r);
+    \draw (r2a) -- node[above] {\small{1}} ++(r2b);
+    \draw[<-,thick] (r3a) -- node[above] {\small{1}} ++(r3b);
+    \draw[<-,thick] (r3a) -- node[above] {\small{2}} ++(r4a);
+\end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/spos27.png?raw=true "spos27")
+
+```tex
+\documentclass{standalone}
+
+  \usepackage{pgfplots}
+  \pgfplotsset{compat=newest}
+  %% the following commands are needed for some matlab2tikz features
+  \usetikzlibrary{plotmarks}
+  \usetikzlibrary{arrows.meta}
+  \usepgfplotslibrary{patchplots}
+  \usepackage{grffile}
+  \usepackage{amsmath}
+
+  %% you may also want the following commands
+  %\pgfplotsset{plot coordinates/math parser=false}
+  %\newlength\figureheight
+  %\newlength\figurewidth
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=3.055in,
+height=3.17in,
+at={(0.524in,0.428in)},
+scale only axis,
+xmin=-100000000000,
+xmax=100000000000,
+tick align=outside,
+ymin=-100000000000,
+ymax=100000000000,
+zmin=-100000000000,
+zmax=100000000000,
+view={-37.5}{30},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+axis z line*=left,
+xmajorgrids,
+ymajorgrids,
+zmajorgrids,
+legend style={at={(1.03,1)}, anchor=north west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot3[scatter, only marks, mark=o, color=mycolor1, mark options={}, scatter/use mapped color=mycolor1, visualization depends on={\thisrow{size} \as \perpointmarksize}, scatter/@pre marker code/.append style={/tikz/mark size=\perpointmarksize}] table[row sep=crcr]{%
+x	y	z	size\\
+-100000000000	-100000000000	-100000000000	2.53722289127305\\
+-100000000000	-100000000000	0	2.53722289127305\\
+-100000000000	-100000000000	100000000000	2.51246890528022\\
+-100000000000	0	-100000000000	2.52487623459052\\
+-100000000000	0	0	2.52487623459052\\
+-100000000000	0	100000000000	2.5\\
+-100000000000	100000000000	-100000000000	2.51246890528022\\
+-100000000000	100000000000	0	2.53722289127305\\
+-100000000000	100000000000	100000000000	2.52487623459052\\
+0	-100000000000	-100000000000	2.52487623459052\\
+0	-100000000000	0	2.52487623459052\\
+0	-100000000000	100000000000	2.51246890528022\\
+0	0	-100000000000	2.51246890528022\\
+0	0	0	5.59016994374947\\
+0	0	100000000000	2.51246890528022\\
+0	100000000000	-100000000000	2.51246890528022\\
+0	100000000000	0	2.51246890528022\\
+0	100000000000	100000000000	2.52487623459052\\
+100000000000	-100000000000	-100000000000	2.52487623459052\\
+100000000000	-100000000000	0	2.51246890528022\\
+100000000000	-100000000000	100000000000	2.52487623459052\\
+100000000000	0	-100000000000	2.53722289127305\\
+100000000000	0	0	2.51246890528022\\
+100000000000	0	100000000000	2.52487623459052\\
+100000000000	100000000000	-100000000000	2.52487623459052\\
+100000000000	100000000000	0	2.52487623459052\\
+100000000000	100000000000	100000000000	2.51246890528022\\
+};
+
+\end{axis}
+\end{tikzpicture}
+\end{document}
+
+```
+
+![PCC](PCC/spos7.png?raw=true "spos7")
+
+```tex
+\documentclass{standalone}
+
+  \usepackage{pgfplots}
+  \pgfplotsset{compat=newest}
+  %% the following commands are needed for some matlab2tikz features
+  \usetikzlibrary{plotmarks}
+  \usetikzlibrary{arrows.meta}
+  \usepgfplotslibrary{patchplots}
+  \usepackage{grffile}
+  \usepackage{amsmath}
+
+  %% you may also want the following commands
+  %\pgfplotsset{plot coordinates/math parser=false}
+  %\newlength\figureheight
+  %\newlength\figurewidth
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}
+\begin{document}
+
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=2.853in,
+height=3.04in,
+at={(0.528in,0.41in)},
+scale only axis,
+xmin=0,
+xmax=1500000000000,
+tick align=outside,
+xlabel style={font=\color{white!15!black}},
+xlabel={x},
+ymin=-400000000,
+ymax=0,
+ylabel style={font=\color{white!15!black}},
+ylabel={y},
+zmin=-1,
+zmax=1,
+zlabel style={font=\color{white!15!black}},
+zlabel={z},
+view={-37.5}{30},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={Initial State for Bodies},
+axis x line*=bottom,
+axis y line*=left,
+axis z line*=left,
+xmajorgrids,
+ymajorgrids,
+zmajorgrids,
+legend style={at={(1.03,1)}, anchor=north west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot3[scatter, only marks, mark=o, color=mycolor1, mark options={}, scatter/use mapped color=mycolor1, visualization depends on={\thisrow{size} \as \perpointmarksize}, scatter/@pre marker code/.append style={/tikz/mark size=\perpointmarksize}] table[row sep=crcr]{%
+x	y	z	size\\
+0	0	0	5.59016994374947\\
+57910000000	0	0	2.51246890528022\\
+108200000000	0	0	2.51246890528022\\
+149600000000	0	0	2.51246890528022\\
+149600000000	-363300000	0	2.5\\
+227920000000	0	0	2.51246890528022\\
+778500000000	0	0	2.51246890528022\\
+1352550000000	0	0	2.51246890528022\\
+};
+
+\end{axis}
+\end{tikzpicture}%
+\end{document}
+```
+
+![PCC](PCC/subdividedRect.png?raw=true "subdividedRect")
+
+```tex
+\documentclass[varwidth]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{chains}
+\usetikzlibrary{shapes.multipart}
+
+
+\begin{document}
+
+\newlength\nodewidth
+\setlength\nodewidth{120mm}
+
+\begin{tikzpicture}
+  \tikzset{every node/.style={rectangle split, draw, rotate=90}, rectangle split parts=10}
+  \node[rectangle split, minimum width= 1.2cm,
+                        minimum height = 1cm]  {};
+\end{tikzpicture}
+
+\end{document}
+```
+
+![PCC](PCC/SwitchDiagram.png?raw=true "SwitchDiagram")
+
+```tex
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows,chains,positioning,scopes,quotes,bending,calc}
+
+\tikzset{
+    edge/.style={draw,text width=8em,minimum height=1em,align=center,fill=blue!30},
+    blade/.style={draw,text width=1em,minimum height=5em,align=center,fill=red!30},
+    switch/.style={draw,text width=4em,minimum height=3em,align=center,fill=yellow!30},
+    arrow/.style={->}
+}
+
+\begin{document}
+    \begin{tikzpicture}[>=stealth']
+    % Direction Switches
+    {[start chain]
+        \node[switch,on chain] (M0) {Direction Switch};
+        \node[switch,on chain,right=3cm of M0] (M1) {Direction Switch 2};
+    }
+    % Edge switches
+    {[start chain]
+        \node[edge,on chain,below left=2cm and 0.25cm of M0] (N0) {Edge Switch 1};
+        \node[edge,on chain,right=1cm of N0] (N1) {Edge Switch 2};
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[on chain,right=1cm of N1] (N2) {$\cdots$};
+        \node[edge,on chain,right=1cm of N2] (N3) {Edge Switch 56};
+    }
+    % Blade Switches
+     {[start chain]
+        \node[blade,on chain, below left=0.7cm and 0.1cm of N0] (B0) {B \\ l \\ a \\ d \\ e \\ 0 \\ 0};
+        \node[blade,on chain,right=0.25cm of B0] (B1) {B \\ l \\ a \\ d \\ e \\ 0 \\ 1 };
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[on chain,right=0.25cm of B1] (B2) {$\cdots$};
+        \node[blade,on chain,right=0.25cm of B2] (B3) {B \\ l \\ a \\ d \\ e \\ 1 \\ 7};
+    }
+    % node containing number of blades
+    \node[below =0.25cm of N0] (L1) {\underline{18}};
+    % arrows from blade to edge
+    \draw [->] (B0.north) -- (N0);
+    \draw [->] (B1.north) -- (N0);
+    \draw [->] (B3.north) -- (N0);
+    \draw[red,thick,dotted] ($(B0.north west)+(-0.3,0.1)$)  rectangle ($(B3.south east)+(0.3,-0.1)$);
+    \node [below = 1cm of B2](Lsd0) {\small{chasis 0}};
+    {[start chain]
+        \node[blade,on chain, below left=0.7cm and 0.1cm of N1] (C0) {B \\ l \\ a \\ d \\ e \\  0 \\ 0 };
+        \node[blade,on chain,right=0.25cm of C0] (C1) {B \\ l \\ a \\ d \\ e \\ 0 \\ 1 };
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[on chain,right=0.25cm of C1] (C2) {$\cdots$};
+        \node[blade,on chain,right=0.25cm of C2] (C3) {B \\ l \\ a \\ d \\ e \\ 1 \\ 7};
+    }
+    % node containing number of blades
+    \node[below =0.25cm of N1] (L2) {\underline{18}};
+    % arrows from blade to edge
+    \draw [->] (C0.north) -- (N1);
+    \draw [->] (C1.north) -- (N1);
+    \draw [->] (C3.north) -- (N1);
+    % bounding box
+    \draw[red,thick,dotted] ($(C0.north west)+(-0.3,0.1)$)  rectangle ($(C3.south east)+(0.3,-0.1)$);
+    \node [below = 1cm of C2](Lsd1) {\small{chasis 1}};
+    {[start chain]
+        \node[blade,on chain, below left=0.7cm and 0.1cm of N3] (D0) {B \\ l \\ a \\ d \\ e \\ 0 \\ 0};
+        \node[blade,on chain,right=0.25cm of D0] (D1) {B \\ l \\ a \\ d \\ e \\ 0 \\ 1 };
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[on chain,right=0.25cm of D1] (D2) {$\cdots$};
+        \node[blade,on chain,right=0.25cm of D2] (D3) {B \\ l \\ a \\ d \\ e \\ 1 \\ 7};
+    }
+    % node containing number of blades
+    \node[below =0.25cm of N3] (L3) {\underline{18}};
+    % arrows from blade to edge
+    \draw [->] (D0.north) -- (N3);
+    \draw [->] (D1.north) -- (N3);
+    \draw [->] (D3.north) -- (N3);
+        % bounding box
+    \draw[red,thick,dotted] ($(D0.north west)+(-0.3,0.1)$)  rectangle ($(D3.south east)+(0.3,-0.1)$);
+    \node [below = 1cm of D2](Lsd3) {\small{chasis 56}};
+    
+    % Edge switchs to direction switches arrows
+    \path (N1.north west) edge[blue,->,bend left=10] node [left] {} (M0); 
+    \path (N1.north west) edge[blue,->,bend left=30] node [left] {} (M0);
+    \path (N1.north west) edge[blue,->] node [left] {} (M0); 
+    
+    \path (N1.north east) edge[blue,->,bend left=10] node [left] {} (M1); 
+    \path (N1.north east) edge[blue,->,bend left=30] node [left] {} (M1);
+    \path (N1.north east) edge[blue,->] node [left] {} (M1); 
+    
+    % N1, switch 2
+    \path (N0.north west) edge[blue,->,bend left=10] node [left] {} (M0); 
+    \path (N0.north west) edge[blue,->,bend left=30] node [left] {} (M0);
+    \path (N0.north west) edge[blue,->] node [left] {} (M0); 
+    
+    \path (N0.north east) edge[blue,->,bend left=10] node [left] {} (M1); 
+    \path (N0.north east) edge[blue,->,bend left=30] node [left] {} (M1);
+    \path (N0.north east) edge[blue,->] node [left] {} (M1); 
+    % N3, edge switch 56
+    \path (N3.north west) edge[blue,->,bend left=20] node [left] {} (M0.east); 
+    \path (N3.north west) edge[blue,->,bend left=40] node [left] {} (M0.east);
+    \path (N3.north west) edge[blue,->] node [left] {} (M0.east); 
+    \path (N3) edge[blue,->,bend left=20] node [left] {} (M1); 
+    \path (N3) edge[blue,->,bend left=40] node [left] {} (M1);
+    \path (N3) edge[blue,->] node [left] {} (M1); 
+    
+    \node[above right =0.10cm of N1.north west] (NL1) {\underline{9}};
+    \node[above =0.25cm of N0.north west] (NL0) {\underline{9}};
+    \node[above =0.25cm of N0.north west] (NL0) {\underline{9}};
+    \end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/taskChannel.png?raw=true "taskChannel")
+
+```tex
+\documentclass[tikz]{standalone}
+\tikzset{near start abs/.style={xshift=1cm}}
+
+\usetikzlibrary{positioning}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm]
+    % place nodes
+    \node[circle,draw=black, fill=black, inner sep=0pt,minimum size=10pt] (r) {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,right of=r, minimum size=10pt] (r1a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r, xshift=-0.25cm, minimum size=10pt] (r2a)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=r, minimum size=10pt] (r2t)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r2t, minimum size=10pt] (r3)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above of=r1a, minimum size=10pt] (r2tb)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r1a, minimum size=10pt] (r2tc)  {};
+    \node[circle,draw=black, fill=white, inner sep=0pt,above right of=r2tb, minimum size=10pt] (r3tb)  {};
+    % Arrows, right subgraph
+    \draw[->,thick] (r) -- node[above] {\small{1}} ++(r1a);
+    \draw[->,thick] (r1a) -- node[right] {\small{3}} ++(r2tc);
+    \draw[->,thick] (r1a) -- node[right] {\small{2}} ++(r2tb);
+    \draw[->,thick] (r2tb) -- node[right] {\small{3}} ++(r3tb);
+    % Left subgraph
+     \draw[->,thick] (r) -- node[right] {\small{3}} ++(r2a);
+    \draw[->,thick] (r) -- node[right] {\small{2}} ++(r2t);
+    \draw[->,thick] (r2t) -- node[right] {\small{3}} ++(r3);
+\end{tikzpicture}
+\end{document}
+```
+
+![PCC](PCC/tasks310.png?raw=true "tasks310")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,calc}
+\usetikzlibrary{chains}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shapes}
+\begin{document}
+
+\newsavebox{\task}
+\savebox{\task}{%
+    \begin{tikzpicture}[font=\small,
+            >=stealth,
+        ]
+    \tikzset{every node/.style={rectangle split, draw, rotate=90}, rectangle split parts=5}
+    \node[rectangle split, minimum width= 1.2cm,
+                        minimum height = 1cm]  {};
+    \end{tikzpicture}%
+}
+
+\begin{tikzpicture}
+    {[start chain]
+        \node[ellipse, start chain, minimum width=90pt, draw] (t1){\usebox{\task}};
+        \node[ellipse, on chain, right=1cm of t1, draw] (t2) {\usebox{\task}};
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[ellipse,on chain,right=1cm of t2, draw] (t3) {\usebox{\task}};
+        \node[ellipse,on chain, right=1cm of t3] (t4) {$\cdots$};
+        \node[ellipse,on chain,right=1cm of t4, draw] (t5) {\usebox{\task}};
+    }
+    % Arrows
+     \path (t1) edge[very thick,->,bend left=30] node [left] {} (t2);
+     \path (t2) edge[very thick,->,bend left=30] node [left] {} (t3);
+     \path (t3) edge[very thick, ->,bend left=30] node [left] {} (t4);
+     \path (t4) edge[very thick, ->,bend left=30] node [left] {} (t5);
+     
+    % Arrows
+     \path (t5) edge[very thick, ->,bend left=30] node [left] {} (t4);
+     \path (t4) edge[very thick, ->,bend left=30] node [left] {} (t3);
+     \path (t3) edge[very thick, ->,bend left=30] node [left] {} (t2);
+     \path (t2) edge[very thick, ->,bend left=30] node [left] {} (t1);
+\end{tikzpicture}
+
+\end{document}
+```
+
+![PCC](PCC/tasks312simpler.png?raw=true "tasks312simpler")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning,calc}
+\usetikzlibrary{chains}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shapes}
+\begin{document}
+
+\newsavebox{\task}
+\savebox{\task}{%
+    \begin{tikzpicture}[font=\small,
+            >=stealth,
+        ]
+    \tikzset{every node/.style={rectangle split, draw, rotate=90}, rectangle split parts=5}
+    \node[rectangle split, minimum width= 1.2cm,
+                        minimum height = 1cm]  {};
+    \end{tikzpicture}%
+}
+
+\begin{tikzpicture}
+    {[start chain]
+        \node[circle, start chain, draw] (t1){t[0]};
+        \node[circle, on chain, right=1cm of t1, draw] (t2) {t[1]};
+        %\node[block,on chain,join=by {arrow},right=1cm of N1] (N2) {N2};
+        \node[circle,on chain,right=1cm of t2, draw] (t3) {t[2]};
+        \node[circle,on chain, right=1cm of t3] (t4) {$\cdots$};
+        \node[circle,on chain,right=1cm of t4, draw] (t5) {t[3]};
+    }
+    % Arrows
+     \path (t1) edge[very thick,->,bend left=30] node [left] {} (t2);
+     \path (t2) edge[very thick,->,bend left=30] node [left] {} (t3);
+     \path (t3) edge[very thick, ->,bend left=30] node [left] {} (t4);
+     \path (t4) edge[very thick, ->,bend left=30] node [left] {} (t5);
+     
+    % Arrows
+     \path (t5) edge[very thick, ->,bend left=30] node [left] {} (t4);
+     \path (t4) edge[very thick, ->,bend left=30] node [left] {} (t3);
+     \path (t3) edge[very thick, ->,bend left=30] node [left] {} (t2);
+     \path (t2) edge[very thick, ->,bend left=30] node [left] {} (t1);
+\end{tikzpicture}
+
+\end{document}
+```
+
+### ReportDiagrams/ENGR003-004
+
+![ReportDiagrams/ENGR003-004](ReportDiagrams/ENGR003-004/gasCost.png?raw=true "gasCost")
+
+```tex
+% Preamble: \
+
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\pgfplotsset{width=7cm,compat=1.16}
+\usepackage{color}
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+
+
+\definecolor{blacktext}{HTML}{000000}
+
+\definecolor{mainnet}{HTML}{29B6AF}
+\definecolor{kovan}{HTML}{7057ff}
+
+\definecolor{rinkeby}{HTML}{F6C343}
+
+\definecolor{ropsten}{HTML}{FF4A8D}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+x tick label style={
+/pgf/number format/1000 sep=},
+%xlabel=Smart Contracts,
+ylabel=Gas Limits (Units),
+%enlargelimits=0.15,
+%legend style={cells={align=left}}
+legend style={at={(0.4,-0.30)},
+anchor=north,legend columns=3,cells={align=left}},
+ybar,
+bar width=7pt,
+ytick={0,1.25e6,2.5e6,3.75e6,5e6, 6.25e6,7.5e6, 8.75e6,10e6},
+ymin = 0,
+ymax = 9.75e6,
+xticklabels={ERC20,ERC721,StoreFront,Registry,Deployer},xtick={1930,1940,1950,1960,1970},
+  x tick label style={rotate=35,anchor=east}]
+]
+\addplot coordinates {
+(1930,28e5) (1940,26e5)
+(1950,49e5) (1960,59e5) (1970,0)
+};
+\addplot coordinates {
+(1930,26e5) (1940,24e5)
+(1950,41e5) (1960,46e5) (1970,0)
+};
+
+\addplot coordinates {
+(1930,28e5) (1940,26e5)
+(1950,25e5) (1960,36e5) (1970,28e5)
+};
+
+\addplot [dashed, mainnet,line legend,
+sharp plot,update limits=false,
+] coordinates { (1910,80e5) (1950,80e5) }
+node [above] at (1950,80e5) {\textcolor{mainnet}{Mainnet} \textcolor{blacktext}{and} \textcolor{kovan}{Kovan}};
+
+\addplot [dashed,kovan,line legend,
+sharp plot,update limits=false,
+] coordinates { (1950,80e5) (1980,80e5) };
+
+\addplot [dashed, ropsten,line legend,
+sharp plot,update limits=false,
+] coordinates { (1920,47e5) (1990,47e5) }
+node [above,align=left] at (1940,47e5) {\textcolor{ropsten}{Ropsten} \\ \textcolor{ropsten}{(July 27)}};
+
+
+\addplot [dashed, ropsten,line legend,
+sharp plot,update limits=false,
+] coordinates { (1910,94.8e5) (1990,94.8e5) }
+node [below] at (1950,100.5e5) {\textcolor{ropsten}{Ropsten} \textcolor{ropsten} (July 29)};
+
+\addplot [ dashed, rinkeby,line legend,
+sharp plot,update limits=false,
+] coordinates { (1910,76e5) (1990,76e5) }
+node [below] at (1960,76e5) {\textcolor{rinkeby}{Rinkeby}};
+
+\legend{Original, Finding \\ Efficiencies, Using \\ Deployer}
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+
+% Mainnet 8 mil 8000029		
+% Kovan   8 mil 
+% Rinkeby 7.6 mil
+% Ropsten 4.7 mil July 27
+
+% Renting out processing power to increase limits
+
+% Ropsten 9.48 mil July 29
+% Do unoptimizated
+StoreFront Deployment costs
+Gas Price is 20000000000 wei
+gas estimation = 4924865 units
+gas cost estimation = 98497300000000000 wei
+gas cost estimation = 0.0984973 ether
+
+HarvestSFRegistry Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 5885566 units
+gas cost estimation = 117711320000000000 wei
+gas cost estimation = 0.11771132 ether
+
+RewardToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2583571 units
+gas cost estimation = 51671420000000000 wei
+gas cost estimation = 0.05167142 ether
+
+HarvestToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2780371 units
+gas cost estimation = 55607420000000000 wei
+gas cost estimation = 0.05560742 ether
+
+
+% Opt by removing functionality
+StoreFront Deployment costs
+Gas Price is 20000000000 wei
+gas estimation = 4154023 units
+gas cost estimation = 98497300000000000 wei
+gas cost estimation = 0.0984973 ether
+
+HarvestSFRegistry Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 4602312 units
+gas cost estimation = 117711320000000000 wei
+gas cost estimation = 0.11771132 ether
+
+RewardToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2580571 units
+gas cost estimation = 51671420000000000 wei
+gas cost estimation = 0.05167142 ether
+
+HarvestToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2750371 units
+gas cost estimation = 55607420000000000 wei
+gas cost estimation = 0.05560742 ether
+
+
+% Optimizated by deployer
+
+StoreFront Deployment costs
+Gas Price is 20000000000 wei
+gas estimation = 2154023 units
+gas cost estimation = 98497300000000000 wei
+gas cost estimation = 0.0984973 ether
+
+HarvestSFRegistry Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2902312 units
+gas cost estimation = 117711320000000000 wei
+gas cost estimation = 0.11771132 ether
+
+RewardToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2583571 units
+gas cost estimation = 51671420000000000 wei
+gas cost estimation = 0.05167142 ether
+
+HarvestToken Deployment cost.
+Gas Price is 20000000000 wei
+gas estimation = 2750371 units
+gas cost estimation = 55607420000000000 wei
+gas cost estimation = 0.05560742 ether
+
+Deployer 721 Cost 
+
+2825921 gas uints
+
+% Using deployer
+```
+
+![ReportDiagrams/ENGR003-004](ReportDiagrams/ENGR003-004/harvestArchitecture.png?raw=true "harvestArchitecture")
+
+```tex
+\documentclass[border=3mm]{standalone}
+    \usepackage{tikz}
+    \usetikzlibrary{backgrounds,shadows,positioning,fit,matrix,shapes.geometric, shapes.arrows} % add shadows #1
+
+    % a way to cut shadows in a cell #2
+    %https://tex.stackexchange.com/questions/129318/remove-drop-shadow-from-one-node
+    \makeatletter
+    \tikzset{no shadows/.code=\let\tikz@preactions\pgfutil@empty}
+    \makeatother
+
+    \tikzset{background/.style={rectangle, fill=red!10, inner sep=0.2cm},
+              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	
+	\tikzset{back/.style={rectangle, fill=blue!10, inner sep=0.2cm},
+	              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+	              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	              	
+    \definecolor{mybluei}{RGB}{124,156,205}
+    \definecolor{myblueii}{RGB}{73,121,193}
+    \definecolor{mygreen}{RGB}{202,217,126}
+    \definecolor{mypink}{RGB}{233,198,235}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{darkbyzantium}{rgb}{0.36, 0.22, 0.33}
+\definecolor{jasper}{rgb}{0.84, 0.23, 0.24}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{pinkpearl}{rgb}{0.91, 0.67, 0.81}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+
+    \newcommand\widernode[5][widebox]{
+    \node[
+        #1,
+        fit={(#2) (#3)},
+        label=center:{\sffamily\bfseries\color{black}#4}] (#5) {};
+    }
+
+    \begin{document}
+
+    \begin{tikzpicture}[node distance=2pt,outer sep=0pt, % just do nothing after modification
+    boxstyle/.style={
+    draw=white,
+    fill=#1,
+    rounded corners, drop shadow, %to get a shadow in below a node
+    font={\sffamily\bfseries\color{white}},
+    align=center,
+    minimum height=30pt
+    },
+    box/.style={
+    boxstyle=#1,
+    text width=2.5cm},
+    box/.default=mybluei,
+    title/.style={font={\sffamily\bfseries\color{black}}},
+    widebox/.style={draw=white,inner sep=0pt, rounded corners,fill=#1,drop shadow},
+    widebox/.default=mybluei,
+    mylabel/.style={font={\sffamily\bfseries\color{black}}},
+    database/.style={
+      cylinder,
+      cylinder uses custom fill,
+      cylinder body fill=yellow!50,
+      cylinder end fill=yellow!50,
+      shape border rotate=90,
+      aspect=0.25,
+      draw
+    }
+    ]
+
+
+    \matrix (stack) [%  boxstyle=mybluei!40,%will overpaint blocks with background
+    column sep=10pt, row sep=10pt, inner sep=4mm,%
+        matrix of nodes,
+            nodes={box, outer sep=0pt, anchor=center, inner sep=3pt},%  
+            nodes in empty cells=false,% #3
+        row 1/.style={nodes={fill=none,draw=none,minimum height=3mm}},
+    ]
+    {
+    |[no shadows]| & & & [1cm] & & |[no shadows]| \\ % #5
+    %RCP main & Authoring & Browsing & Publishing & Search&|[no shadows]| \\
+    |[no shadows]| & & |[no shadows]| & |[no shadows]|&  &|[no shadows]| \\
+    |[box=byzantium]| ERC20 Deployer & |[box=byzantium]| Harvest Registry & |[box=byzantium]| ERC721 Deployer &|[no shadows]| & |[no shadows]|& |[box=blue(pigment)]| Web3 \\
+     |[box=byzantium]| Exchanger & |[no shadows]| &|[no shadows]| & |[no shadows]| &|[no shadows]| & |[box=blue(pigment)]| Truffle \\
+    |[box=byzantium]| ERC20 & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[box=blue(pigment)]| React \\};
+
+
+    \widernode[]{stack-1-1}{stack-1-6}{Harvest Architecture}{EPF} %#5
+	
+	\widernode[widebox=mygreen]{stack-2-1}{stack-2-3}{Smart Contracts in Solidity}{SM}
+	
+	\widernode[widebox=pastelred]{stack-2-4}{stack-2-6}{Front End Libraries and Tools in Javascript}{FE}
+	
+    \widernode{stack-3-4}{stack-3-5}{Metamask}{MM}
+  % \widernode{stack-3-6}{stack-3-6}{Web3}{AA}
+    \widernode{stack-4-4}{stack-4-5}{Webpack}{BB}
+  %  \widernode{stack-4-6}{stack-4-6}{Truffle}{CC}
+    
+    \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
+  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
+    
+    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
+    \widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
+    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
+    \widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
+    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
+
+
+%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
+%
+
+    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
+
+%
+%
+
+%
+		
+		\begin{pgfonlayer}{background}
+		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+		            \node [back,
+		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
+		            ] {};
+		            %\node [backgroundN,
+		            %    fit=(stack-3-5) ] {};
+		            %\node [backgroundNN,draw, drop shadow,
+		            %    fit=(stack-3-5) ] {};                                       
+	   \end{pgfonlayer}
+	   
+	   %    % smth to create an arbitrary block with a border and shadow
+	   %Background for smart contracts
+	           \begin{pgfonlayer}{background}
+	           \coordinate (aux) at ([xshift=1mm]stack-5-3.east);
+	               \node [background,
+	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
+	               ] {};
+	               %\node [backgroundN,
+	               %    fit=(stack-3-5) ] {};
+	               %\node [backgroundNN,draw, drop shadow,
+	               %    fit=(stack-3-5) ] {};                                       
+	           \end{pgfonlayer}
+	  
+       \begin{pgfonlayer}{background}
+       \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+           \node [background,
+               fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
+           ] {};
+           %\node [backgroundN,
+           %    fit=(stack-3-5) ] {};
+           %\node [backgroundNN,draw, drop shadow,
+           %    fit=(stack-3-5) ] {};                                       
+       \end{pgfonlayer}
+    \end{tikzpicture}
+
+    \end{document}
+```
+
+![ReportDiagrams/ENGR003-004](ReportDiagrams/ENGR003-004/harvestArchitectureGood.png?raw=true "harvestArchitectureGood")
+
+```tex
+\documentclass[border=3mm]{standalone}
+    \usepackage{tikz}
+    \usetikzlibrary{backgrounds,shadows,positioning,fit,matrix,shapes.geometric, shapes.arrows} % add shadows #1
+
+    % a way to cut shadows in a cell #2
+    %https://tex.stackexchange.com/questions/129318/remove-drop-shadow-from-one-node
+    \makeatletter
+    \tikzset{no shadows/.code=\let\tikz@preactions\pgfutil@empty}
+    \makeatother
+
+    \tikzset{background/.style={rectangle, fill=red!10, inner sep=0.2cm},
+              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	
+	\tikzset{back/.style={rectangle, fill=blue!10, inner sep=0.2cm},
+	              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
+	              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
+	              	
+    \definecolor{mybluei}{RGB}{124,156,205}
+    \definecolor{myblueii}{RGB}{73,121,193}
+    \definecolor{mygreen}{RGB}{202,217,126}
+    \definecolor{mypink}{RGB}{233,198,235}
+    \definecolor{rinkeby}{HTML}{F6C343}
+    \definecolor{kovan}{HTML}{7057ff}
+    \definecolor{ropsten}{HTML}{FF4A8D}
+    \definecolor{mainnet}{HTML}{29B6AF}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{byzantium}{rgb}{0.44, 0.16, 0.39}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{darkbyzantium}{rgb}{0.36, 0.22, 0.33}
+\definecolor{jasper}{rgb}{0.84, 0.23, 0.24}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{pinkpearl}{rgb}{0.91, 0.67, 0.81}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+
+    \newcommand\widernode[5][widebox]{
+    \node[
+        #1,
+        fit={(#2) (#3)},
+        label=center:{\sffamily\bfseries\color{black}#4}] (#5) {};
+    }
+
+    \begin{document}
+
+    \begin{tikzpicture}[node distance=2pt,outer sep=0pt, % just do nothing after modification
+    boxstyle/.style={
+    draw=white,
+    fill=#1,
+    rounded corners, drop shadow, %to get a shadow in below a node
+    font={\sffamily\bfseries\color{white}},
+    align=center,
+    minimum height=30pt
+    },
+    box/.style={
+    boxstyle=#1,
+    text width=2.5cm},
+    box/.default=mybluei,
+    title/.style={font={\sffamily\bfseries\color{black}}},
+    widebox/.style={draw=white,inner sep=0pt, rounded corners,fill=#1,drop shadow},
+    widebox/.default=mybluei,
+    mylabel/.style={font={\sffamily\bfseries\color{black}}},
+    database/.style={
+      cylinder,
+      cylinder uses custom fill,
+      cylinder body fill=yellow!50,
+      cylinder end fill=yellow!50,
+      shape border rotate=90,
+      aspect=0.25,
+      draw
+    }
+    ]
+
+
+    \matrix (stack) [%  boxstyle=mybluei!40,%will overpaint blocks with background
+    column sep=10pt, row sep=10pt, inner sep=4mm,%
+        matrix of nodes,
+            nodes={box, outer sep=0pt, anchor=center, inner sep=3pt},%  
+            nodes in empty cells=false,% #3
+        row 1/.style={nodes={fill=none,draw=none,minimum height=3mm}},
+    ]
+    {
+    |[no shadows]| & & & [1cm] & & |[no shadows]| \\ % #5
+    %RCP main & Authoring & Browsing & Publishing & Search&|[no shadows]| \\
+    |[no shadows]| & & |[no shadows]| & |[no shadows]|&  &|[no shadows]| \\
+     |[no shadows]|  &  |[no shadows]|  &  |[no shadows]|  &|[no shadows]| & |[no shadows]|& |[box=blue(pigment)]| Web3 \\
+     |[no shadows]|& |[no shadows]| &|[no shadows]| & |[no shadows]| &|[no shadows]| & |[box=blue(pigment)]| Truffle \\
+    ||[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[no shadows]| & |[box=blue(pigment)]| React \\};
+
+
+    \widernode[]{stack-1-1}{stack-1-6}{Harvest Architecture}{EPF} %#5
+	
+	\widernode[widebox=mygreen]{stack-2-1}{stack-2-3}{Blockchain Stack}{SM}
+	
+	\widernode[widebox=pastelred]{stack-2-4}{stack-2-6}{Front End Stack}{FE}
+	\widernode[widebox=mainnet]{stack-3-1}{stack-3-3}{Etherum}{Ethereum}
+	
+    \widernode{stack-3-4}{stack-3-5}{Metamask}{MM}
+  % \widernode{stack-3-6}{stack-3-6}{Web3}{AA}
+  	\widernode[widebox=rinkeby]{stack-4-1}{stack-4-3}{Solidity}{Solidity}
+    \widernode{stack-4-4}{stack-4-5}{Webpack}{BB}
+  %  \widernode{stack-4-6}{stack-4-6}{Truffle}{CC}
+    
+    \widernode[widebox=kovan]{stack-5-1}{stack-5-3}{IPFS}{IPFS}
+    \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
+  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
+    
+    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
+    %\widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
+    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
+    %\widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
+    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
+
+
+%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
+%
+
+    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
+
+%
+%
+
+%
+		
+		\begin{pgfonlayer}{background}
+		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+		            \node [back,
+		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
+		            ] {};
+		            %\node [backgroundN,
+		            %    fit=(stack-3-5) ] {};
+		            %\node [backgroundNN,draw, drop shadow,
+		            %    fit=(stack-3-5) ] {};                                       
+	   \end{pgfonlayer}
+	   
+	   %    % smth to create an arbitrary block with a border and shadow
+	   %Background for smart contracts
+	           \begin{pgfonlayer}{background}
+	           \coordinate (aux) at ([xshift=1mm]stack-5-3.east);
+	               \node [background,
+	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
+	               ] {};
+	               %\node [backgroundN,
+	               %    fit=(stack-3-5) ] {};
+	               %\node [backgroundNN,draw, drop shadow,
+	               %    fit=(stack-3-5) ] {};                                       
+	           \end{pgfonlayer}
+	  
+       \begin{pgfonlayer}{background}
+       \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
+           \node [background,
+               fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
+           ] {};
+           %\node [backgroundN,
+           %    fit=(stack-3-5) ] {};
+           %\node [backgroundNN,draw, drop shadow,
+           %    fit=(stack-3-5) ] {};                                       
+       \end{pgfonlayer}
+    \end{tikzpicture}
+
+    \end{document}
+```
+
+![ReportDiagrams/ENGR003-004](ReportDiagrams/ENGR003-004/requiredFields.png?raw=true "requiredFields")
+
+```tex
+\documentclass[border=5pt]{standalone}
+\usepackage{fontawesome}
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+
+\definecolor{bluei}{RGB}{83,116,191}
+\definecolor{blueii}{RGB}{207,212,232}
+\definecolor{greeni}{RGB}{135,200,81}
+\definecolor{greenii}{RGB}{216,235,207}
+\definecolor{redi}{RGB}{196,125,82}
+\definecolor{redii}{RGB}{234,214,207}
+
+\tikzset{
+  myiblock/.style 2 args={
+    draw=white,
+    fill=#1,
+    line width=1pt,
+    rounded corners,
+    minimum height=1cm,
+    align=center,
+    text=white,
+    font=\sffamily,
+    text width=#2
+  },
+  myoblock/.style={
+     matrix of nodes,
+    fill=#1,
+    rounded corners,
+    align=center,
+    inner xsep=10pt,
+    draw=none,
+    row sep=0.5cm
+  },
+  mylabel/.style={
+    black, 
+    minimum height=0pt
+    }
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+\matrix (A) [myoblock={blueii}, nodes={myiblock={bluei}{3cm}}, row sep=3pt]
+  {|[label={[mylabel]\faUserSecret \ Personal Info}]|{ Name, Address }\\ 
+  Date Of Birth \\
+  Zip Code\\
+  };
+
+\matrix (B) [myoblock={greenii}, nodes={myiblock={greeni}{3cm}}, 
+   row sep=3pt, right=5mm of A.north east, anchor=north west]
+  {|[label={[mylabel] \faBank \ Financial Info}]| Credit Score \\
+   Income \\ 
+   SIN Number\\
+  };
+  
+\matrix (C) [myoblock={redii}, nodes={myiblock={redi}{3cm}}, 
+   row sep=3pt, right=5mm of B.north east, anchor=north west]
+  {|[label={[mylabel] \faHome \ Property Info}]| Mortgage Amount \\
+   Purchase Amount \\ 
+   Other Properties \\
+  };
+\end{tikzpicture}
+
+\end{document}
+```
+
+### ReportDiagrams/ENGR446
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/advancedTimeline.png?raw=true "advancedTimeline")
+
+```tex
+\documentclass[tikz,multi,border=10pt]{standalone}
+\usepackage{datenumber,xparse}
+\usetikzlibrary{arrows.meta,backgrounds}
+\newcounter{chronosstartdate}
+\newcounter{chronosenddate}
+\newcounter{chronosstartyear}
+\newcounter{chronosendyear}
+\newcounter{chronosyeardate}
+\newcounter{chronosthingdate}
+\newcounter{chronosotherthingdate}
+\pgfkeys{/pgf/number format,
+  int detect,
+  set thousands separator={},
+}
+\tikzset{
+  chronos/.code={% https://tex.stackexchange.com/a/159856/ - Claudio Fiandrino
+    \tikzset{%
+      align=center,
+      anchor=mid,
+      /chronos/.cd,
+      #1
+    }%
+    \setstartyear{\chronosstartyear}%
+    \setmydatenumber{chronosstartdate}{\chronosstartyear}{\chronosstartmonth}{\chronosstartday}%
+    \setmydatenumber{chronosenddate}{\chronosendyear}{\chronosendmonth}{\chronosendday}%
+    \pgfmathsetmacro\chronosunit{(\chronoswidth-20pt)/(\thechronosenddate-\thechronosstartdate)}%
+    \draw [line width=\chronosheight] (-10pt,0) coordinate (chronos pre) -- +(\chronoswidth,0) coordinate (chronos post);
+    \coordinate (chronos start) at (0,0);
+    \coordinate (chronos end) at ([xshift=-10pt]chronos post);
+    \setcounter{chronosstartyear}{\chronosstartyear}%
+    \setcounter{chronosendyear}{\chronosendyear}%
+    \def\tempa{01}%
+    \ifx\chronosstartmonth\tempa
+      \ifx\chronosstartday\tempa
+        \else\stepcounter{chronosstartyear}%
+      \fi
+      \else\stepcounter{chronosstartyear}%
+    \fi
+    \def\tempa{12}%
+    \def\tempb{31}%
+    \ifx\chronosendmonth\tempa
+      \ifx\chronosendday\tempb
+        \stepcounter{chronosendyear}%
+      \fi
+    \fi
+    \foreach \i in {\thechronosstartyear,...,\thechronosendyear} {%
+      \setmydatenumber{chronosyeardate}{\i}{01}{01}%
+      \node [above, anchor=south, yshift=.5*\chronosheight] at ({(\thechronosyeardate-\thechronosstartdate)*\chronosunit pt},0) {\i}; }
+  },
+  chronos set date/.code args={#1-#2-#3:#4}{%
+    \tikzset{%
+      /chronos/.cd,
+      #4 year={#1},
+      #4 month={#2},
+      #4 day={#3},
+    }%
+    \setmydatenumber{chronos#4date}{\csname chronos#4year\endcsname}{\csname chronos#4month\endcsname}{\csname chronos#4day\endcsname}%
+  },
+  chronos date/.style args={#1-#2-#3}{%
+    chronos set date/.expanded={#1-#2-#3:thing}%
+  },
+  chronos period date/.style args={#1-#2-#3}{%
+    chronos set date/.expanded={#1-#2-#3:otherthing}%
+  },
+  /chronos/.search also={/tikz},
+  /chronos/.cd,
+  start year/.store in=\chronosstartyear,
+  start month/.store in=\chronosstartmonth,
+  start day/.store in=\chronosstartday,
+  end year/.store in=\chronosendyear,
+  end month/.store in=\chronosendmonth,
+  end day/.store in=\chronosendday,
+  thing year/.store in=\chronosthingyear,
+  thing month/.store in=\chronosthingmonth,
+  thing day/.store in=\chronosthingday,
+  otherthing year/.store in=\chronosotherthingyear,
+  otherthing month/.store in=\chronosotherthingmonth,
+  otherthing day/.store in=\chronosotherthingday,
+  start date/.style args={#1-#2-#3}{%
+    start year={#1},
+    start month={#2},
+    start day={#3},
+  },
+  end date/.style args={#1-#2-#3}{%
+    end year={#1},
+    end month={#2},
+    end day={#3},
+  },
+  width/.store in=\chronoswidth,
+  height/.store in=\chronosheight,
+  period/.style={draw=gray},
+  period event line/.style={draw=gray, -{Triangle[width=1.5pt, reversed, length=.75pt, fill=gray]}},
+  period event/.style={anchor=north, fill=gray!25, draw=gray, rounded corners, align=center, font=\footnotesize},
+  event line/.style={draw=gray, -{Triangle[width=1.5pt, reversed, length=.75pt, fill=gray]}},
+  event/.style={anchor=north, fill=gray!25, draw=gray, rounded corners, align=center, font=\footnotesize},
+  start date=1001-10-01,
+  end date=1003-06-14,
+  width=100mm,
+  height=1pt,
+  chronos date=1850-01-01,
+  chronos period date=1851-01-01,
+}
+\NewDocumentCommand \chronosevent { O {} m O {} +m D () { -10pt-.5*\chronosheight } }
+{%
+  \scoped[on background layer]{\path [postaction={/chronos/event line, #1}, chronos date/.expanded={#2}] ({(\thechronosthingdate-\thechronosstartdate)*\chronosunit pt},0) -- +(0,#5) node [/chronos/event, #3] {\chronosthingday/\chronosthingmonth/\chronosthingyear\\#4};}
+}
+\NewDocumentCommand \chronosperiod { O {} m O {} m O {} +m D () { -10pt-.5*\chronosheight } }
+{%
+  \tikzset{%
+    chronos date/.expanded={#2}, chronos period date/.expanded={#4}
+  }
+  \path [postaction={line width=\chronosheight, /chronos/period, #1}] ({(\thechronosthingdate-\thechronosstartdate)*\chronosunit pt},0) -- ({(\thechronosotherthingdate-\thechronosstartdate)*\chronosunit pt},0);
+  \scoped[on background layer]{\path [postaction={/chronos/period event line, #3}] ({(.5*\thechronosotherthingdate+.5*\thechronosthingdate-\thechronosstartdate)*\chronosunit pt},0) -- +(0,#7) node [/chronos/period event, #5] {\chronosthingday/\chronosthingmonth/\chronosthingyear--\chronosotherthingday/\chronosotherthingmonth/\chronosotherthingyear\\#6};}
+}
+\begin{document}
+\begin{tikzpicture}
+  [
+ % yscale = 5,
+    chronos={%
+      width=360mm,
+      height=10pt,
+      start date=2008-01-01,
+      end date=2018-05-05,
+      period/.style={draw=green},
+      event line/.append style={draw=blue},
+      period event line/.append style={draw=green},
+      event/.append style={fill=blue!25, draw=blue, text=blue},
+      period event/.append style={fill=green!25, draw=green!75!black, text=green!75!black},
+    }
+  ]
+  %\chronosperiod [draw=red] {2011-10-10} [draw=red] {2012-01-16} [fill=red!25, draw=red, text=red] {Leave}
+  %\chronosperiod {2013-03-23} {2014-05-27} {training}
+  \chronosevent[draw=green] {2008-01-03} [draw=black,fill=green!10, draw=green, text=black]{Bitcoin White Paper}
+  
+  \chronosevent[draw=green] {2009-01-03} [draw=black,fill=green!10, draw=green, text=black]{Bitcoin “Genesis” Block}
+  
+  \chronosperiod [draw=red] {2010-08-16} [draw=red] {2013-02-20} [fill=red!25, draw=red, text=red] {Bitcoin popular explodes \\ 1,309 BTC to \$1 USD in 2010 \\ to 1 BTC = \$31 USD in 2013}
+  
+  \chronosperiod {2013-01-01} [draw=red] {2013-12-31} {Ethereum White paper published \\ Ethereum yellow paper published}
+  
+  \chronosevent {2015-06-15} {Ethereum \\ “Genesis” \\ Block}
+
+  % See https://blog.seedly.sg/cryptocurrency-timeline-beginning-end-everything/
+  \chronosevent {2015-12-31} {Hyperledger \\ project \\ started.}
+  
+  \chronosevent {2017-04-04} {Hyperledger Burrow \\ 0.16.0 released}
+  
+  \chronosevent {2018-04-19} {Amazon Launches \\ AWS BlockChain Templates}
+  % Researchers published a paper showing that by November 2013 bitcoin commerce was no longer driven by “sin” activities but instead by legitimate enterprises. Uber switched to bitcoin in Argentina after the government blocked credit card companies from dealing with Uber.
+  
+  %https://hackernoon.com/blockchain-jobs-and-salaries-2018-report-45d3e7741c19
+  
+\end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/betterClientServer.png?raw=true "betterClientServer")
+
+```tex
+\documentclass[border=3mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,matrix,shapes.arrows}
+
+\tikzset{
+	modulematrix/.style={draw=blue!50!red,rounded corners,matrix of nodes,row sep=1cm,column sep=1cm,nodes={draw=green!70,align=center,font=\sffamily},inner ysep=0.5cm},
+	module/.style={rounded corners, align=center, font=\sffamily, thick},
+	simple module/.style={module, top color=blue!10, bottom color=blue!35, draw=blue!75, text width=40mm, minimum height=15mm},
+	module down arrow/.style={module arrow, shape border rotate=-90},
+	module right arrow/.style={module arrow},
+	module arrow/.style={single arrow, single arrow head extend=2.5mm, draw=gray!75, inner color=gray!20, outer color=gray!35, thick, shape border uses incircle, anchor=tail,minimum height=0.7cm},
+}
+\begin{document}
+	\begin{tikzpicture}
+	\node [simple module] (mA) {Module A};
+	\matrix[modulematrix,below=of mA,label={[anchor=south]below:Module B}] (mB) {Description 1 & Description 2 \\};
+	\matrix[modulematrix,right=of mB,nodes={text width=5cm,align=center},label={[anchor=north]above:Module C}] (mC) {Description 3 \\ Description 4 \\};
+	\matrix[modulematrix,below=of mC,label={[anchor=south]below:Module D}] (mD) {Description 5 & Description 6 \\};
+	\node [simple module,below=of mD] (mE) {Module E};
+	
+	\foreach \n in {mA,mC-1-1,mC,mD}
+	\node[module down arrow,below=1mm of \n] {};
+	
+	\foreach \n in {mB-1-1,mB,mD-1-1}
+	\node[module right arrow,right=1mm of \n] {};
+	\end{tikzpicture}
+\end{document}
+
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/blockchain.png?raw=true "blockchain")
+
+```tex
+\documentclass[tikz]{standalone}
+\usetikzlibrary{shadows,chains,scopes}
+\usetikzlibrary{decorations.pathmorphing, shapes}
+\begin{document}
+\begin{tikzpicture}
+  [
+    start chain=going right,
+    node distance=5mm,
+    every on chain/.style={
+      thick,
+      draw=black,
+      top color=white,
+      bottom color=yellow!40,
+      font=\sffamily\small,
+      minimum width=6mm,
+      minimum height=6mm,
+      %drop shadow,
+      %label={below:block \tikzchaincount},
+    },
+    decoration={coil},
+    dna/.style={decorate, thick, decoration={aspect=0, segment length=5cm}},
+%    post join/.style={
+%      -stealth,
+%      line width=1.5mm,
+%      red,
+%      rounded corners=1mm,
+%    },
+	square/.style={thick,
+	      draw=black,
+	      top color=white,
+	      bottom color=black!10,
+	      font=\sffamily\small,
+	      minimum width=12mm,
+	      minimum height=10mm,
+	      drop shadow},
+    every label/.style={
+      font=\sffamily\scriptsize
+    },
+  ]
+  \draw[dna, decoration={amplitude=.15cm}] (0,-0) -- (1.1,-0);
+  \draw[dna, decoration={amplitude=.35cm}] (1.15,0) -- (1.15,-1.1);
+  \draw[dna, decoration={amplitude=.35cm}] (1.15,-1.1) -- (0,-1.1);
+  \draw[dna, decoration={amplitude=.35cm}] (0,-1.1) -- (0,0);
+%  \draw[dna, decoration={amplitude=.15cm}] (.1,-0) -- (1.5,-0);
+%  
+%  \draw[dna, decoration={amplitude=.15cm}] (2.25,-0) -- (3.65,-0);
+%   %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+%  \draw[dna, decoration={amplitude=.15cm}] (1.85,-0) -- (3.25,-0);
+%    
+%  \draw[dna, decoration={amplitude=.15cm}] (.5,-2.5) -- (1.9,-2.5);
+%  %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+%  \draw[dna, decoration={amplitude=.15cm}] (.1,-2.5) -- (1.5,-2.5);
+%    
+%  \draw[dna, decoration={amplitude=.15cm}] (2.25,-2.5) -- (3.65,-2.5);
+%   %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+%   \draw[dna, decoration={amplitude=.15cm}] (1.85,-2.5) -- (3.25,-2.5);
+   
+   %% Path for dots
+  \node [on chain] {};
+  \node [on chain] {};
+  \node [on chain=going below] {};
+  {[continue chain=going left]
+    \node [on chain] {};
+  }
+  %\node[square,left of= chain-6] {G};
+  {[transparency group, opacity=.25]
+%    \draw [post join] (chain-1.south) |- (chain-3.center) |- (chain-6.center) -- (chain-6.north);
+  }
+ %\path (chain-3.south) -- (chain-4.north) node [black, font=\Huge, midway, sloped,xshift=0cm] {$\dots$};
+ 
+%\node[] at (1.75,-1.25) { \textsc{BLOCKCHAIN}};
+\end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/blockchainInSimpleApp.png?raw=true "blockchainInSimpleApp")
+
+```tex
+%\documentclass[class=scrreprt,preview]{standalone}
+\documentclass[class=scrreprt,pagesize=off]{standalone}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric}
+\usetikzlibrary{positioning,matrix,shapes.arrows}
+\usetikzlibrary{arrows}
+\tikzset{
+	modulematrix/.style={draw=blue!50,rounded corners,matrix of nodes,row sep=1cm,column sep=2cm,nodes={draw=blue,align=center,font=\sffamily},inner ysep=0.5cm},
+	module/.style={rounded corners, align=center, font=\sffamily, thick},
+	simple module/.style={module, top color=blue!10, bottom color=blue!35, draw=blue!75, text width=7.5mm, minimum height=5mm},
+	module down arrow/.style={module arrow, shape border rotate=-90},
+	module right arrow/.style={module arrow},
+	module arrow/.style={single arrow, single arrow head extend=2.5mm, draw=gray!75, inner color=blue!45, outer color=gray!35, thick, shape border uses incircle, anchor=tail,minimum height=0.7cm},
+}
+\tikzset{
+database/.style={
+      cylinder,
+      cylinder uses custom fill,
+      cylinder body fill=blue!45,
+      cylinder end fill=blue!45,
+      shape border rotate=90,
+      aspect=0.25,
+      draw
+    }
+}
+\begin{document}
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (user) at (0,0)
+	  {\includegraphics[width=.05\textwidth]{person.pdf}};
+	\node [simple module,right = 0.5 cm of user] (app)  at (1.5,0) {App};
+	\node[database,right = 2cm of app] (db) {DB};
+	\matrix[modulematrix,right=3.2cm of db,label={[anchor=north]above:Ethereum Node}] (ethNode) {Sign Transactions \\ Unlocked Account \\};
+	\foreach \n in {ethNode-1-1}
+		\node[module down arrow,below=1mm of \n] {};
+	\node[inner sep=0pt, right = 3.5cm of ethNode] (bchain)
+		  {\includegraphics[width=.45\textwidth]{linkedBlocks.pdf}};
+		  	
+	% Arrows
+	\draw [->,very thick,bend right] (user)  -- node [text width=2.5cm,midway,above=3em,draw=blue,align=center,font=\sffamily] {Transaction using Ethereum browser } (app);
+	% app to node
+	\draw [->, very thick] (app) to [bend left](db);
+	\draw [->, very thick] (db) to [bend left](app);
+	% db to node
+	\draw [->, very thick] (db) to [bend left=15](ethNode);
+	\draw [<-, very thick] (db) to [bend right=15](ethNode);
+	% node to blockchain
+	\draw [->, very thick] (ethNode) to [bend left=8](bchain);
+	\draw [<->, very thick] (ethNode) to [bend right=8](bchain);
+	% Paths, label about arrows
+	\path (app) -- node [very thick,text width=2.5cm,midway,above=3em,draw=blue,align=center,font=\sffamily] {submit transactions to database}  (db);
+	\path (app) -- node [very thick,text width=2.5cm,midway,above=-6em,draw=blue,align=center,font=\sffamily] {query database for information on transactions}  (db);
+	% Paths, eth node
+	\path (db) -- node [very thick,text width=2.5cm,midway,above=3em,draw=blue,align=center,font=\sffamily] {send updates to private ethereum node}  (ethNode);
+	\path (db) -- node [very thick,text width=2.5cm,midway,above=-6em,draw=blue,align=center,font=\sffamily] {update \\ transactional data in DB}  (ethNode);
+	% eth node to blockchain
+	\path (ethNode) -- node [very thick,text width=2.5cm,midway,above=3em,draw=blue,align=center,font=\sffamily] {Broadcast Transactions to blockchain}  (bchain);
+	\path (ethNode) -- node [very thick,text width=2.5cm,midway,above=-6em,draw=blue,align=center,font=\sffamily] {synchronize state with ethereum Node}  (bchain);
+	% Perform transaction    % Footnotes
+%	\node[inner sep=0pt,outer sep=0pt, font=\footnotesize,label={[yshift=-2ex]north west:{\large Note:}},text width=1.5\textwidth,anchor=north west] at ([yshift=-13,xshift=1cm]current bounding box.south west) (a)
+%		{\large
+%		A blockchain is a digitized, decentralized, public ledger of all cryptocurrency transactions. 
+%		To access websites on the Ethereum blockchain and use dapps a specialized browser is needed, or a plugin like metamask. \\
+%		\textbf{Signing Transactions}: with a private local ethereum node, use its JSON RPC interface from the application to \\ perform all your blockchain operations. In order to sign something, a mathematical function is used to "sign" a piece of document/data. A digital signature of a document/data is a number generated using a private key. The private key has a corresponding public key. \\};
+	\end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/dna.png?raw=true "dna")
+
+```tex
+\documentclass[border=10pt]{standalone}
+ 
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing, shapes}
+\begin{document} 
+ 
+\begin{tikzpicture}[decoration={coil},
+dna/.style={decorate, thick, decoration={aspect=0, segment length=0.5cm}}]
+ 
+%DNA
+\draw[dna, decoration={amplitude=.15cm}] (.1,0) -- (11,0);
+\draw[dna, decoration={amplitude=-.15cm}] (0,0) -- (11,0);
+\node at (0,0.5) {DNA};
+ 
+\end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/linkedBlocks.png?raw=true "linkedBlocks")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{lmodern}
+\usetikzlibrary{shadows,chains,scopes}
+\usetikzlibrary{decorations.pathmorphing, shapes}
+\begin{document}
+\begin{tikzpicture}
+  [
+    start chain=going right,
+    node distance=5mm,
+    every on chain/.style={
+      thick,
+      draw=black,
+      top color=white,
+      bottom color=blue!20,
+      font=\sffamily\small,
+      minimum width=12mm,
+      minimum height=10mm,
+      drop shadow,
+      %label={below:block \tikzchaincount},
+    },
+    decoration={coil},
+    dna/.style={decorate, thick, decoration={aspect=0, segment length=0.75cm}},
+%    post join/.style={
+%      -stealth,
+%      line width=1.5mm,
+%      red,
+%      rounded corners=1mm,
+%    },
+	square/.style={thick,
+	      draw=black,
+	      top color=white,
+	      bottom color=black!10,
+	      font=\sffamily\small,
+	      minimum width=12mm,
+	      minimum height=10mm,
+	      drop shadow},
+    every label/.style={
+      font=\sffamily\scriptsize
+    },
+  ]
+  \draw[dna, decoration={amplitude=.15cm}] (.5,-0) -- (1.9,-0);
+  %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+  \draw[dna, decoration={amplitude=.15cm}] (.1,-0) -- (1.5,-0);
+  
+  \draw[dna, decoration={amplitude=.15cm}] (2.25,-0) -- (3.65,-0);
+   %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+  \draw[dna, decoration={amplitude=.15cm}] (1.85,-0) -- (3.25,-0);
+    
+  \draw[dna, decoration={amplitude=.15cm}] (.5,-2.5) -- (1.9,-2.5);
+  %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+  \draw[dna, decoration={amplitude=.15cm}] (.1,-2.5) -- (1.5,-2.5);
+    
+  \draw[dna, decoration={amplitude=.15cm}] (2.25,-2.5) -- (3.65,-2.5);
+   %\draw[dna, decoration={amplitude=.35cm}] (.9,-0) -- (1.5,-0);
+   \draw[dna, decoration={amplitude=.15cm}] (1.85,-2.5) -- (3.25,-2.5);
+   
+   %% Path for dots
+  \node [on chain,label={above:block 1}] {A};
+  \node [on chain,label={above:block 2}] {B};
+  \node [on chain,label={above:block 3}] {C};
+  \node [on chain=going below,yshift=-1cm,label={below:block n--2}] {D};
+  {[continue chain=going left]
+    \node [on chain,label={below:block n--1}] {E};
+    \node [on chain,label={below:block n}] {F};
+  }
+  %\node[square,left of= chain-6] {G};
+  {[transparency group, opacity=.25]
+%    \draw [post join] (chain-1.south) |- (chain-3.center) |- (chain-6.center) -- (chain-6.north);
+  }
+ \path (chain-3.south) -- (chain-4.north) node [black, font=\Huge, midway, sloped,xshift=0cm] {$\dots$};
+ 
+\node[] at (1.75,-1.25) { \textsc{BLOCKCHAIN}};
+\end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/person.png?raw=true "person")
+
+```tex
+\documentclass[tikz]{standalone}
+\usetikzlibrary{positioning,fit}
+\begin{document}
+
+\tikzset{
+  pobl/.style={
+    inner sep=0pt, outer sep=0pt, fill=#1,
+  },
+  pobl gron/.style n args={2}{
+    pobl=#1, rounded corners=#2,
+  },
+  pics/person/.style n args={3}{
+    code={
+      \node (-corff) [pobl=#1, minimum width=.25*#2, minimum height=.375*#2, rotate=#3, pic actions] {};
+      \node (-pen) [minimum width=.3*#2, circle, pobl=#1, outer sep=.01*#2, anchor=south, rotate=#3, pic actions] at (-corff.north) {};
+      \node (-coes dde) [pobl gron={#1}{1pt}, anchor=north west, minimum width=.12125*#2, minimum height=.25*#2, rotate=#3, pic actions] at (-corff.south west) {};
+      \node [pobl=#1, anchor=north, minimum width=.12125*#2, minimum height=.15*#2, rotate=#3, pic actions] at (-coes dde.north) {};
+      \node (-coes chwith) [pobl gron={#1}{1pt}, anchor=north east, minimum width=.12125*#2, minimum height=.25*#2, rotate=#3, pic actions] at (-corff.south east) {};
+      \node [pobl=#1, anchor=north, minimum width=.12125*#2, minimum height=.15*#2, rotate=#3, pic actions] at (-coes chwith.north) {};
+      \node (-braich dde) [pobl gron={#1}{.75pt}, minimum width=.075*#2, minimum height=.325*#2, outer sep=.0064*#2, anchor=north west, rotate=#3, pic actions] at (-corff.north east)  {};
+      \node [pobl=#1, minimum width=.05*#2, minimum height=.2*#2, outer sep=.0064*#2, anchor=north west, rotate=#3, pic actions] at (-corff.north east) {};
+      \node (-braich chwith) [pobl gron={#1}{.75pt}, minimum width=.075*#2, minimum height=.325*#2, outer sep=.0064*#2, anchor=north east, rotate=#3, pic actions] at (-corff.north west) {};
+      \node [pobl=#1, minimum width=.0375*#2, minimum height=.2*#2, outer sep=.0064*#2, anchor=north east, rotate=#3, pic actions] at (-corff.north west) {};
+      \node (-fit person) [fit={(-pen.north) (-braich dde.east) (-coes chwith.south) (-braich chwith.west)}] {};
+     % \node (-pwy) [below=25pt of -fit person, every pin] {\tikzpictext};
+     % This draws the arrow
+     %\draw [every pin edge] (-fit person) -- (-pwy);
+    },
+  },
+}
+
+\begin{tikzpicture}
+%  [
+%    every pin edge/.append style={latex-, shorten <=-2.5pt},
+%  ]
+
+   \draw pic (person) [pic text={}] {person={blue}{25pt}{0}};
+\end{tikzpicture}
+
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/simpleTimeline.png?raw=true "simpleTimeline")
+
+```tex
+\documentclass[6pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{snakes}
+\usepackage{fullpage}
+
+\begin{document}
+
+
+%
+%\begin{figure}
+%\caption{Time Line}
+%\centering
+%\resizebox{\linewidth}{!}{% Resize table to fit within
+
+\begin{tikzpicture}[]
+%draw horizontal line
+\draw (0,0) -- (41/1.7,0);
+%draw vertical lines
+\foreach \x in {0, 8, 15, 22, 29, 36, 41}{
+   \draw (\x/1.7,3pt) -- (\x/1.7,-3pt);
+}
+%draw nodes
+\draw (0,0) node[text width = 85pt,align=center,below=3pt] {\textbf{Submit Project Proposal}} node[above=3pt] {Nov 17 2017};
+\draw (8/1.7,0) node[below=3pt] {Find Game Engine} node[above=3pt] {Nov 20 2017};
+\draw (15/1.7,0) node[text width = 100pt,align=center,below=3pt] {Create Server-Client Architecture} node[above=3pt] {Nov 25 2017};
+\draw (22/1.7,0) node[text width = 100pt,align=center,below=3pt] {Implement Game Logic} node[above=3pt] {Nov 29 2017};
+\draw (29/1.7,0) node[text width = 100pt,align=center,below=3pt] {Add Music and Effects} node[above=3pt] {Dec 1 2017};
+\draw (36/1.7,0) node[text width = 100pt,align=center,below=3pt] {\textbf{In Class Demo}} node[above=3pt] {Dec 2 2017};
+\draw (41/1.7,0) node[below=3pt] {\textbf{Finish Report}} node[above=3pt] {Dec 12 2017};
+\end{tikzpicture}
+%}
+%\label{fig:time_line}
+%\end{figure}
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/smartContractsExp.png?raw=true "smartContractsExp")
+
+```tex
+\documentclass[svgnames]{standalone}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{xcolor}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+\definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
+
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+
+\definecolor{electricgreen}{rgb}{0.0, 1.0, 0.0}
+
+\usetikzlibrary{fadings,shapes.arrows,shadows,calc}   
+
+\tikzset{bubble/.style={rectangle, draw=gray,rounded corners,fill=#1,align = flush center,minimum height=1cm,minimum width=1.25cm}}
+
+\tikzfading [name=arrowfading, top color=transparent!0, bottom color=transparent!95]
+\tikzset{arrowfill/.style={top color=OrangeRed!20, bottom color=Red, general shadow={fill=black, shadow yshift=-0.8ex, path fading=arrowfading}}}
+\tikzset{arrowstyle/.style={draw=FireBrick,arrowfill, single arrow,minimum height=#1, single arrow,
+single arrow head extend=.2cm,}}
+
+\begin{document}
+\begin{tikzpicture}[
+ bigcircle/.style={ % style for the circles
+    text width=1.6cm, % diameter
+    align=center, % center align
+    line width=0.5mm, % thickness of border
+    draw, % draw the border
+    circle, % shape
+    font=\sffamily\footnotesize % font of the year
+  }
+ node distance=10mm and 16000mm % vertical and horizontal separation of nodes, when positioned with e.g. above=of othernode
+]
+
+\node [rectangle,draw=lightgray!80, line width=2mm, inner sep=0pt,rounded corners,minimum width=1.6cm, minimum height=2.45cm,label={below:SOURCE CODE}] (contractCode)  {\includegraphics[width=2.1cm]{if_source_moc_7003.png}};
+
+\node [rectangle, line width = 0.01 mm, draw=black, below = 0.5cm of contractCode, minimum height=1.45cm,text width=3.85cm] () {self-executing code that faciliates agreement \\ between parties};
+
+
+\node [rectangle,draw=lightblue!80, line width=2mm, inner sep=0pt,rounded corners,minimum width=2.2cm, minimum height=2.45cm,right= 1.75cm of contractCode,label={below:\textsc{TRANSPARENT}}] (handshake) {\includegraphics[width=2.1cm]{handshake.png}};
+
+\node [rectangle, line width = 0.01 mm, draw=black, below = 0.5cm of handshake, minimum height=1.45cm,text width=3.85cm] () {terms of contract are available on  the public ledger};
+
+\node [rectangle,draw=brandeisblue!80, line width=2mm, inner sep=0pt,rounded corners,minimum width=2.2cm, minimum height=2.45cm,right= 1.75cm of handshake,label={below:\textsc{BLOCKCHAIN}}] (blockchain) {\includegraphics[width=1.9cm]{blockchain.pdf}};
+
+\node [rectangle, line width = 0.01 mm, draw=black, below = 0.5cm of blockchain, minimum height=1.45cm,text width=3.95cm] () {event triggers the \\ execution of the contract (redeeming a ticket)};
+
+\node [rectangle,draw=darkpastelgreen!80, line width=2mm, inner sep=0pt,rounded corners,minimum width=2.2cm, minimum height=2.45cm,right= 1.75cm of blockchain,label={below:\textsc{PAYMENT}}] (payment) {\includegraphics[width=1.9cm]{transferMoney.png}};
+
+\node [rectangle, line width = 0.01 mm, draw=black, below = 0.5cm of payment, minimum height=1.45cm,text width=3.85cm] () {accounts are updated, parties recieve amounts based on contracts};
+
+% Arrows
+\node [arrowstyle=1.25cm] at ($(contractCode.east)!0.5!(handshake.west)$) {};
+\node [arrowstyle=1.25cm] at ($(handshake.east)!0.5!(blockchain.west)$) {};
+\node [arrowstyle=1.25cm] at ($(blockchain.east)!0.5!(payment.west)$) {};
+%\node [arrowstyle=2.5cm,xshift=-0.1cm,yshift=-2.5cm] at ($(sa.south)!0.5!(lc.south)$) {git commit};
+%\node [arrowstyle=3.5cm,xshift=-0.1cm,yshift=-3.5cm] at ($(lc.south)!0.5!(rc.south)$) {git push};
+\end{tikzpicture} 
+\end{document}
+```
+
+![ReportDiagrams/ENGR446](ReportDiagrams/ENGR446/weeklyPlanLOL.png?raw=true "weeklyPlanLOL")
+
+```tex
+\documentclass{standalone}
+\usepackage{datatool}
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+\usetikzlibrary{positioning}
+%\usetikzlibrary{calc,intersections}
+
+\usepackage{filecontents}
+\begin{filecontents*}{tasks.dat}
+phase,taskid,name,position,size
+initial,initialmeeting,Initial Meeting,-2,4
+planning,needsassesment,Needs Assesment,0,7
+planning,research,Research,3,15
+planning,siteoutline,Site Outline,5,7
+content,contentoutline,Content Outline,10,7
+\end{filecontents*}
+
+\DTLloaddb[noheader=false]{tasks}{tasks.dat}
+
+\begin{document}
+\begin{tikzpicture}[week/.style={font=\bfseries, text=white},
+initial/.style={fill=black!60,circle,opacity=0.5},
+planning/.style={fill=red,circle,opacity=0.5},
+content/.style={fill=yellow,circle,opacity=0.5} ]
+
+%%%%% Tasks
+\DTLforeach*{tasks}{\phase=phase, \taskid=taskid, \name=name, \position=position,\size=size}{\node(\taskid)[\phase, minimum size=\size em] at (\position, 0) {};
+\draw (node cs:name=\taskid, anchor=north) to ++(0,3) node[above, scale=\size/6] {\name};
+}
+
+
+\filldraw[fill=black, draw=white,line width=1ex,opacity=0.75] (-3.5,-0.5) rectangle (54,0.5);
+
+%%%%% Weeks.
+\node[week] at (0,0) {WEEK1};
+\node[week] at (7,0) {WEEK2};
+\node[week] at (14,0) {WEEK3};
+\node[week] at (21,0) {WEEK4};
+\node[week] at (28,0) {WEEK5};
+\node[week] at (35,0) {WEEK6};
+\node[week] at (42,0) {WEEK7};
+\node[week] at (49,0) {WEEK8};  
+\end{tikzpicture}
+\end{document}      
 ```
 

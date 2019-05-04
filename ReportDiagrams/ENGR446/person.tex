@@ -1,0 +1,40 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{positioning,fit}
+\begin{document}
+
+\tikzset{
+  pobl/.style={
+    inner sep=0pt, outer sep=0pt, fill=#1,
+  },
+  pobl gron/.style n args={2}{
+    pobl=#1, rounded corners=#2,
+  },
+  pics/person/.style n args={3}{
+    code={
+      \node (-corff) [pobl=#1, minimum width=.25*#2, minimum height=.375*#2, rotate=#3, pic actions] {};
+      \node (-pen) [minimum width=.3*#2, circle, pobl=#1, outer sep=.01*#2, anchor=south, rotate=#3, pic actions] at (-corff.north) {};
+      \node (-coes dde) [pobl gron={#1}{1pt}, anchor=north west, minimum width=.12125*#2, minimum height=.25*#2, rotate=#3, pic actions] at (-corff.south west) {};
+      \node [pobl=#1, anchor=north, minimum width=.12125*#2, minimum height=.15*#2, rotate=#3, pic actions] at (-coes dde.north) {};
+      \node (-coes chwith) [pobl gron={#1}{1pt}, anchor=north east, minimum width=.12125*#2, minimum height=.25*#2, rotate=#3, pic actions] at (-corff.south east) {};
+      \node [pobl=#1, anchor=north, minimum width=.12125*#2, minimum height=.15*#2, rotate=#3, pic actions] at (-coes chwith.north) {};
+      \node (-braich dde) [pobl gron={#1}{.75pt}, minimum width=.075*#2, minimum height=.325*#2, outer sep=.0064*#2, anchor=north west, rotate=#3, pic actions] at (-corff.north east)  {};
+      \node [pobl=#1, minimum width=.05*#2, minimum height=.2*#2, outer sep=.0064*#2, anchor=north west, rotate=#3, pic actions] at (-corff.north east) {};
+      \node (-braich chwith) [pobl gron={#1}{.75pt}, minimum width=.075*#2, minimum height=.325*#2, outer sep=.0064*#2, anchor=north east, rotate=#3, pic actions] at (-corff.north west) {};
+      \node [pobl=#1, minimum width=.0375*#2, minimum height=.2*#2, outer sep=.0064*#2, anchor=north east, rotate=#3, pic actions] at (-corff.north west) {};
+      \node (-fit person) [fit={(-pen.north) (-braich dde.east) (-coes chwith.south) (-braich chwith.west)}] {};
+     % \node (-pwy) [below=25pt of -fit person, every pin] {\tikzpictext};
+     % This draws the arrow
+     %\draw [every pin edge] (-fit person) -- (-pwy);
+    },
+  },
+}
+
+\begin{tikzpicture}
+%  [
+%    every pin edge/.append style={latex-, shorten <=-2.5pt},
+%  ]
+
+   \draw pic (person) [pic text={}] {person={blue}{25pt}{0}};
+\end{tikzpicture}
+
+\end{document}

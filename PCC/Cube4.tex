@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords]
+\def\BigSide{5}
+\def\SmallSide{1.5}
+\pgfmathsetmacro{\CalcSide}{\BigSide-\SmallSide}
+
+% The vertex at V
+\tdplotsetcoord{P}{sqrt(3)*\BigSide}{55}{45}
+
+\coordinate (sxl) at (\BigSide,\CalcSide,\BigSide);
+\coordinate (syl) at (\CalcSide,\CalcSide,\BigSide);
+\coordinate (szl) at (\CalcSide,\BigSide,\BigSide);
+
+\draw[dashed] 
+  (0,0,0) -- (Px)
+  (0,0,0) -- (Py)
+  (0,0,0) -- (Pz);
+\draw[->] 
+  (Px) -- ++ (1,0,0) node[anchor=north east]{$x$};
+\draw[->]
+   (Py) -- ++(0,1,0) node[anchor=north west]{$y$};
+\draw[->] 
+  (Pz) -- ++(0,0,1) node[anchor=south]{$z$};
+
+\draw[thick]
+  (Pxz) -- (P) -- (Pxy) -- (Px) -- (Pxz) -- (Pz) -- (Pyz) -- (P); 
+\draw[thick]
+  (Pyz) -- (Py) -- (Pxy);
+
+
+\end{tikzpicture}
+
+\end{document}

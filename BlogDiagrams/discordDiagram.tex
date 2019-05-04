@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{fontawesome}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+
+\definecolor{bluei}{RGB}{83,116,191}
+\definecolor{blueii}{RGB}{207,212,232}
+\definecolor{greeni}{RGB}{135,200,81}
+\definecolor{greenii}{RGB}{216,235,207}
+\definecolor{redi}{RGB}{238, 150, 140}
+\definecolor{redii}{RGB}{100,60,50}
+
+\definecolor{purpi}{RGB}{141, 108, 171}
+\definecolor{purpii}{RGB}{100,60,50}
+\tikzset{
+  myiblock/.style 2 args={
+    draw=white,
+    fill=#1,
+    line width=1pt,
+    rounded corners,
+    minimum height=1cm,
+    align=center,
+    text=white,
+    font=\sffamily,
+    text width=#2
+  },
+  myoblock/.style={
+     matrix of nodes,
+    fill=#1,
+    rounded corners,
+    align=center,
+    inner xsep=10pt,
+    draw=none,
+    row sep=0.5cm
+  },
+  mylabel/.style={
+    black, 
+    minimum height=0pt
+    }
+}
+
+\begin{document}
+
+
+%\resizebox{14cm}{3cm}{%
+\begin{tikzpicture}
+	\node[inner sep=0pt] (russell) at (6.5,3)
+	    { {\Huge RSS \ \faRss \ Discord }};
+	    
+	\matrix (A) [myoblock={blueii}, nodes={myiblock={bluei}{2cm}}]
+	  {|[label={[mylabel]Code Repos}]|{ \faBitbucket \ Bitbucket }\\ 
+	  \faGithub \ Github \\ 
+	  \faGitlab \ Gitlab \\
+	  };
+	
+	\matrix (B) [myoblock={greenii}, nodes={myiblock={greeni}{2.5cm}}, 
+	   row sep=3pt, right=5mm of A.north east, anchor=north west]
+	  {|[label={[mylabel]Entertainment}]|
+	   \faBook \ Tech Books \\
+	   \faGamepad \ Games\\ 	   
+	   \faStackOverflow \ Rep \& Elo \\
+	   \faReddit \ EthDev \\
+	  };
+	  
+	\matrix (C) [myoblock={redi}, nodes={myiblock={redii}{2cm}}, 
+	   row sep=15pt, right=5mm of B.north east, anchor=north west]
+	  {|[label={[mylabel]\faInfo \ Information}]|
+	   \faBitcoin \ BChain \\
+	   \faTrophy \ AI \\ 	   
+	   \faCode \ Code \\
+	  };
+	  
+	\matrix (D) [myoblock={purpi}, nodes={myiblock={purpii}{2cm}}, 
+			 right=5mm of C.north east, anchor=north west]
+		  {|[label={[mylabel] Tracking}]|
+		   \faTrello \ Web Hooks \\
+		   \faTicket \ Redmine \\ 	   
+		   \faThLarge \ Apis \\
+		  };
+\end{tikzpicture}
+
+%}
+
+
+\end{document}
