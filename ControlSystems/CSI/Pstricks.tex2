@@ -1,0 +1,58 @@
+\documentclass{standalone}
+
+% PSTricks.
+\usepackage{
+	pst-circ,
+	pst-bspline,
+	pstricks-add
+}
+\psset{unit = 0.8}
+
+% Width and height of the diagram.
+\def\width{12}
+\def\height{6}
+
+% Calculating width and height of picture.
+\usepackage{xfp}
+\newcommand*\Width{\fpeval{\width+0.4}}
+\newcommand*\Height{\fpeval{\height+0.82}}
+
+\begin{document}
+	
+	% Drawing.
+	\begin{pspicture}(-0.4,-0.05)(\Width,\Height)
+	% Coordinates for the ends of the wires.
+	\pnodes{P}%
+	(0,0)(0,0)% Doubled to let the nodes start from P1 instead of P0.
+	(\fpeval{0.70*\width},0)%
+	(\width,0)%
+	(0,\height)%
+	(\fpeval{0.35*\width},\height)%
+	(\fpeval{0.70*\width},\height)
+	(\width,\height)
+	% Wires and components.
+	\wire[arrows = o-o](P1)(P3)
+	\coil[arrows = o-](P4)(P5){$L$}
+	\resistor[arrows = -o, dipolestyle = zigzag](P5)(P6){$R$}
+	\wire[arrows = o-o](P6)(P7)
+	\capacitor[arrows = *-*](P2)(P6){$C$}
+	% Labels.
+	\uput[90](P1){$-$}
+	\uput[90](P3){$-$}
+	\uput[270](P4){$+$}
+	\uput[270](P7){$+$}
+	{\psset{linestyle = none}
+		\pcline(P1)(P4)
+		\ncput*{$v_1(t)$}
+		\pcline(P3)(P7)
+		\ncput*{$v_2(t)$}}
+	% Direction of the current.
+	\psBspline[arrows = ->]%
+	(\fpeval{0.7*\width-3.0},\fpeval{\height-1})%
+	(\fpeval{0.7*\width-1.2},\fpeval{\height-1})%
+	(\fpeval{0.7*\width-1.2},1)%
+	(\fpeval{0.7*\width-3.0},1)
+	\rput(\fpeval{0.7*\width-2.2},\fpeval{\height/2}){$i(t)$}
+	\end{pspicture}
+	
+\end{document}

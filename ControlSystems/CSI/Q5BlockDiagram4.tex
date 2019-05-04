@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+
+\usepackage{blox}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\bXInput{A}
+\bXComp{B}{A}
+\bXLink[$R(s)$]{A}{B}
+\bXBloc[2]{C}{$\cfrac{G_1G_3(G_2+H_1)}{1+G_2H_2+H_3G_3(G_2+H_1)}$}{B}
+\bXLink[$V_1$]{B}{C}
+\bXOutput{E}{C}
+\bXLink[$C(s)$]{C}{E}
+\bXReturn{C-E}{B}{}
+\end{tikzpicture}
+\end{document}

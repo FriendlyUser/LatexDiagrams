@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+
+\usepackage{blox}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\bXInput{A}
+\bXComp{B}{A}
+\bXLink[$R(s)$]{A}{B}
+\bXBloc[2]{C}{$\displaystyle G(s)$}{B}
+\bXLink{B}{C}
+\bXOutput[4]{E}{C}
+\bXLink[$C(s)$]{C}{E}
+\bXReturn{C-E}{B}{}
+\end{tikzpicture}
+
+\end{document}
