@@ -1,6 +1,8 @@
 ## Latex Diagrams
 This repo contains all the diagrams I have generated for my academic career at the University Of Victoria.
 
+{:toc}
+
 ### ControlSystems/CSI
 
 ![ControlSystems/CSI](ControlSystems/CSI/BlockDiagramex2.png?raw=true "BlockDiagramex2")
@@ -1374,22 +1376,6 @@ where the $A_i$ and $B_i$ are constants to be determined.
 }
 
 \begin{document}
-
-%\begin{vtimeline}[description={text width=7cm}, 
-% row sep=4ex, 
-% use timeline header,
-% timeline title={The title}]
-%1947 & AT and T Bell Labs develop the idea of cellular phones\endlr
-%1968 & Xerox Palo Alto Research Centre envisage the `Dynabook'\endlr
-%1971 & Busicom 'Handy-LE' Calculator\endlr
-%1973 & First mobile handset invented by Martin Cooper\endlr
-%1978 & Parker Bros. Merlin Computer Toy\endlr
-%1981 & Osborne 1 Portable Computer\endlr
-%1982 & Grid Compass 1100 Clamshell Laptop\endlr
-%1983 & TRS-80 Model 100 Portable PC\endlr
-%1984 & Psion Organiser Handheld Computer\endlr
-%1991 & Psion Series 3 Minicomputer\endlr
-%\end{vtimeline}
 
 \begin{vtimeline}[timeline color=cyan!80!blue, add bottom line, line offset=2pt]
 Sept 4 2017 & Discussed Making Unity Games and worked on Tutorials \endlr

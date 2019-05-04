@@ -95,6 +95,10 @@ echo "## Latex Diagrams" >> $OUTPUT_FILE
 
 echo "This repo contains all the diagrams I have generated for my academic career at the University Of Victoria." >> $OUTPUT_FILE
 echo "" >> $OUTPUT_FILE
+
+echo "{:toc}" >> $OUTPUT_FILE
+
+echo "" >> $OUTPUT_FILE
 # Generate markdown file containing relative url to image and perhgaps path to tex code.
 prev_dir=''
 for tex in $(find $dir -name "*.tex")
