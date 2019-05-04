@@ -699,19 +699,6 @@ where the $A_i$ and $B_i$ are constants to be determined.
 % Radius for arc over intersection
 \def\radius{1.mm} 
 
-%%%% Adapted from Mark Wibrow
-%\tikzset{%
-%	connect/.style args={(#1) to (#2) over (#3) by #4}{%
-%		insert path={%
-%			let \p1=($(#1)-(#3)$), \n1={veclen(\x1,\y1)}, \n2={abs(#4)}  in%
-%			(#1) --%
-%			($(#1)!\n1-\n2!(#3)$) .. controls +(0:\n2/2) and +(180:\n2/2) ..%
-%			+(\n2,#4)%
-%			.. controls +(0:\n2/2) and +(180:\n2/2) .. ($(#1)!\n1+\n2!(#3)$) -- (#2)%
-%		}%
-%	}%
-%}
-
 \tikzset{
 	connect/.style args={(#1) to (#2) over (#3) by #4}{
 		insert path={
@@ -800,19 +787,6 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \usepackage{tkz-euclide}
 % Radius for arc over intersection
 \def\radius{1.mm} 
-
-%%%% Adapted from Mark Wibrow
-%\tikzset{%
-%	connect/.style args={(#1) to (#2) over (#3) by #4}{%
-%		insert path={%
-%			let \p1=($(#1)-(#3)$), \n1={veclen(\x1,\y1)}, \n2={abs(#4)}  in%
-%			(#1) --%
-%			($(#1)!\n1-\n2!(#3)$) .. controls +(0:\n2/2) and +(180:\n2/2) ..%
-%			+(\n2,#4)%
-%			.. controls +(0:\n2/2) and +(180:\n2/2) .. ($(#1)!\n1+\n2!(#3)$) -- (#2)%
-%		}%
-%	}%
-%}
 
 \tikzset{
 	connect/.style args={(#1) to (#2) over (#3) by #4}{
@@ -903,19 +877,6 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \usepackage{tkz-euclide}
 % Radius for arc over intersection
 \def\radius{1.mm} 
-
-%%%% Adapted from Mark Wibrow
-%\tikzset{%
-%	connect/.style args={(#1) to (#2) over (#3) by #4}{%
-%		insert path={%
-%			let \p1=($(#1)-(#3)$), \n1={veclen(\x1,\y1)}, \n2={abs(#4)}  in%
-%			(#1) --%
-%			($(#1)!\n1-\n2!(#3)$) .. controls +(0:\n2/2) and +(180:\n2/2) ..%
-%			+(\n2,#4)%
-%			.. controls +(0:\n2/2) and +(180:\n2/2) .. ($(#1)!\n1+\n2!(#3)$) -- (#2)%
-%		}%
-%	}%
-%}
 
 \tikzset{
 	connect/.style args={(#1) to (#2) over (#3) by #4}{
