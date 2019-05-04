@@ -1,7 +1,7 @@
 ## Latex Diagrams
 This repo contains all the diagrams I have generated for my academic career at the University Of Victoria.
 
-# ControlSystems/CSI
+### ControlSystems/CSI
 
 ![ControlSystems/CSI](ControlSystems/CSI/BlockDiagramex2.png?raw=true "BlockDiagramex2")
 
@@ -77,6 +77,7 @@ This repo contains all the diagrams I have generated for my academic career at t
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/conSys.png?raw=true "conSys")
 
 ```tex
@@ -119,6 +120,7 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/ex1.png?raw=true "ex1")
 
 ```tex
@@ -172,6 +174,7 @@ This repo contains all the diagrams I have generated for my academic career at t
 	
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Mason.png?raw=true "Mason")
 
 ```tex
@@ -214,6 +217,7 @@ terminal/.style 2 args={draw,circle,inner sep=2pt,label={#1:#2}},
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/pf.png?raw=true "pf")
 
 ```tex
@@ -294,6 +298,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{document}
 
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/polesZeroes.png?raw=true "polesZeroes")
 
 ```tex
@@ -331,6 +336,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{document}
 
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q10BlockDiagram.png?raw=true "Q10BlockDiagram")
 
 ```tex
@@ -354,6 +360,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q1Diagram67.png?raw=true "Q1Diagram67")
 
 ```tex
@@ -380,6 +387,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q2Circuit.png?raw=true "Q2Circuit")
 
 ```tex
@@ -425,6 +433,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q2Diagram614.png?raw=true "Q2Diagram614")
 
 ```tex
@@ -449,6 +458,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q3Circuit.png?raw=true "Q3Circuit")
 
 ```tex
@@ -481,6 +491,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 	\end{circuitikz}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q3Circuit2.png?raw=true "Q3Circuit2")
 
 ```tex
@@ -521,6 +532,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 	\end{circuitikz}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q3Diagram616.png?raw=true "Q3Diagram616")
 
 ```tex
@@ -551,6 +563,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q4Diagram617.png?raw=true "Q4Diagram617")
 
 ```tex
@@ -581,6 +594,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram.png?raw=true "Q5BlockDiagram")
 
 ```tex
@@ -682,6 +696,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram2-2.png?raw=true "Q5BlockDiagram2-2")
 
 ```tex
@@ -783,6 +798,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram2.png?raw=true "Q5BlockDiagram2")
 
 ```tex
@@ -885,6 +901,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram3.png?raw=true "Q5BlockDiagram3")
 
 ```tex
@@ -972,6 +989,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram4.png?raw=true "Q5BlockDiagram4")
 
 ```tex
@@ -994,6 +1012,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram5.png?raw=true "Q5BlockDiagram5")
 
 ```tex
@@ -1014,6 +1033,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram6.png?raw=true "Q5BlockDiagram6")
 
 ```tex
@@ -1033,6 +1053,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q5Diagram620.png?raw=true "Q5Diagram620")
 
 ```tex
@@ -1063,6 +1084,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BlockDiagram.png?raw=true "Q6BlockDiagram")
 
 ```tex
@@ -1144,6 +1166,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BLockDiagram2.png?raw=true "Q6BLockDiagram2")
 
 ```tex
@@ -1178,6 +1201,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BLockDiagram3Fin.png?raw=true "Q6BLockDiagram3Fin")
 
 ```tex
@@ -1198,6 +1222,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BlockDiagram4.png?raw=true "Q6BlockDiagram4")
 
 ```tex
@@ -1279,6 +1304,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BlockDiagram5.png?raw=true "Q6BlockDiagram5")
 
 ```tex
@@ -1316,6 +1342,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BlockDiagram6fin.png?raw=true "Q6BlockDiagram6fin")
 
 ```tex
@@ -1336,6 +1363,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 
 \end{document}
 ```
+
 ![ControlSystems/CSI](ControlSystems/CSI/timeline.png?raw=true "timeline")
 
 ```tex
@@ -1456,7 +1484,8 @@ October 3 & Completed a few labs \endlr
 
 \end{document}
 ```
-# ControlSystems/CSII
+
+### ControlSystems/CSII
 
 ![ControlSystems/CSII](ControlSystems/CSII/460A3SamplerTesting.png?raw=true "460A3SamplerTesting")
 
@@ -1537,6 +1566,7 @@ October 3 & Completed a few labs \endlr
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/B4-8.png?raw=true "B4-8")
 
 ```tex
@@ -1625,6 +1655,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 	%\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/B48RLocus.png?raw=true "B48RLocus")
 
 ```tex
@@ -1707,6 +1738,7 @@ start marker/.pic={\draw (-#1,-#1) -- (#1,#1) (#1,-#1)--(-#1,#1);}
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/block410.png?raw=true "block410")
 
 ```tex
@@ -1797,6 +1829,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/block412.png?raw=true "block412")
 
 ```tex
@@ -1886,6 +1919,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/block415.png?raw=true "block415")
 
 ```tex
@@ -1979,6 +2013,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/digraphs.png?raw=true "digraphs")
 
 ```tex
@@ -2010,6 +2045,7 @@ s,3:25;
  }
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/OgataB6-17.png?raw=true "OgataB6-17")
 
 ```tex
@@ -2138,6 +2174,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/pf.png?raw=true "pf")
 
 ```tex
@@ -2218,6 +2255,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{document}
 
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/polesZeroes.png?raw=true "polesZeroes")
 
 ```tex
@@ -2284,6 +2322,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \end{document}
 
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/sampleEND.png?raw=true "sampleEND")
 
 ```tex
@@ -2371,6 +2410,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/sampler413.png?raw=true "sampler413")
 
 ```tex
@@ -2445,6 +2485,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/samplerBlock.png?raw=true "samplerBlock")
 
 ```tex
@@ -2531,6 +2572,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/samplerTesting.png?raw=true "samplerTesting")
 
 ```tex
@@ -2618,6 +2660,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 %\end{figure}
 \end{document}
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/stepResponsePlot.png?raw=true "stepResponsePlot")
 
 ```tex
@@ -2670,6 +2713,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \end{document}
 
 ```
+
 ![ControlSystems/CSII](ControlSystems/CSII/StraightLinebasicBlock.png?raw=true "StraightLinebasicBlock")
 
 ```tex
@@ -2690,7 +2734,8 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \end{tikzpicture}
 \end{document}
 ```
-# DSP
+
+### DSP
 
 ![DSP](DSP/a511aCopy.png?raw=true "a511aCopy")
 
@@ -2751,6 +2796,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \end{document}
 
 ```
+
 ![DSP](DSP/a53_b.png?raw=true "a53_b")
 
 ```tex
@@ -2800,6 +2846,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \end{document}
 
 ```
+
 ![DSP](DSP/a54.png?raw=true "a54")
 
 ```tex
@@ -2878,6 +2925,7 @@ ymax=3,
 \end{document}
 
 ```
+
 ![DSP](DSP/a5a11_a.png?raw=true "a5a11_a")
 
 ```tex
@@ -2917,6 +2965,7 @@ ymax=3,
 \end{document}
 
 ```
+
 ![DSP](DSP/a5_4c.png?raw=true "a5_4c")
 
 ```tex
@@ -2958,6 +3007,7 @@ ymax=3,
 \end{document}
 
 ```
+
 ![DSP](DSP/block.png?raw=true "block")
 
 ```tex
@@ -3017,6 +3067,7 @@ ymax=3,
 \end{document}
 
 ```
+
 ![DSP](DSP/c514_c.png?raw=true "c514_c")
 
 ```tex
@@ -3065,6 +3116,7 @@ width=\textwidth,
 \end{document}
 
 ```
+
 ![DSP](DSP/e514_c2.png?raw=true "e514_c2")
 
 ```tex
@@ -3114,7 +3166,8 @@ width=\textwidth,
 \end{document}
 
 ```
-# ElectroMag
+
+### ElectroMag
 
 ![ElectroMag](ElectroMag/BHCurve.png?raw=true "BHCurve")
 
@@ -3145,6 +3198,7 @@ width=\textwidth,
     \end{tikzpicture}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Exampl1Circuit.png?raw=true "Exampl1Circuit")
 
 ```tex
@@ -3171,6 +3225,7 @@ width=\textwidth,
 		;\end{circuitikz}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Exampl2Circuit.png?raw=true "Exampl2Circuit")
 
 ```tex
@@ -3194,6 +3249,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/phasor.png?raw=true "phasor")
 
 ```tex
@@ -3231,6 +3287,7 @@ width=\textwidth,
 \end{tikzpicture}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/PrimarySide.png?raw=true "PrimarySide")
 
 ```tex
@@ -3298,6 +3355,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q1Circuit.png?raw=true "Q1Circuit")
 
 ```tex
@@ -3322,6 +3380,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q1Circuit2.png?raw=true "Q1Circuit2")
 
 ```tex
@@ -3346,6 +3405,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q2Circuit.png?raw=true "Q2Circuit")
 
 ```tex
@@ -3386,6 +3446,7 @@ width=\textwidth,
 %	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q3Circuit.png?raw=true "Q3Circuit")
 
 ```tex
@@ -3415,6 +3476,7 @@ width=\textwidth,
 			\end{circuitikz}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q3Circuit2.png?raw=true "Q3Circuit2")
 
 ```tex
@@ -3436,6 +3498,7 @@ width=\textwidth,
 			\end{circuitikz}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q4Circuit.png?raw=true "Q4Circuit")
 
 ```tex
@@ -3468,6 +3531,7 @@ width=\textwidth,
 			\end{circuitikz}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q5Circuit.png?raw=true "Q5Circuit")
 
 ```tex
@@ -3489,6 +3553,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q6Circuit.png?raw=true "Q6Circuit")
 
 ```tex
@@ -3515,6 +3580,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q7Circuit.png?raw=true "Q7Circuit")
 
 ```tex
@@ -3539,6 +3605,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q7Circuit2.png?raw=true "Q7Circuit2")
 
 ```tex
@@ -3563,6 +3630,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Q8Circuit.png?raw=true "Q8Circuit")
 
 ```tex
@@ -3591,6 +3659,7 @@ width=\textwidth,
 	\label{fig:q1fig}
 \end{document}
 ```
+
 ![ElectroMag](ElectroMag/Transformer3Windings.png?raw=true "Transformer3Windings")
 
 ```tex
@@ -3644,7 +3713,8 @@ width=\textwidth,
 \end{tikzpicture}
 \end{document}
 ```
-# EngineeringSoftwareDesign
+
+### EngineeringSoftwareDesign
 
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/basicBlock.png?raw=true "basicBlock")
 
@@ -3666,6 +3736,7 @@ width=\textwidth,
 \end{tikzpicture}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/betterClientServer.png?raw=true "betterClientServer")
 
 ```tex
@@ -3698,6 +3769,7 @@ width=\textwidth,
 \end{document}
 
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/bytefieldCENG356A2.png?raw=true "bytefieldCENG356A2")
 
 ```tex
@@ -3755,6 +3827,7 @@ width=\textwidth,
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/bytefieldTest.png?raw=true "bytefieldTest")
 
 ```tex
@@ -3835,6 +3908,7 @@ header word, excluding the subsequent checksum-type value} \\
 \end{bytefield}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/Circles.png?raw=true "Circles")
 
 ```tex
@@ -3863,6 +3937,7 @@ header word, excluding the subsequent checksum-type value} \\
 \end{document}
 
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/ClassDiagram.png?raw=true "ClassDiagram")
 
 ```tex
@@ -3951,6 +4026,7 @@ header word, excluding the subsequent checksum-type value} \\
 \end{tikzpicture} 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/ClientServer.png?raw=true "ClientServer")
 
 ```tex
@@ -4046,6 +4122,7 @@ header word, excluding the subsequent checksum-type value} \\
 \end{tikzpicture}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/commandPrompt.png?raw=true "commandPrompt")
 
 ```tex
@@ -4094,6 +4171,7 @@ Player disconnected with state:  transport close
 \end{document}
 
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/CPUPicture.png?raw=true "CPUPicture")
 
 ```tex
@@ -4171,6 +4249,7 @@ Player disconnected with state:  transport close
 \end{tikzpicture}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/DisconnectedFromGame.png?raw=true "DisconnectedFromGame")
 
 ```tex
@@ -4239,6 +4318,7 @@ Player disconnected with state:  transport close
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/document.png?raw=true "document")
 
 ```tex
@@ -4285,6 +4365,7 @@ Player disconnected with state:  transport close
 	
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/fileDirectory.png?raw=true "fileDirectory")
 
 ```tex
@@ -4388,6 +4469,7 @@ Player disconnected with state:  transport close
 	\end{forest}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/FlowChart.png?raw=true "FlowChart")
 
 ```tex
@@ -4464,6 +4546,7 @@ Player disconnected with state:  transport close
 \end{document}
 
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/GanttScheduling.png?raw=true "GanttScheduling")
 
 ```tex
@@ -4548,6 +4631,7 @@ Player disconnected with state:  transport close
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/GitWorkFlow.png?raw=true "GitWorkFlow")
 
 ```tex
@@ -4596,6 +4680,7 @@ single arrow head extend=.4cm,}}
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/Matching.png?raw=true "Matching")
 
 ```tex
@@ -4633,6 +4718,7 @@ single arrow head extend=.4cm,}}
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/MatchingTable.png?raw=true "MatchingTable")
 
 ```tex
@@ -4678,19 +4764,22 @@ single arrow head extend=.4cm,}}
   \end{tikzpicture}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/Queue.png?raw=true "Queue")
 
 ```tex
 
 ```
-# .
+
+### .
 
 ![.](./Pictures.png?raw=true "Pictures")
 
 ```tex
 
 ```
-# EngineeringSoftwareDesign
+
+### EngineeringSoftwareDesign
 
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/SeqDia1.png?raw=true "SeqDia1")
 
@@ -4719,6 +4808,7 @@ single arrow head extend=.4cm,}}
 \end{tikzpicture} 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/SeqDiagramReport.png?raw=true "SeqDiagramReport")
 
 ```tex
@@ -4779,6 +4869,7 @@ single arrow head extend=.4cm,}}
 
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/SeqGoodExample.png?raw=true "SeqGoodExample")
 
 ```tex
@@ -4827,6 +4918,7 @@ single arrow head extend=.4cm,}}
 \end{tikzpicture}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/serverClient.png?raw=true "serverClient")
 
 ```tex
@@ -4879,6 +4971,7 @@ single arrow head extend=.4cm,}}
 %\end{figure}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/Tables.png?raw=true "Tables")
 
 ```tex
@@ -4906,6 +4999,7 @@ single arrow head extend=.4cm,}}
   \end{tabular}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/timeline.png?raw=true "timeline")
 
 ```tex
@@ -4944,6 +5038,7 @@ single arrow head extend=.4cm,}}
 %\end{figure}
 \end{document}
 ```
+
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/WBSChart.png?raw=true "WBSChart")
 
 ```tex
@@ -4992,3 +5087,4 @@ single arrow head extend=.4cm,}}
 \end{forest}
 \end{document}
 ```
+

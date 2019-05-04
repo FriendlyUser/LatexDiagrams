@@ -108,7 +108,7 @@ do
   if [ "$prev_dir" != "$rel_folder_path" ]
   then
     prev_dir=$rel_folder_path
-    echo "# $rel_folder_path" >> $OUTPUT_FILE
+    echo "### $rel_folder_path" >> $OUTPUT_FILE
     echo "" >> $OUTPUT_FILE
   else
     echo "Parsing $rel_path_file from $rel_folder_path"
@@ -124,6 +124,7 @@ do
   cat $rel_path_file >> $OUTPUT_FILE
   echo "" >> $OUTPUT_FILE
   echo "\`\`\`" >> $OUTPUT_FILE
+  echo "" >> $OUTPUT_FILE
   # Go to directory with pdf files
   # Go back to root directory
   # cd $dir
