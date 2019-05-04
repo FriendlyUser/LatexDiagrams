@@ -1,0 +1,34 @@
+\documentclass[border={10pt}]{standalone}
+\usepackage{tikz,pgfplots,filecontents,amsmath}
+\pgfplotsset{compat=1.5}
+
+\begin{filecontents}{data.dat}
+ n   yn 
+0    1
+1   -1
+2	 0
+3    3
+\end{filecontents}
+
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}
+[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    axis x line=middle,
+    axis y line=middle,
+    every axis x label={at={(current axis.right of origin)},anchor=north west},
+    every axis y label={at={(current axis.above origin)},anchor= north west},
+    every axis plot post/.style={mark options={fill=black}},
+    xlabel={$n$},
+    ylabel={$\boldsymbol{y[n]}$},
+    xtick={-1,0,2,3, 4},
+    xmax=4,
+    ymin=-2,
+    ymax=3,
+]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addplot+[ycomb,black,thick] table [x={n}, y={yn}] {data.dat};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

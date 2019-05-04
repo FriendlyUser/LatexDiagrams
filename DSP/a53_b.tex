@@ -1,0 +1,44 @@
+\documentclass[border={10pt}]{standalone}
+\usepackage{tikz,pgfplots,filecontents,amsmath}
+\pgfplotsset{compat=1.5}
+
+\begin{filecontents}{data.dat}
+ n   yn 
+-2   0.0
+-1   0.0
+ 0   1.0
+ 1   2.0
+ 2   3.0
+ 3   4.0
+ 4   4.0
+ 5   4.0
+ 6   4.0 
+ 7   4.0 
+ 8   4.0
+% 3   0.0 
+ %4   0.0 
+% 5   0.0
+\end{filecontents}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}
+[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    axis x line=middle,
+    axis y line=middle,
+    every axis x label={at={(current axis.right of origin)},anchor=north west},
+    every axis y label={at={(current axis.above origin)},anchor= north west},
+    every axis plot post/.style={mark options={fill=black}},
+    xlabel={$n$},
+    ylabel={$\boldsymbol{y[n]}$},
+    xtick={-2,0, ..., 8},
+    ymin=0,
+    ymax=4,
+]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addplot+[ycomb,black,thick] table [x={n}, y={yn}] {data.dat};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

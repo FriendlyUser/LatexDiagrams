@@ -1,0 +1,43 @@
+\documentclass{standalone}
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+\begin{document}
+\begin{lstlisting}[style=DOS]
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation. All rights reserved.
+
+C:> node server
+listening on port 8000
+New player joined with state: { x: 889.8103577555021,
+	y: 752.1248414312639,
+	angle: 0,
+	type: '6',
+	health: 100 }
+Spawning DriftWood (316.6456740652798,706.8880647171098)
+New player joined with state: { x: 849.9970300626003,
+	y: 818.0782645328588,
+	angle: 0,
+	type: '5',
+	health: 100 }
+Spawning DriftWood (729.4982454697532,698.3670219092813)
+Spawning Health Pack (302.4444058918867,648.1832695147405)
+Player: [l-CPwPTDumIpyxZJAAAA], hit by bullet 
+DriftWood number [0] destroyed by bullet [4]
+Bullet [0] destroyed because it went offscreen (1057.767911147365,-15.736576261039652)
+Spawning DriftWood (677.7964228519133,198.37306259674156)
+Spawning Health Pack (696.4702310426835,208.46569810396736)
+Spawning DriftWood (651.8236801243313,27.688863345238822)
+Bullet [0] destroyed because it went offscreen (-13.088735950588386,764.9687287294422)
+Collision between player[00-i166b_J4WWW3tAAAB], healthPack[0]
+Player disconnected with state:  transport close
+Player disconnected with state:  transport close
+\end{lstlisting}
+\end{document}
