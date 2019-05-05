@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/latex
     steps:
       - checkout
-      - apt-get update && apt-get install poppler-utils -y
+      - run: apt-get update && apt-get install poppler-utils -y
       - run: lualatex ceng4AN.tex
       - run: ./compile_tex.sh
       - persist_to_workspace:
