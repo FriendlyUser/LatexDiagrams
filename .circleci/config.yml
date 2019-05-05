@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  lwarp:
+  latex:
     docker:
       - image: grandfleet/dolwarp:v0.70
     working_directory: ~/latex
