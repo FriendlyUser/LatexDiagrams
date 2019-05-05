@@ -17,9 +17,6 @@ jobs:
       - store_artifacts:
           root: .
           path:
-            - "ReadMe.md"
-            - "**/*.pdf"
-            - "**/*.png"
             - "**/**/*.png"
 
 workflows:
