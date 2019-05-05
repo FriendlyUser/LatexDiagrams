@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/latex
     steps:
       - checkout
-      - run: apt-get update && apt-get install poppler-utils -y
+      - run: apt-get update && apt-get install poppler-utils pdftopng -y
       - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 1 -l 1 -r 1 -o ReadMe.md
       - persist_to_workspace:
           root: .
