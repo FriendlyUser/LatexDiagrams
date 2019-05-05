@@ -1,7 +1,20 @@
 ## Latex Diagrams
 This repo contains all the diagrams I have generated for my academic career at the University Of Victoria.
 
-{:toc}
+
+- [Latex Diagrams](#latex-diagrams)
+  * [BlogDiagrams](#blogdiagrams)
+  * [ControlSystems/CSI](#controlsystems-csi)
+  * [ControlSystems/CSII](#controlsystems-csii)
+  * [DSP](#dsp)
+  * [DVP](#dvp)
+  * [ElectroMag](#electromag)
+  * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
+  * [PCC](#pcc)
+  * [ReportDiagrams/ENGR003-004](#reportdiagrams-engr003-004)
+  * [ReportDiagrams/ENGR446](#reportdiagrams-engr446)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 ### BlogDiagrams
 
