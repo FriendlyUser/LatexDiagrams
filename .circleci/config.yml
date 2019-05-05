@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  lwarp:
+    docker:
+      - image: grandfleet/dolwarp:v0.70
+    working_directory: ~/latex
+    steps:
+      - checkout
+      - apt-get update && apt-get install poppler-utils -y
+      - run: lualatex ceng4AN.tex
+      - run: ./compile_tex.sh
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - "*.png"
+            - "*.pdf"
+      - artifacts:
+          root: .
+          paths:
+            - "ReadMe.md"
+            - "**/*.pdf"
+            - "**/*.png"
+            - "**/**/*.png"
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - latex
