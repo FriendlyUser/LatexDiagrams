@@ -14,7 +14,7 @@ jobs:
           paths: 
             - "*.png"
             - "*.pdf"
-      - artifacts:
+      - store_artifacts:
           root: .
           paths:
             - "ReadMe.md"
