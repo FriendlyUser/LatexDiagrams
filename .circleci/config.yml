@@ -16,8 +16,7 @@ jobs:
             - "*.pdf"
       - store_artifacts:
           root: .
-          path:
-            - "**/**/*.png"
+          path: "**/*.png"
 
 workflows:
   version: 2
