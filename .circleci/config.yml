@@ -5,8 +5,8 @@ jobs:
       - image: grandfleet/dolwarp:v0.70
     working_directory: ~/latex
     steps:
+      - run: apt-get update && apt-get install xpdf -y
       - checkout
-      - run: apt-get update && apt-get install poppler-utils xpdf -y
       - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 1 -l 1 -r 1 -o ReadMe.md
       - persist_to_workspace:
           root: .
@@ -15,7 +15,7 @@ jobs:
             - "*.pdf"
       - store_artifacts:
           root: .
-          path: "**/*.png"
+          path: .
 
 workflows:
   version: 2
