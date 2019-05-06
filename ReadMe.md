@@ -276,13 +276,13 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 \begin{document}
 
-\taburowcolors[2]{white .. black!20}
+\taburowcolors[2]{orange .. black!20}
 
 \sffamily\footnotesize
 \tabulinesep=6pt
-\begin{tabu}{|>{\cellcolor{black!60}\color{white}}r|X[cm]|X[cm]|X[cm]|}
+\begin{tabu}{|>{\cellcolor{orange!60}\color{black}}r|X[cm]|X[cm]|X[cm]|}
 \hline
-\rowcolor{black!80}\strut  & \color{white}Travis CI & \color{white} GitLab CI & \color{white} CircleCI \\
+\rowcolor{black!80}\strut  & \color{black}Travis CI & \color{black} GitLab CI & \color{black} CircleCI \\
 Docker Images & \color{black}No & \color{black}Yes & \color{black}Yes \\
 Private Builds & Yes (Education) & Yes & Yes \\
 Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
