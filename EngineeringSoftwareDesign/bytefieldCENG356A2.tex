@@ -1,34 +1,10 @@
-\documentclass[border=5pt,convert={density=300,size=1080x800,outext=.png}]{standalone}
+\documentclass[border=5pt]{standalone}
 \usepackage{bytefield}
 \usepackage{graphicx}
 \usepackage{graphics}
 \usepackage{xcolor}
 \usepackage{subcaption}
 \begin{document}
-%\begin{figure}
-%\begin{minipage}{.5\textwidth}
-%	\centering
-%	%\includegraphics[width=.4\linewidth]{image1}
-%	%\captionof{figure}{A figure}
-%	%\label{fig:test1}
-%	\begin{bytefield}{32}
-%		\bitheader{0-31} \\
-%		\bitbox{4}{Four} & \bitbox{8}{Eight} &
-%		\bitbox{16}{Sixteen} & \bitbox{4}{Four}
-%	\end{bytefield}
-%\end{minipage}%
-%\begin{minipage}{.5\textwidth}
-%	\centering
-%	%\includegraphics[width=.4\linewidth]{image1}
-%	%\captionof{figure}{Another figure}
-%	%\label{fig:test2}
-%	\begin{bytefield}{32}
-%		\bitheader{0-31} \\
-%		\bitbox{4}{Four} & \bitbox{8}{Eight} &
-%		\bitbox{16}{Sixteen} & \bitbox{4}{Four}
-%	\end{bytefield}
-%\end{minipage}
-%\end{figure}
 \definecolor{lightcyan}{rgb}{0.84,1,1}
 \definecolor{lightgreen}{rgb}{0.64,1,0.71}
 \newcommand{\colorbitbox}[3]{%

@@ -1,11 +1,7 @@
-	
-With TikZ
-
-\documentclass{article}
+\documentclass{standalone}
 \usepackage{tikz,bm}
 \usepackage[raggedrightboxes]{ragged2e}
 \begin{document}
-\begin{center}
   \begin{tikzpicture}[x={(-10:1cm)},y={(90:1cm)},z={(210:1cm)}]
     % Axes
     \draw (-1,0,0) node[above] {$x$} -- (5,0,0);
@@ -45,5 +41,4 @@ With TikZ
       $\varepsilon_0$ & electric permeability in a vacuum, $\varepsilon_0 = 8.9\times10^{-12}\,\mathrm{C^2/N m^2}$ \\
     \end{tabular}
   \end{minipage}
-\end{center}
 \end{document}

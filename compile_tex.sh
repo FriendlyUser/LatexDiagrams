@@ -69,9 +69,16 @@ then
     # grab 
     # echo $cur_dir
     new_name=$(basename "$pdf" | cut -d. -f1)
+    new_image=$(echo "$new_name.png")
+    echo $new_image
     if [ $M_PDF2PNG -eq 0 ]
     then
-      magick convert -density 300 -depth 8 -quality 150 $pdf $new_name.png
+      if [ -f "./$new_image" ]; then
+          echo "$new_image exist"
+      else 
+          echo "$new_image does not exist, converting pdf to png."
+          magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
+      fi
     else
       pdftopng -png $pdf $new_name
       # ls 
