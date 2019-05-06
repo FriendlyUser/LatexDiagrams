@@ -8,18 +8,18 @@ jobs:
     steps:
       - run: apt-get update && apt-get install xpdf imagemagick -y
       - checkout
-      - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 0 -l 1 -r 1 -o ReadMe.md
+      - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
       - persist_to_workspace:
           root: .
           paths: 
-            - BlogDiagrams
-            - ControlSystems
-            - DSP
-            - DVP
-            - ElectroMag
-            - EngineeringSoftwareDesign
-            - PCC
-            - ReportDiagrams
+            - BlogDiagrams/*.pdf
+            - ControlSystems/*.pdf
+            - DSP/*.pdf
+            - DVP/*.pdf
+            - ElectroMag/*.pdf
+            - EngineeringSoftwareDesign/*.pdf
+            - PCC/*.pdf
+            - ReportDiagrams/*.pdf
       - store_artifacts:
           root: .
           path: .
