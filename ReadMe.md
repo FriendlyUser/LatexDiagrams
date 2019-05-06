@@ -2,6 +2,8 @@
 This repo contains all the diagrams I have generated for my academic career at the University Of Victoria.
 
 
+[![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
+
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
   * [ControlSystems/CSI](#controlsystems-csi)
@@ -274,13 +276,13 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 \begin{document}
 
-\taburowcolors[2]{white .. black!20}
+\taburowcolors[2]{orange .. black!20}
 
 \sffamily\footnotesize
 \tabulinesep=6pt
-\begin{tabu}{|>{\cellcolor{black!60}\color{white}}r|X[cm]|X[cm]|X[cm]|}
+\begin{tabu}{|>{\cellcolor{orange!60}\color{black}}r|X[cm]|X[cm]|X[cm]|}
 \hline
-\rowcolor{black!80}\strut  & \color{white}Travis CI & \color{white} GitLab CI & \color{white} CircleCI \\
+\rowcolor{black!80}\strut  & \color{black}Travis CI & \color{black} GitLab CI & \color{black} CircleCI \\
 Docker Images & \color{black}No & \color{black}Yes & \color{black}Yes \\
 Private Builds & Yes (Education) & Yes & Yes \\
 Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
@@ -294,7 +296,7 @@ Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
 
 ```tex
 \documentclass[border=10pt]{standalone}
-\usepackage{fontawesome}
+\usepackage{fontawesome5}
 \usepackage{tikz}
 \usetikzlibrary{fit,arrows,calc,positioning}
 
@@ -622,6 +624,33 @@ Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
 ]
 \end{forest}
 
+\end{document}
+```
+
+![BlogDiagrams](BlogDiagrams/genericTcolorTable.png?raw=true "genericTcolorTable")
+
+```tex
+\documentclass[tikz,table,border=2mm]{standalone}
+% \usepackage{PTSansNarrow}
+% \usepackage[T1]{fontenc}
+\usepackage{array,tabularx}
+\usepackage[most]{tcolorbox}
+
+\begin{document}
+
+\rowcolors{1}{blue!15}{white}
+\begin{tcolorbox}[enhanced, notitle, clip upper, fontupper=\sffamily,%
+    tabularx={>{\centering\arraybackslash}X%
+              >{\centering\arraybackslash}X%
+              >{\centering\arraybackslash}X}]
+  \cellcolor{orange!40} \color{black} \textbf{Traditional} &\cellcolor{orange!40}\color{black} \textbf{Chosen} &\cellcolor{orange!40}\color{black} \textbf{Other} \\
+ cell1  & cell2  & cell3  \\ 
+ cell4  & cell5  & cell6  \\ 
+ cell7  & cell8  & cell9  \\ 
+ cell10 & cell11 & cell12 \\ 
+ cell13 & cell14 & cell15  \\ 
+ cell16 & cell17 & cell18 \\ 
+\end{tcolorbox}
 \end{document}
 ```
 
@@ -4492,7 +4521,194 @@ at={-5.19,-3.46,-1.73,0,1.73,3.46,5.19}]{-0.55*x + #1};}
 \end{document}
 ```
 
+![DVP](DVP/lattice-sampling.png?raw=true "lattice-sampling")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc}
+\begin{document}
+\begin{tikzpicture}[align=center,node distance=0.5cm]
+\tikzset{
+darkstyle/.style={circle,draw,fill=gray!40,minimum size=20},
+filled/.style={circle,draw,fill=gray!60, minimum size=5},
+white/.style={circle,draw, minimum size=5,,xshift=-0.5cm},
+}
+% number of vertices
+\def \n {5}
+\def \xshift{2cm}
+\foreach \x in {0,...,\n}
+{   \foreach \y in {0,...,\n}
+    {   \pgfmathtruncatemacro{\nodelabel}{\x+\y*6+1}
+        %\pgfmathtruncatemacro{\row}{Mod(\x,2)}
+        \pgfmathparse{Mod(\y,2)==0?1:0}
+        \ifnum\pgfmathresult>0
+            \node[filled] (\nodelabel) at (0.75*\x,-0.75*\y) {};
+        \else
+            \node[white] (\nodelabel) at (0.75*\x,-0.75*\y) {};
+        \fi
+    }
+}
+% \draw[latex-latex] (19.west) -- ++ (25.west) node[midway]{label};
+ \draw [latex-latex] ($(19.west) + (-0.25cm, 0)$) -- ($(31.west) + (-0.25cm, 0)$) node[midway, fill=white]{$2\Delta_y$};
+  \draw [latex-latex] ($(31.south) + (0cm, -0.25cm)$) -- ($(32.south) + (0cm, -0.25cm)$) node[midway, below, yshift=-0.1cm, fill=white]{$\Delta_x$};
+  % Add nodes for ts
+  % \draw[latex-latex] ($(7.south) + (-0.25cm, -0.25cm)$) -- ($(1.south) + (-0.25cm, -0.25cm)$) node[midway, below, yshift=-0.1cm, fill=white]{$\Delta_x$};
+  
+  \node[filled, left = of 1, xshift =-0.25cm] (aa) {};
+  \node[white, left = of 7, xshift =-0.15cm] (ab) {};
+\draw [latex-latex] ($(ab) + (0cm, 0cm)$) -- ($(aa) + (0cm, 0cm)$) node[below, yshift=-0.2cm]{$\frac{\Delta_t}{2}$};
+\end{tikzpicture}
+\end{document}  
+```
+
+![DVP](DVP/lbp.png?raw=true "lbp")
+
+```tex
+\documentclass[varwidth]{standalone}
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\tikzset{
+   % styling for filled node
+   filled/.style={circle,draw,fill=green!60, minimum size=5},
+   % styling for white nodes
+   empty/.style={circle,draw, minimum size=5},
+   % diagram with P = 4
+   pics/pattern/.style args={#1/#2/#3/#4/#5}{
+   code={
+      \node[#1] at (0, 1) (#5-1) {};
+      \node[#2] at (1, 0) (#5-2) {};
+      \node[#3] at (0, -1) (#5-3) {};
+      \node[#4] at (-1, 0) (#5-4) {};
+    }},
+    pics/pattern/.default=empty/empty/empty/empty/a
+}
+\begin{document}
+\begin{tikzpicture}[background rectangle/.style={fill=blue!15}, show background rectangle]
+% Uniform LBP, and draw box
+% U = 0 Row
+\node[] at (-2,0) {U=0};
+\path (0,0) pic[scale=1.0] {pattern};
+\path (+3.5,0) pic[scale=1.0] {pattern=filled/filled/filled/filled/a};
+% U = 2 Row
+\node[] at (-2,-3) {U=2};
+\path (0,-3) pic[scale=1.0] {pattern=filled/empty/empty/empty/b};
+\path (+3.5,-3) pic[scale=1.0] {pattern=filled/filled/empty/empty/c};
+\path (+7.0,-3) pic[scale=1.0] {pattern=filled/filled/filled/empty/d};
+\node[text width= 2cm] at (7.0, 1) {\LARGE{Uniform \hfill \break Patterns}};
+\end{tikzpicture}
+%
+\begin{tikzpicture}[background rectangle/.style={fill=red!15}, show background rectangle]
+% Uniform LBP, and draw box
+% U = 4 Row. i think
+\node[] at (-2,0) {U=4};
+\path (0,0) pic[scale=1.0] {pattern=empty/filled/empty/filled/e};
+\path (+3.5,0) pic[scale=1.0] {pattern=filled/empty/filled/empty/f};
+\node[text width= 4cm, align=right] at (6, 1) {\hfill \LARGE{Non-Uniform} \break \hfill \break \LARGE{Patterns}};
+\end{tikzpicture}
+\end{document}
+```
+
+![DVP](DVP/periodically-matrix.png?raw=true "periodically-matrix")
+
+```tex
+\documentclass{standalone} 
+\usepackage{pgfplots} 
+\pgfplotsset{compat=newest} 
+
+\begin{document} 
+
+\begin{tikzpicture} 
+\begin{axis}[
+    axis lines=middle
+]
+\addplot [white, line width = 1, smooth, domain=-5:5] {x};
+\draw (-1,-1) rectangle (1,1);
+\draw (1,-1) rectangle (3,1);
+\draw (-1,-1) rectangle (-3,1);
+\draw (-1,1) rectangle (1,3);
+\draw (-1,-1) rectangle (1,-3);
+\end{axis} 
+\end{tikzpicture}
+
+
+\end{document}
+```
+
+![DVP](DVP/rectangular-wave.png?raw=true "rectangular-wave")
+
+```tex
+\documentclass{standalone}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+width=10cm,
+height=4cm,
+x axis line style={-stealth},
+y axis line style={-stealth},
+title={Rectangular Function},
+xticklabels={0,,,a,,b},
+ymax = 1.5,xmax=3,
+axis lines*=center,
+ytick={0.5,1},
+xlabel={x $\rightarrow$},
+ylabel={$R_x(a,b)$},
+xlabel near ticks,
+ylabel near ticks]
+\addplot+[thick,mark=none,const plot]
+coordinates
+{(0,0) (1,0) (1,1) (2,0) (3,0) (4,1) (5,0) (6,1) (7,0)};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
+```
+
 ### ElectroMag
+
+![ElectroMag](ElectroMag/3DCylinder.png?raw=true "3DCylinder")
+
+```tex
+\documentclass{article}
+\usepackage{tikz,tikz-3dplot}
+\begin{document}
+
+\begin{figure}
+\centering
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords][scale=0.75]
+\tikzstyle{every node}=[font=\small]
+\draw[thick,-latex] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+\draw[thick,-latex] (0,0,0) -- (0,6,0) node[anchor=north west]{$y$};
+\draw[thick,-latex] (0,0,0) -- (0,0,6) node[anchor=south]{$z$};
+\draw [thick](0,0,0) circle (3);
+\draw [thick](0,0,4) circle (3);
+\draw [thick](1.9,-2.35,0) -- (1.9,-2.35,4) node[midway, left]{$r=r_1$ surface};
+\draw [thick](-1.9,2.35,0) -- (-1.9,2.35,4);
+\filldraw[fill=orange, nearly transparent] (-4,-4,4) -- (4,-4,4) --  (4,5,4) -- (-4,5,4) -- (-4,-4,4);
+\filldraw[fill=blue, nearly transparent] (0,0,4) -- (5.2,6,4) --  (5.2,6,0) -- (0,0,0) -- (0,0,4);
+\filldraw [color=blue](2,2.25,4) circle (0.075cm) ;
+\draw (-4,5,4) node[anchor=south]{$z=z_1$ plane};
+\draw (5.2,6,0) node[anchor=south west]{$\phi=\phi_1$ plane};
+\node at (1.8,1,4)  { $P_1(r_1,\phi_1,z_1)$};
+\draw[ultra thick,-latex](2,2.25,4) -- (3,3.45,4) node[anchor=north] {$\mathbf{a}_r$};
+\draw[ultra thick,-latex](2,2.25,4) -- (1,2.5,4) node[anchor=north west] {$\mathbf{a}_\phi$};
+\draw[ultra thick,-latex](2,2.25,4) -- (2,2.25,4.75) node[anchor=north west] {$\mathbf{a}_z$};
+\draw [thick,->](4,0,0) arc (0:45:4 and 4.5);
+\draw (3.6,2,0) node[anchor=north] {$\phi_1$};
+\draw[ultra thick,-latex](0,0,0) -- (2,2.35,0);
+\draw (1,1,0) node[anchor=north] {$r_1$};
+\draw [ultra thick] (2,2.25,4)--(1.95,2.25,0);
+
+\draw[ultra thick](0.1,0,4) -- (-0.1,0,4) node[anchor=south west] {$z_1$};
+\end{tikzpicture}
+\end{figure}
+\end{document}
+```
 
 ![ElectroMag](ElectroMag/BHCurve.png?raw=true "BHCurve")
 
@@ -4521,6 +4737,72 @@ at={-5.19,-3.46,-1.73,0,1.73,3.46,5.19}]{-0.55*x + #1};}
             \addplot[red!20] fill between[of=A and B];
         \end{axis}
     \end{tikzpicture}
+\end{document}
+```
+
+![ElectroMag](ElectroMag/DEHG.png?raw=true "DEHG")
+
+```tex
+\documentclass{article}
+\usepackage[paperwidth=55mm,paperheight=55mm,margin=1mm]{geometry}
+\usepackage{bm}
+\usepackage{eucal}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\pagestyle{empty}
+\parindent=0pt
+\begin{document}
+\pgfdeclarelayer{-1}
+\pgfsetlayers{-1,main}
+\tikzset{
+    zlevel/.style={%
+        execute at begin scope={\pgfonlayer{#1}},
+        execute at end scope={\endpgfonlayer}
+    },
+}
+\centering
+\begin{tikzpicture}[
+        ball/.style={circle, shading=ball, ball color=black!15, minimum size=9mm},
+        conline/.style={line width=#1, line cap=round},
+        label/.style 2 args={
+            postaction={decorate,transform shape,decoration={
+                markings, mark=at position #1 with \node {\scriptsize\color{black}#2};
+            }}
+        },
+        blue/.style={color=blue!60},
+        red/.style={color=red!50},
+        redl/.style={color=red!20},
+    ]
+    \def\conline<#1>[#2] (#3) (#4);{%
+        \draw[conline=#1, #2] (#3) -- (#4);
+    }
+    \def\conwhiline (#1) (#2);{%
+        \conline<10pt>[color=white] (#1) (#2);
+    }
+    \def\connectpos[#1] (#2) (#3) #4 #5;{%
+        \conline<8pt>[color=black] (#2) (#3);
+        \conline<7pt>[#1, label={#4}{#5}] (#2) (#3);
+    }
+    \def\connection[#1] (#2) (#3) #4;{%
+        \connectpos[#1] (#2) (#3) 0.5 {#4};
+    }
+    \node (B) [ball]                     {$\bm{B}$};
+    \node (D) [ball] at ($(B)+(95:4.4)$) {$\mathcal{D}$};
+
+    \begin{scope}[zlevel=-1]
+    \node (H) [ball] at ($(B)+(60:2.5)$) {$\mathcal{H}$};
+    \node (E) [ball] at ($(B)+(155:3)$)  {$\bm{E}$};
+    \connectpos[blue] (E)     (H.180) 0.35 {1-forms};
+    \conwhiline       (B)     (D);
+    \connection[red]  (E.-45) (B)          {field strength};
+    \connection[redl] (B)     (H.-115)     {magnetic};
+    \end{scope}
+
+    \connection[red]  (D.-40) (H)          {excitation};
+    \connectpos[blue] (D)     (B)     0.35 {2-forms};
+    \connection[redl] (E.60)  (D)          {electric};
+\end{tikzpicture}
 \end{document}
 ```
 
@@ -4985,6 +5267,96 @@ at={-5.19,-3.46,-1.73,0,1.73,3.46,5.19}]{-0.55*x + #1};}
 \end{document}
 ```
 
+![ElectroMag](ElectroMag/smithChart.png?raw=true "smithChart")
+
+```tex
+\documentclass[preview]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{smithchart}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{smithchart}
+        \path[draw=red] (0pt,0pt) circle (1.5cm);
+        \path[draw=blue] (0.2,0.5) circle (0.75cm);
+        \path[draw=blue,fill=blue] (0.2,0.5) circle (0.05cm);
+        \end{smithchart}
+    \end{tikzpicture}
+\end{document}
+```
+
+![ElectroMag](ElectroMag/tikzElecMag.png?raw=true "tikzElecMag")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz,bm}
+\usepackage[raggedrightboxes]{ragged2e}
+\begin{document}
+  \begin{tikzpicture}[x={(-10:1cm)},y={(90:1cm)},z={(210:1cm)}]
+    % Axes
+    \draw (-1,0,0) node[above] {$x$} -- (5,0,0);
+    \draw (0,0,0) -- (0,2,0) node[above] {$y$};
+    \draw (0,0,0) -- (0,0,2) node[left] {$z$};
+    % Propagation
+    \draw[->,ultra thick] (5,0,0) -- node[above] {$c$} (6,0,0);
+    % Waves
+    \draw[thick] plot[domain=0:4.5,samples=200] (\x,{cos(deg(pi*\x))},0);
+    \draw[gray,thick] plot[domain=0:4.5,samples=200] (\x,0,{cos(deg(pi*\x))});
+    % Arrows
+    \foreach \x in {0.1,0.3,...,4.4} {
+      \draw[->,help lines] (\x,0,0) -- (\x,{cos(deg(pi*\x))},0);
+      \draw[->,help lines] (\x,0,0) -- (\x,0,{cos(deg(pi*\x))});
+    }
+    % Labels
+    \node[above right] at (0,1,0) {$\bm{E}$};
+    \node[below] at (0,0,1) {$\bm{B}$};
+  \end{tikzpicture}
+
+  \begin{minipage}{.5\linewidth}
+    \[
+      c = \frac{E}{B}
+    \]
+    \begin{tabular}{r@{${}={}$}p{.8\linewidth}}
+      $E$ & electric field amplitude \\
+      $B$ & magnetic field amplitude (instantaneous values) \\
+      $c$ & speed of light ($3\times10^8\mathrm{m/s}$) \\
+    \end{tabular}
+  \end{minipage}%
+  \begin{minipage}{.5\linewidth}
+    \[
+      c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}}
+    \]
+    \begin{tabular}{r@{${}={}$}p{.8\linewidth}}
+      $\mu_0$ & magnetic permeability in a vacuum, $\mu_0 = 1.3\times10^{-6}\,\mathrm{N/A^2}$ \\
+      $\varepsilon_0$ & electric permeability in a vacuum, $\varepsilon_0 = 8.9\times10^{-12}\,\mathrm{C^2/N m^2}$ \\
+    \end{tabular}
+  \end{minipage}
+\end{document}
+```
+
+![ElectroMag](ElectroMag/transformer.png?raw=true "transformer")
+
+```tex
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+\begin{document}
+	\tikzstyle{block} = [draw, fill=white, rectangle, 
+	minimum height=3em, minimum width=3em]
+	\begin{circuitikz}
+		\draw (0,4) to [twoport,t=$Z_g$](4,4);
+		\draw (4,0) to[TL] (10,0);
+		\draw (4,4) to[TL]  (10,4);
+		\draw (10,4) to [twoport,t=$Z_L$](10,0);
+		\draw (0,0) to [sI] (0,4);
+		\draw (4,0) to (0,0);
+	\end{circuitikz}
+\end{document}
+```
+
 ![ElectroMag](ElectroMag/Transformer3Windings.png?raw=true "Transformer3Windings")
 
 ```tex
@@ -5098,37 +5470,13 @@ at={-5.19,-3.46,-1.73,0,1.73,3.46,5.19}]{-0.55*x + #1};}
 ![EngineeringSoftwareDesign](EngineeringSoftwareDesign/bytefieldCENG356A2.png?raw=true "bytefieldCENG356A2")
 
 ```tex
-\documentclass[border=5pt,convert={density=300,size=1080x800,outext=.png}]{standalone}
+\documentclass[border=5pt]{standalone}
 \usepackage{bytefield}
 \usepackage{graphicx}
 \usepackage{graphics}
 \usepackage{xcolor}
 \usepackage{subcaption}
 \begin{document}
-%\begin{figure}
-%\begin{minipage}{.5\textwidth}
-%	\centering
-%	%\includegraphics[width=.4\linewidth]{image1}
-%	%\captionof{figure}{A figure}
-%	%\label{fig:test1}
-%	\begin{bytefield}{32}
-%		\bitheader{0-31} \\
-%		\bitbox{4}{Four} & \bitbox{8}{Eight} &
-%		\bitbox{16}{Sixteen} & \bitbox{4}{Four}
-%	\end{bytefield}
-%\end{minipage}%
-%\begin{minipage}{.5\textwidth}
-%	\centering
-%	%\includegraphics[width=.4\linewidth]{image1}
-%	%\captionof{figure}{Another figure}
-%	%\label{fig:test2}
-%	\begin{bytefield}{32}
-%		\bitheader{0-31} \\
-%		\bitbox{4}{Four} & \bitbox{8}{Eight} &
-%		\bitbox{16}{Sixteen} & \bitbox{4}{Four}
-%	\end{bytefield}
-%\end{minipage}
-%\end{figure}
 \definecolor{lightcyan}{rgb}{0.84,1,1}
 \definecolor{lightgreen}{rgb}{0.64,1,0.71}
 \newcommand{\colorbitbox}[3]{%
@@ -6779,84 +7127,6 @@ x	y	z	size\\
 
 \end{axis}
 \end{tikzpicture}%
-\end{document}
-```
-
-![PCC](PCC/Hypercube.png?raw=true "Hypercube")
-
-```tex
-\documentclass[tikz,convert=false]{standalone}
-% a little support for all the keys
-\def\hyperset{\pgfqkeys{/tikz/hyper}}
-\tikzset{hypher/.code=\hyperset{#1}}
-
-% Dimension setup
-\hyperset{
-  set color/.code 2 args={\colorlet{tikz@hyper@dimen@#1}{#2}},
-  set color={0}{black},
-  set color={1}{blue!50!black},
-  set color={2}{red},
-  set color={3}{green},
-  set color={4}{yellow!80!black}}
-\hyperset{
-  set dimens/.style args={#1:(#2)}{
-    dimen #1/.style={/tikz/shift={(#2)}}},
-  set dimens=0:(0:0),
-  set dimens=1:(right:1),
-  set dimens=2:(up:1),
-  set dimens=3:(30:.75),
-  set dimens=4:(180+70:.5),
-  every hyper node/.style 2 args={%
-    shape=circle,
-    inner sep=+0pt,
-    fill,
-    draw,
-    minimum size=+3pt,
-    color=tikz@hyper@dimen@#1,
-    label={[hyper/label #1/.try, hyper/dimen #1 style/.try]#1-#2}
-  },
-  every hyper edge/.style={draw},
-  every hyper shift edge/.style={->,tikz@hyper@dimen@#1!80},
-  every normal hyper edge/.style={<->,tikz@hyper@dimen@#1!40},
-}
-\newcommand*{\hyper}[1]{% #3 = max level
-  \def\currentTransform{}
-  \node[hyper/every hyper node/.try={0}{0}, hyper/dimen 0 node/.try] (0-0) {};
-  \hyperhyper{0}{0}{#1}}
-\newcommand*{\hyperhyper}[3]{% #1 = current level
-                             % #2 = current number
-                             % #3 = maxlevel
-  \foreach \dimension in {#3,...,\the\numexpr#1+1\relax} {
-    \edef\newNumber{\the\numexpr#2+\dimension\relax}
-    \node[hyper/every hyper node/.try={\dimension}{\newNumber}, hyper/dimen \dimension node/.try, hyper/dimen \dimension\space style/.try] at ([hyper/dimen \dimension] #1-#2) (\dimension-\newNumber) {};
-    \path (#1-#2) edge[hyper/every hyper edge/.try=\dimension, hyper/every hyper shift edge/.try=\dimension, hyper/dimen \dimension\space style/.try] (\dimension-\newNumber);
-    \ifnum\newNumber>\dimension\relax
-      \foreach \oldShift in \currentTransform {
-        \if\relax\detokenize\expandafter{\oldShift}\relax\else
-          \path (\dimension-\newNumber) edge[hyper/every hyper edge/.try=\dimension, hyper/every normal hyper edge/.try=\dimension, hyper/dimen \dimension\space style/.try] (\dimension-\the\numexpr\newNumber-\oldShift\relax);
-        \fi
-      }
-    \fi
-    \edef\currentTransform{\dimension,\currentTransform}%
-    \ifnum\dimension<#3\relax
-      \edef\temp{{\dimension}{\the\numexpr#2+\dimension\relax}{#3}}
-      \expandafter\hyperhyper\temp
-    \fi
-  }
-}
-\tikzset{
-  @only for the animation/.style={
-    hyper/dimen #1 style/.style={opacity=0}}}
-\begin{document}
-\foreach \DIM in {0,...,4,4,3,...,0} {
-\begin{tikzpicture}[
-  >=stealth,
-  scale=3,
-  every label/.append style={font=\tiny,inner sep=+0pt}, label position=above left,
-  @only for the animation/.list={\the\numexpr\DIM+1\relax,...,5}
-  ]
-  \hyper{4}
-\end{tikzpicture}}
 \end{document}
 ```
 
