@@ -1,0 +1,15 @@
+\documentclass[preview]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{smithchart}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{smithchart}
+        \path[draw=red] (0pt,0pt) circle (1.5cm);
+        \path[draw=blue] (0.2,0.5) circle (0.75cm);
+        \path[draw=blue,fill=blue] (0.2,0.5) circle (0.05cm);
+        \end{smithchart}
+    \end{tikzpicture}
+\end{document}

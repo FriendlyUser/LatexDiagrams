@@ -4,15 +4,22 @@ jobs:
     docker:
       - image: grandfleet/dolwarp:v0.70
     working_directory: ~/latex
+    # Make pdf documents with tex
     steps:
-      - run: apt-get update && apt-get install xpdf -y
+      - run: apt-get update && apt-get install xpdf imagemagick -y
       - checkout
-      - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 1 -l 1 -r 1 -o ReadMe.md
+      - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 0 -l 1 -r 1 -o ReadMe.md
       - persist_to_workspace:
           root: .
           paths: 
-            - "*.png"
-            - "*.pdf"
+            - BlogDiagrams
+            - ControlSystems
+            - DSP
+            - DVP
+            - ElectroMag
+            - EngineeringSoftwareDesign
+            - PCC
+            - ReportDiagrams
       - store_artifacts:
           root: .
           path: .

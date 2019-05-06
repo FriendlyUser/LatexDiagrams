@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+\begin{document}
+	\tikzstyle{block} = [draw, fill=white, rectangle, 
+	minimum height=3em, minimum width=3em]
+	\begin{circuitikz}
+		\draw (0,4) to [twoport,t=$Z_g$](4,4);
+		\draw (4,0) to[TL] (10,0);
+		\draw (4,4) to[TL]  (10,4);
+		\draw (10,4) to [twoport,t=$Z_L$](10,0);
+		\draw (0,0) to [sI] (0,4);
+		\draw (4,0) to (0,0);
+	\end{circuitikz}
+\end{document}
