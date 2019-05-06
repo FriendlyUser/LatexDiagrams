@@ -53,7 +53,7 @@ then
   do
       echo $d
       cd $d
-      latexmk -pdf
+      latexmk -pdflatex=lualatex -pdf
       cd $dir
   done
 fi
@@ -66,30 +66,25 @@ then
     cur_dir=$(dirname $pdf)
     # Go to directory with pdf files
     cd $cur_dir
-    # grab 
-    # echo $cur_dir
     new_name=$(basename "$pdf" | cut -d. -f1)
     new_image=$(echo "$new_name.png")
-    echo $new_image
     if [ $M_PDF2PNG -eq 0 ]
     then
       if [ -f "./$new_image" ]; then
-          echo "$new_image exist"
+          echo "$new_image exists skipping file."
       else 
           echo "$new_image does not exist, converting pdf to png."
           magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
       fi
     else
       pdftopng -png $pdf $new_name
-      # ls 
-      # remove files if needed
     fi
     # Go back to root directory
     cd $dir
   done
 fi
 
-if [ $GEN_README -eq 1 ]
+if [ $GEN_README == 1 ]
 then
   # Make new markdown file every run 
   rm $OUTPUT_FILE
@@ -107,11 +102,9 @@ then
   prev_dir=''
   for tex in $(find $dir -name "*.tex")
   do
-    # echo $tex
     cur_dir=$(dirname $tex)
     rel_folder_path=$(realpath --relative-to="$dir" "$cur_dir")
     rel_path_file=$(realpath --relative-to="$dir" "$tex")
-    # echo $rel_path_file
     
     if [ "$prev_dir" != "$rel_folder_path" ]
     then
