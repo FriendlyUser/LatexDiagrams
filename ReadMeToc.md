@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
-
+% Move non my pictures to different folder and perhaps try to add original url for accreditation.
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
   * [ControlSystems/CSI](#csi)
