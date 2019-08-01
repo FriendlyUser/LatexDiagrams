@@ -139,4 +139,4 @@ then
   done
 fi
 
-mv ../.git .
+mv ../.git . || true
