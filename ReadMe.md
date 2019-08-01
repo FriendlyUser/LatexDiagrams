@@ -227,6 +227,232 @@ This repo contains all the diagrams I have generated for my academic career at t
 \end{document}
 ```
 
+![ArtificialIntelligence](ArtificialIntelligence/crossover.png?raw=true "crossover")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
+\tikzset{
+chromosome/.style 2 args={
+       rectangle split ,
+       rectangle split parts=2,
+       rectangle split horizontal,
+       rectangle split part fill={#1,#2},
+       draw=black, very thick,
+       minimum height=2.5em,
+       text width=3.0cm,
+       inner sep=2pt,
+       text centered,
+       }
+}
+
+\begin{document}
+\begin{tikzpicture}
+%% Rectangles
+% Set of Parents
+\node [chromosome={blue!15}{red!20}] (a) { \nodepart{two} } ;
+\node [chromosome={yellow!30}{green!20}, right = of a] (b) { \nodepart{two} } ;
+% Set of Children
+\node [chromosome={blue!15}{yellow!30}, below = 2 cm of a] (c) { \nodepart{two} } ;
+\node [chromosome={red!20}{green!20}, right = of c] (d) { \nodepart{two} } ;
+
+% Labels
+\node[right = of b] () {\textbf{Set of Parents}};
+
+\node[right = of d] () {\textbf{Set of Children}};
+
+% Paths
+\path [->, very thick] (a.one south) edge[] node {}(c.one north);
+\path [->, very thick] (a.two south) edge[out=-90, in=90] node {}(d.one north);
+
+\path [->, very thick] (b.one south) edge[out=-90, in=90] node {}(c.two north);
+
+\path [->, very thick] (b.two south) edge[] node {}(d.two north);
+
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/feature_selection.png?raw=true "feature_selection")
+
+```tex
+\documentclass[margin=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shadows,positioning}
+
+\tikzset{
+  frame/.style={
+    rectangle, draw, 
+    text width=6em, text centered,
+    minimum height=4em,drop shadow,fill=yellow!40,
+    rounded corners,
+  },
+  line/.style={
+    draw, -latex',rounded corners=3mm,
+  }
+}
+
+\begin{document}
+\begin{tikzpicture}[font=\small\sffamily\bfseries,very thick,node distance = 4cm]
+\node [frame] (pop) {Population};
+\node [above=2cm, text width=2cm, align=center, left of=pop] (init) {Random \\ Initialisation};
+\node [below=2cm, text width = 2cm, align = center, left of=pop] (term) {Termination};
+\node [frame, above=2cm, right of=pop] (parents)  {Parents};
+\node [frame, below=2cm, right of=pop] (off)  {Offspring};
+
+% termination condition label
+\node [draw=none, text width=3cm, above right = -0.1cm and -1cm of term ] () {(unique features \\ less than $\frac{1}{3}$ of \\ maximum features)};
+\path [line] (parents)
+ -- node[right,align=left,pos=.5] {Crossover\\[3mm]Inversion\\[3mm]Mutation}
+ (off);
+\path [line] (init) |- (pop.170);
+\path [line] (pop.190) -| (term);
+\path [line] (off) -| node[below,pos=.25, align=center] {Survivor\\ selection}(pop);
+\path [line] (pop) |- node[above,pos=.75, align=center] {Parents\\ selection}(parents);
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/ga.png?raw=true "ga")
+
+```tex
+\documentclass{standalone}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\begin{document}
+\tikzstyle{decision}=[diamond, draw, fill=yellow!20,
+  text width=4em, text badly centered, node distance=3cm,
+  inner sep=0pt]
+\tikzstyle{block}=[rectangle, draw, fill=blue!20, 
+  text width=8em, text badly centered, rounded corners,
+  minimum height=4em]
+\tikzstyle{line}=[draw, very thick, color=black!75, -latex']
+
+\tikzstyle{path}=[draw, very thick, color=black!75, -]
+
+\begin{tikzpicture}[node distance=2cm, auto]
+  % Place nodes
+  \node [block] (pop_init) {Population Initialization};
+  \node [block, below of=pop_init] (fit_ass)
+        {Fitness Assignment};
+  \node [block, below of=fit_ass] (selection)
+        {Selection};
+    \node [draw=none, right of=selection] (pointer)
+            {};
+  \node [block, below of=selection] (crossover)
+        {Crossover};
+        
+  \node [block, below of=crossover] (mutation)
+        {Mutation};
+  
+    \node [block, below of=mutation] (inversion)
+        {Inversion};
+        
+  \node [block, left = 2cm of selection] (done)
+        {Done};
+        
+    
+  % Draw edges
+  \path [line] (pop_init) -- (fit_ass);
+  \path [line] (fit_ass) -- (selection);
+  \path [line] (selection) -- (crossover);
+    \path [line] (crossover) -- (mutation);
+    \path [line] (mutation) -- (inversion);
+  \path [path] (inversion) -| (pointer.center);
+  
+  \path [line] (pointer.center) -- (selection);
+  
+    \path [line] (selection) -- (done);
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/genetic_crossover.png?raw=true "genetic_crossover")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\begin{document}
+\begin{tikzpicture}
+\node[draw=none, text width=3.5cm] at (0, 0)   (start) {Parent 1: \textls[100]{1324421} \hfill \newline Parent 2: \textls[100]{2751421}};
+\draw[thick,dashed] (0.45,0.5) -- (0.45,-0.5);
+\draw[->] (1.5, 0) -- (3, 0) node[below,midway] {crossover};
+
+\node[draw=none, text width=3.5cm] at (4.9, 0)   (start) {Parent 1: \textls[100]{1321421} \hfill \newline Parent 2: \textls[100]{2754421}};
+\draw[thick,dashed] (5.35,0.5) -- (5.35,-0.5);
+% \node[draw=none, text width=3cm] at (3.5, 0)   (start) {Parent 2: 2754421};
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/tictactoe.png?raw=true "tictactoe")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{forest,calc}
+\forestset{
+  make tab/.style args={#1:#2:#3/#4:#5:#6/#7:#8:#9}{%
+    content={%
+      \tabcolsep=.4\tabcolsep
+      \begin{tabular}{p{\widthof{x}}|p{\widthof{x}}|p{\widthof{x}}}
+        #1 & #2 & #3\\\hline#4&#5&#6\\\hline#7&#8&#9
+      \end{tabular}}},
+  label position r/.initial=right,
+  label position b/.initial=below
+}
+\begin{document}
+\begin{forest}
+  TTT/.style args={#1:#2}{
+    make tab/.expanded=\forestove{content},
+    label={\pgfkeysvalueof{/forest/label position #1}:$#2$},
+    edge={->}
+  },
+  TTT*/.style={
+    make tab=::/::/::,
+    content/.expand once=%
+    \expandafter\vphantom\expandafter{\romannumeral-`0\forestov{content}},
+    draw=none,
+    append after command={(\tikzlastnode.north) edge (\tikzlastnode.south)},
+    for descendants={before computing xy={l*=1.8}},
+  },
+  th/.style=very thick,
+  for tree={node options=draw, inner sep=+0pt, parent anchor=south, child anchor=north}
+%
+[::/::/::, TTT=r:0
+ [x::/::/::, TTT=r:-1
+   [x:o:/::/::, TTT=b: 1, th]
+   [x::/:o:/::, TTT=b:-1]
+   [x::o/::/::, TTT=b: 0, th]
+   [x::/::/::o, TTT=b: 0, th]
+   [x::/::o/::, TTT=b: 1, th]
+]
+ [::/::x/::, TTT=r:0,
+   [,TTT* % this is just cheating :(
+    [o::/::x/::, TTT=b:1]
+    [:o:/::x/::, TTT=b:0]
+   ]
+ ]
+ [:x:/::/::, TTT=r:-2
+   [:x:o/::/::, TTT=b:-1, th]
+   [:x:/:o:/::, TTT=b:-2]
+   [:x:/::/:o:, TTT=b: 0, th]
+   [:x:/::/o::, TTT=b:-1, th]
+   [:x:/o::/::, TTT=b: 0, th]
+ ]
+]
+\end{forest}
+\end{document}
+```
+
 ### BlogDiagrams
 
 ![BlogDiagrams](BlogDiagrams/buildingDapp.png?raw=true "buildingDapp")
@@ -9820,5 +10046,59 @@ content/.style={fill=yellow,circle,opacity=0.5} ]
     ;
   \end{tikzpicture}
 \end{document}
+```
+
+![ReportDiagrams](ReportDiagrams/fontawesomediagram.png?raw=true "fontawesomediagram")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc, chains,positioning}
+\usepackage{fontawesome}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    start chain = going right,
+    bin/.style={
+      %draw,
+      % text width=6mm,
+      inner sep=5pt,
+      %fill=blue!20,
+      on chain
+    }
+]
+% Move label below icon
+\node[] (mob) {\LARGE{\faMobilePhone}};
+\node[right = 2cm of mob] (cam) {\LARGE{\faCamera}};
+\node[right = 2cm of cam] (lap) {\LARGE \faLaptop};
+\node[below = 0.1 cm of mob] (moblabel) {\tiny{Phone}};
+\node[below = 0.1 cm of cam] (camlabel) {\tiny{Camera}};
+\node[below = 0.1 cm of lap] (laplabel) {\tiny{Server}};
+
+\node[bin,below left=of lap] (c1) {\tiny{Cardboard}};
+\node[bin] (c2) {\tiny{Food}};
+\node[bin] (c3) {\tiny{Glass}};
+\node[bin] (c4) {\tiny{$\cdots$}};
+\node[bin] (c5) {\tiny{Landfill}};
+
+\path[every node/.style={font=\sffamily\small}]
+      (laplabel) edge node[right] {} (c1)
+      (laplabel) edge node[left] {} (c2)
+      (laplabel) edge node[] {} (c3)
+      (laplabel) edge node[] {} (c5);
+
+\node[below = 0.1 cm of c3] (label) {\tiny{Categories}};
+
+% \draw[thick] (c3) -> (moblabel);
+
+ \path[->]          (c1)  edge   [bend left=50, below]   node {\tiny{send result to phone}} (moblabel);
+ \path[->]          (mob)  edge   [below]   node {\tiny{take picture}} (cam);
+  \path[->]          (cam)  edge [below]   node {\tiny{send picture}} (lap);
+\draw[thick,dotted]     ($(c1.north west)+(0.025,-0.125)$) rectangle ($(c5.north east)+(0.25,-0.35)$);
+\end{tikzpicture}
+
+\end{document}
+
 ```
 
