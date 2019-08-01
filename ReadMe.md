@@ -3,20 +3,455 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
-
+% Move non my pictures to different folder and perhaps try to add original url for accreditation.
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
-  * [ControlSystems/CSI](#controlsystems-csi)
-  * [ControlSystems/CSII](#controlsystems-csii)
+  * [ControlSystems/CSI](#csi)
+  * [ControlSystems/CSII](#csii)
   * [DSP](#dsp)
   * [DVP](#dvp)
   * [ElectroMag](#electromag)
   * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
   * [PCC](#pcc)
-  * [ReportDiagrams/ENGR003-004](#reportdiagrams-engr003-004)
-  * [ReportDiagrams/ENGR446](#reportdiagrams-engr446)
+  * [ReportDiagrams/ENGR003-004](#engr003-004)
+  * [ReportDiagrams/ENGR446](#engr446)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+### ArtificialIntelligence
+
+![ArtificialIntelligence](ArtificialIntelligence/can_mis.png?raw=true "can_mis")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{ifthen}
+\usepackage{fontawesome}
+\usetikzlibrary{positioning}
+\usetikzlibrary{chains}
+\usetikzlibrary{shapes.multipart}
+
+% SEE https://tex.stackexchange.com/questions/198813/how-to-make-a-boat-symbol-in-latex
+\newcommand*{\myboatleft}{%
+	\protect\raisebox{-0.0000165em}{%
+		\protect\begin{tikzpicture}[ x=0.08em, y=0.08em, xscale=0.05, yscale=-0.05, inner
+		sep=0pt, outer sep=0pt, rotate=90]
+		\protect\path[fill=cyan!40] (99.9880,49.1240) .. controls (97.9470,49.1240) and (95.9760,48.6600) ..
+		(94.2380,47.8720) .. controls (92.4520,47.0370) and (90.4350,46.5500) ..
+		(88.3470,46.5500) .. controls (86.2380,46.5500) and (84.2200,47.0370) ..
+		(82.4350,47.8720) .. controls (80.6720,48.6600) and (78.7240,49.1240) ..
+		(76.6840,49.1240) .. controls (74.6660,49.1240) and (72.6950,48.6600) ..
+		(70.9560,47.8720) .. controls (69.1710,47.0370) and (67.1530,46.5500) ..
+		(65.0430,46.5500) .. controls (62.9560,46.5500) and (60.9390,47.0370) ..
+		(59.1530,47.8720) .. controls (57.3910,48.6600) and (55.4430,49.1240) ..
+		(53.4030,49.1240) .. controls (51.3620,49.1240) and (49.4140,48.6600) ..
+		(47.6740,47.8720) .. controls (45.8890,47.0370) and (43.8710,46.5500) ..
+		(41.7620,46.5500) .. controls (39.6520,46.5500) and (37.6570,47.0370) ..
+		(35.8720,47.8720) .. controls (34.1100,48.6600) and (32.1620,49.1240) ..
+		(30.1220,49.1240) .. controls (28.0820,49.1240) and (26.1570,48.6600) ..
+		(24.4170,47.8720) .. controls (22.6080,47.0370) and (20.6140,46.5500) ..
+		(18.5040,46.5500) .. controls (16.3940,46.5500) and (14.4000,47.0370) ..
+		(12.5910,47.8720) .. controls (10.8520,48.6600) and (8.9040,49.1240) ..
+		(6.8630,49.1240) -- (6.8630,40.5210) .. controls (8.9040,40.5210) and
+		(10.8510,40.0570) .. (12.5910,39.2680) .. controls (14.4000,38.4570) and
+		(16.3940,37.9700) .. (18.5040,37.9700) .. controls (20.6140,37.9700) and
+		(22.6080,38.4570) .. (24.4170,39.2680) .. controls (26.1560,40.0570) and
+		(28.0810,40.5210) .. (30.1220,40.5210) .. controls (32.1630,40.5210) and
+		(34.1100,40.0570) .. (35.8720,39.2680) .. controls (37.6570,38.4570) and
+		(39.6520,37.9700) .. (41.7620,37.9700) .. controls (43.8710,37.9700) and
+		(45.8890,38.4570) .. (47.6740,39.2680) .. controls (49.4130,40.0570) and
+		(51.3620,40.5210) .. (53.4030,40.5210) .. controls (55.4430,40.5210) and
+		(57.3910,40.0570) .. (59.1530,39.2680) .. controls (60.9380,38.4570) and
+		(62.9560,37.9700) .. (65.0430,37.9700) .. controls (67.1530,37.9700) and
+		(69.1710,38.4570) .. (70.9560,39.2680) .. controls (72.6940,40.0570) and
+		(74.6660,40.5210) .. (76.6840,40.5210) .. controls (78.7240,40.5210) and
+		(80.6720,40.0570) .. (82.4350,39.2680) .. controls (84.2200,38.4570) and
+		(86.2380,37.9700) .. (88.3470,37.9700) .. controls (90.4350,37.9700) and
+		(92.4510,38.4570) .. (94.2380,39.2680) .. controls (95.9760,40.0570) and
+		(97.9470,40.5210) .. (99.9880,40.5210) -- (99.9880,49.1240) -- cycle;
+		\protect\path[fill=gray!30] (76.5680,13.1940) -- (93.4960,14.5150) -- (92.2210,5.8660)
+		-- (79.7910,4.9850) .. controls (76.4300,4.8230) and (76.9160,8.1850) ..
+		(76.9160,8.1850) -- (76.5680,13.1940) -- cycle;
+		\protect\path[fill=gray!30] (45.1720,11.2230) .. controls (48.2790,11.2230) and
+		(50.7830,8.7190) .. (50.7830,5.6120) .. controls (50.7830,2.5050) and (48.2790,0.0000) .. (45.1720,0.0000) .. controls (42.0650,0.0000) and (39.5610,2.5050) ..
+		(39.5610,5.6120) .. controls (39.5610,8.7190) and (42.0640,11.2230) ..
+		(45.1720,11.2230) -- cycle;
+		\protect\path[fill=gray!30] (10.5290,32.8460) .. controls (11.2480,32.6380) and (11.9440,32.3600) ..
+		(12.5930,32.0580) .. controls (14.4020,31.2230) and (16.3960,30.7360) ..
+		(18.5060,30.7360) .. controls (20.6160,30.7360) and (22.6100,31.2230) ..
+		(24.4190,32.0580) .. controls (26.1580,32.8460) and (28.0830,33.3100) ..
+		(30.1240,33.3100) .. controls (32.1650,33.3100) and (34.1120,32.8460) ..
+		(35.8740,32.0580) .. controls (37.6590,31.2230) and (39.6540,30.7360) ..
+		(41.7640,30.7360) .. controls (43.8730,30.7360) and (45.8910,31.2230) ..
+		(47.6760,32.0580) .. controls (49.4150,32.8460) and (51.3640,33.3100) ..
+		(53.4050,33.3100) .. controls (55.4450,33.3100) and (57.3930,32.8460) ..
+		(59.1550,32.0580) .. controls (60.9400,31.2230) and (62.9580,30.7360) ..
+		(65.0450,30.7360) .. controls (67.1550,30.7360) and (69.1730,31.2230) ..
+		(70.9580,32.0580) .. controls (72.6960,32.8460) and (74.6680,33.3100) ..
+		(76.6860,33.3100) .. controls (78.7260,33.3100) and (80.6740,32.8460) ..
+		(82.4370,32.0580) .. controls (84.2220,31.2230) and (86.2400,30.7360) ..
+		(88.3490,30.7360) .. controls (90.4370,30.7360) and (92.4530,31.2230) ..
+		(94.2400,32.0580) .. controls (95.9780,32.8460) and (97.9270,33.3100) ..
+		(99.9670,33.3100) -- (98.0660,17.9710) -- (27.6910,12.0810) --
+		(38.3110,1.3680) -- (33.6500,0.9510) -- (23.0500,11.6870) -- (0.0010,9.7860)
+		.. controls (-0.1380,17.6460) and (8.6270,30.7130) .. (10.5290,32.8460) --
+		(10.5290,32.8460) -- cycle;
+		
+		\protect\end{tikzpicture}}
+	~}
+
+
+\newcommand*{\myboatright}{%
+	\protect\raisebox{-0.0000165em}{%
+		\protect\begin{tikzpicture}[draw=none, x=0.08em, y=0.08em, xscale=0.05, yscale=0.05, inner
+		sep=0pt, outer sep=0pt, rotate=90]
+		\protect\path[fill=cyan!40] (99.9880,49.1240) .. controls (97.9470,49.1240) and (95.9760,48.6600) ..
+		(94.2380,47.8720) .. controls (92.4520,47.0370) and (90.4350,46.5500) ..
+		(88.3470,46.5500) .. controls (86.2380,46.5500) and (84.2200,47.0370) ..
+		(82.4350,47.8720) .. controls (80.6720,48.6600) and (78.7240,49.1240) ..
+		(76.6840,49.1240) .. controls (74.6660,49.1240) and (72.6950,48.6600) ..
+		(70.9560,47.8720) .. controls (69.1710,47.0370) and (67.1530,46.5500) ..
+		(65.0430,46.5500) .. controls (62.9560,46.5500) and (60.9390,47.0370) ..
+		(59.1530,47.8720) .. controls (57.3910,48.6600) and (55.4430,49.1240) ..
+		(53.4030,49.1240) .. controls (51.3620,49.1240) and (49.4140,48.6600) ..
+		(47.6740,47.8720) .. controls (45.8890,47.0370) and (43.8710,46.5500) ..
+		(41.7620,46.5500) .. controls (39.6520,46.5500) and (37.6570,47.0370) ..
+		(35.8720,47.8720) .. controls (34.1100,48.6600) and (32.1620,49.1240) ..
+		(30.1220,49.1240) .. controls (28.0820,49.1240) and (26.1570,48.6600) ..
+		(24.4170,47.8720) .. controls (22.6080,47.0370) and (20.6140,46.5500) ..
+		(18.5040,46.5500) .. controls (16.3940,46.5500) and (14.4000,47.0370) ..
+		(12.5910,47.8720) .. controls (10.8520,48.6600) and (8.9040,49.1240) ..
+		(6.8630,49.1240) -- (6.8630,40.5210) .. controls (8.9040,40.5210) and
+		(10.8510,40.0570) .. (12.5910,39.2680) .. controls (14.4000,38.4570) and
+		(16.3940,37.9700) .. (18.5040,37.9700) .. controls (20.6140,37.9700) and
+		(22.6080,38.4570) .. (24.4170,39.2680) .. controls (26.1560,40.0570) and
+		(28.0810,40.5210) .. (30.1220,40.5210) .. controls (32.1630,40.5210) and
+		(34.1100,40.0570) .. (35.8720,39.2680) .. controls (37.6570,38.4570) and
+		(39.6520,37.9700) .. (41.7620,37.9700) .. controls (43.8710,37.9700) and
+		(45.8890,38.4570) .. (47.6740,39.2680) .. controls (49.4130,40.0570) and
+		(51.3620,40.5210) .. (53.4030,40.5210) .. controls (55.4430,40.5210) and
+		(57.3910,40.0570) .. (59.1530,39.2680) .. controls (60.9380,38.4570) and
+		(62.9560,37.9700) .. (65.0430,37.9700) .. controls (67.1530,37.9700) and
+		(69.1710,38.4570) .. (70.9560,39.2680) .. controls (72.6940,40.0570) and
+		(74.6660,40.5210) .. (76.6840,40.5210) .. controls (78.7240,40.5210) and
+		(80.6720,40.0570) .. (82.4350,39.2680) .. controls (84.2200,38.4570) and
+		(86.2380,37.9700) .. (88.3470,37.9700) .. controls (90.4350,37.9700) and
+		(92.4510,38.4570) .. (94.2380,39.2680) .. controls (95.9760,40.0570) and
+		(97.9470,40.5210) .. (99.9880,40.5210) -- (99.9880,49.1240) -- cycle;
+		\protect\path[fill=gray!30] (76.5680,13.1940) -- (93.4960,14.5150) -- (92.2210,5.8660)
+		-- (79.7910,4.9850) .. controls (76.4300,4.8230) and (76.9160,8.1850) ..
+		(76.9160,8.1850) -- (76.5680,13.1940) -- cycle;
+		\protect\path[fill=gray!30] (45.1720,11.2230) .. controls (48.2790,11.2230) and
+		(50.7830,8.7190) .. (50.7830,5.6120) .. controls (50.7830,2.5050) and (48.2790,0.0000) .. (45.1720,0.0000) .. controls (42.0650,0.0000) and (39.5610,2.5050) ..
+		(39.5610,5.6120) .. controls (39.5610,8.7190) and (42.0640,11.2230) ..
+		(45.1720,11.2230) -- cycle;
+		\protect\path[fill=gray!30] (10.5290,32.8460) .. controls (11.2480,32.6380) and (11.9440,32.3600) ..
+		(12.5930,32.0580) .. controls (14.4020,31.2230) and (16.3960,30.7360) ..
+		(18.5060,30.7360) .. controls (20.6160,30.7360) and (22.6100,31.2230) ..
+		(24.4190,32.0580) .. controls (26.1580,32.8460) and (28.0830,33.3100) ..
+		(30.1240,33.3100) .. controls (32.1650,33.3100) and (34.1120,32.8460) ..
+		(35.8740,32.0580) .. controls (37.6590,31.2230) and (39.6540,30.7360) ..
+		(41.7640,30.7360) .. controls (43.8730,30.7360) and (45.8910,31.2230) ..
+		(47.6760,32.0580) .. controls (49.4150,32.8460) and (51.3640,33.3100) ..
+		(53.4050,33.3100) .. controls (55.4450,33.3100) and (57.3930,32.8460) ..
+		(59.1550,32.0580) .. controls (60.9400,31.2230) and (62.9580,30.7360) ..
+		(65.0450,30.7360) .. controls (67.1550,30.7360) and (69.1730,31.2230) ..
+		(70.9580,32.0580) .. controls (72.6960,32.8460) and (74.6680,33.3100) ..
+		(76.6860,33.3100) .. controls (78.7260,33.3100) and (80.6740,32.8460) ..
+		(82.4370,32.0580) .. controls (84.2220,31.2230) and (86.2400,30.7360) ..
+		(88.3490,30.7360) .. controls (90.4370,30.7360) and (92.4530,31.2230) ..
+		(94.2400,32.0580) .. controls (95.9780,32.8460) and (97.9270,33.3100) ..
+		(99.9670,33.3100) -- (98.0660,17.9710) -- (27.6910,12.0810) --
+		(38.3110,1.3680) -- (33.6500,0.9510) -- (23.0500,11.6870) -- (0.0010,9.7860)
+		.. controls (-0.1380,17.6460) and (8.6270,30.7130) .. (10.5290,32.8460) --
+		(10.5290,32.8460) -- cycle;
+		
+		\protect\end{tikzpicture}}
+	~}
+
+\newcommand*\drawitem[6]%
+{%
+	\ifnum#1=0
+	\edef\mylist{}
+	\else
+	\ifnum#1=1
+	\edef\mylist{0,1}
+	\else
+	\edef\mylist{1,...,#1}
+	\fi 
+	\foreach \x in \mylist
+	{\draw[color=#4, xscale=0.5,yscale=0.5] (#2)
+		node[draw=none, xshift=-\x*0.20cm + #6, yshift=#5, font=\small] (s\x) {\tiny{#3}};}
+	\fi
+}
+
+% \usepackage{fontawesome5}
+\begin{document}
+	
+	\tikzset{
+		pics/can_mission/.style args={#1/#2/#3/#4/#5}{
+			code = {
+				\node[river,draw=none] (root) {
+					\nodepart{one}
+					\nodepart[color=blue, draw=none]{two}
+					\ifthenelse{\equal{\detokenize{#3}}{\detokenize{left}}}
+					{ {\myboatleft} }
+					{ {\myboatright} }
+					\nodepart{three}
+				};
+				% Cannibals left, implementation using ifthenelse, kept for reference
+				%\ifthenelse{\equal{#1}{0}}
+				%{\foreach \x in {}}
+				%{ \ifthenelse{\equal{#1}{1}}
+				%	{\foreach \x in {0,1}}
+				%	{\foreach \x in {1,...,#1}}
+				%}
+				% Cannibals left
+				\drawitem{#1}{root.one}{\faHandScissorsO}{red}{0.15cm}{0cm};
+				% Missionaries left
+				\drawitem{#2}{root.one}{\faHandPaperO}{green}{-0.15cm}{0cm};
+				
+				% Cannibals right
+				\drawitem{#4}{root.three}{\faHandScissorsO}{red}{0.15cm}{0.45cm};
+				% Missionaries right
+				\drawitem{#5}{root.three}{\faHandPaperO}{green}{-0.15cm}{0.45cm};
+			}
+		},
+		% Adding cannibals and missionaries background
+		river/.style={rotate=90, rectangle split, minimum width= 1 cm, rectangle split parts=3,draw, anchor=center,  rectangle split part fill={white!60,blue!60,white!60}},
+	}
+	\begin{tikzpicture}[draw=none]
+	\draw pic {can_mission=3/3/right/3/3};
+	\hfill \break
+	\end{tikzpicture}
+	
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/crossover.png?raw=true "crossover")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
+\tikzset{
+chromosome/.style 2 args={
+       rectangle split ,
+       rectangle split parts=2,
+       rectangle split horizontal,
+       rectangle split part fill={#1,#2},
+       draw=black, very thick,
+       minimum height=2.5em,
+       text width=3.0cm,
+       inner sep=2pt,
+       text centered,
+       }
+}
+
+\begin{document}
+\begin{tikzpicture}
+%% Rectangles
+% Set of Parents
+\node [chromosome={blue!15}{red!20}] (a) { \nodepart{two} } ;
+\node [chromosome={yellow!30}{green!20}, right = of a] (b) { \nodepart{two} } ;
+% Set of Children
+\node [chromosome={blue!15}{yellow!30}, below = 2 cm of a] (c) { \nodepart{two} } ;
+\node [chromosome={red!20}{green!20}, right = of c] (d) { \nodepart{two} } ;
+
+% Labels
+\node[right = of b] () {\textbf{Set of Parents}};
+
+\node[right = of d] () {\textbf{Set of Children}};
+
+% Paths
+\path [->, very thick] (a.one south) edge[] node {}(c.one north);
+\path [->, very thick] (a.two south) edge[out=-90, in=90] node {}(d.one north);
+
+\path [->, very thick] (b.one south) edge[out=-90, in=90] node {}(c.two north);
+
+\path [->, very thick] (b.two south) edge[] node {}(d.two north);
+
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/feature_selection.png?raw=true "feature_selection")
+
+```tex
+\documentclass[margin=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shadows,positioning}
+
+\tikzset{
+  frame/.style={
+    rectangle, draw, 
+    text width=6em, text centered,
+    minimum height=4em,drop shadow,fill=yellow!40,
+    rounded corners,
+  },
+  line/.style={
+    draw, -latex',rounded corners=3mm,
+  }
+}
+
+\begin{document}
+\begin{tikzpicture}[font=\small\sffamily\bfseries,very thick,node distance = 4cm]
+\node [frame] (pop) {Population};
+\node [above=2cm, text width=2cm, align=center, left of=pop] (init) {Random \\ Initialisation};
+\node [below=2cm, text width = 2cm, align = center, left of=pop] (term) {Termination};
+\node [frame, above=2cm, right of=pop] (parents)  {Parents};
+\node [frame, below=2cm, right of=pop] (off)  {Offspring};
+
+% termination condition label
+\node [draw=none, text width=3cm, above right = -0.1cm and -1cm of term ] () {(unique features \\ less than $\frac{1}{3}$ of \\ maximum features)};
+\path [line] (parents)
+ -- node[right,align=left,pos=.5] {Crossover\\[3mm]Inversion\\[3mm]Mutation}
+ (off);
+\path [line] (init) |- (pop.170);
+\path [line] (pop.190) -| (term);
+\path [line] (off) -| node[below,pos=.25, align=center] {Survivor\\ selection}(pop);
+\path [line] (pop) |- node[above,pos=.75, align=center] {Parents\\ selection}(parents);
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/ga.png?raw=true "ga")
+
+```tex
+\documentclass{standalone}
+
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning}
+
+\begin{document}
+\tikzstyle{decision}=[diamond, draw, fill=yellow!20,
+  text width=4em, text badly centered, node distance=3cm,
+  inner sep=0pt]
+\tikzstyle{block}=[rectangle, draw, fill=blue!20, 
+  text width=8em, text badly centered, rounded corners,
+  minimum height=4em]
+\tikzstyle{line}=[draw, very thick, color=black!75, -latex']
+
+\tikzstyle{path}=[draw, very thick, color=black!75, -]
+
+\begin{tikzpicture}[node distance=2cm, auto]
+  % Place nodes
+  \node [block] (pop_init) {Population Initialization};
+  \node [block, below of=pop_init] (fit_ass)
+        {Fitness Assignment};
+  \node [block, below of=fit_ass] (selection)
+        {Selection};
+    \node [draw=none, right of=selection] (pointer)
+            {};
+  \node [block, below of=selection] (crossover)
+        {Crossover};
+        
+  \node [block, below of=crossover] (mutation)
+        {Mutation};
+  
+    \node [block, below of=mutation] (inversion)
+        {Inversion};
+        
+  \node [block, left = 2cm of selection] (done)
+        {Done};
+        
+    
+  % Draw edges
+  \path [line] (pop_init) -- (fit_ass);
+  \path [line] (fit_ass) -- (selection);
+  \path [line] (selection) -- (crossover);
+    \path [line] (crossover) -- (mutation);
+    \path [line] (mutation) -- (inversion);
+  \path [path] (inversion) -| (pointer.center);
+  
+  \path [line] (pointer.center) -- (selection);
+  
+    \path [line] (selection) -- (done);
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/genetic_crossover.png?raw=true "genetic_crossover")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\begin{document}
+\begin{tikzpicture}
+\node[draw=none, text width=3.5cm] at (0, 0)   (start) {Parent 1: \textls[100]{1324421} \hfill \newline Parent 2: \textls[100]{2751421}};
+\draw[thick,dashed] (0.45,0.5) -- (0.45,-0.5);
+\draw[->] (1.5, 0) -- (3, 0) node[below,midway] {crossover};
+
+\node[draw=none, text width=3.5cm] at (4.9, 0)   (start) {Parent 1: \textls[100]{1321421} \hfill \newline Parent 2: \textls[100]{2754421}};
+\draw[thick,dashed] (5.35,0.5) -- (5.35,-0.5);
+% \node[draw=none, text width=3cm] at (3.5, 0)   (start) {Parent 2: 2754421};
+\end{tikzpicture}
+\end{document}
+```
+
+![ArtificialIntelligence](ArtificialIntelligence/tictactoe.png?raw=true "tictactoe")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{forest,calc}
+\forestset{
+  make tab/.style args={#1:#2:#3/#4:#5:#6/#7:#8:#9}{%
+    content={%
+      \tabcolsep=.4\tabcolsep
+      \begin{tabular}{p{\widthof{x}}|p{\widthof{x}}|p{\widthof{x}}}
+        #1 & #2 & #3\\\hline#4&#5&#6\\\hline#7&#8&#9
+      \end{tabular}}},
+  label position r/.initial=right,
+  label position b/.initial=below
+}
+\begin{document}
+\begin{forest}
+  TTT/.style args={#1:#2}{
+    make tab/.expanded=\forestove{content},
+    label={\pgfkeysvalueof{/forest/label position #1}:$#2$},
+    edge={->}
+  },
+  TTT*/.style={
+    make tab=::/::/::,
+    content/.expand once=%
+    \expandafter\vphantom\expandafter{\romannumeral-`0\forestov{content}},
+    draw=none,
+    append after command={(\tikzlastnode.north) edge (\tikzlastnode.south)},
+    for descendants={before computing xy={l*=1.8}},
+  },
+  th/.style=very thick,
+  for tree={node options=draw, inner sep=+0pt, parent anchor=south, child anchor=north}
+%
+[::/::/::, TTT=r:0
+ [x::/::/::, TTT=r:-1
+   [x:o:/::/::, TTT=b: 1, th]
+   [x::/:o:/::, TTT=b:-1]
+   [x::o/::/::, TTT=b: 0, th]
+   [x::/::/::o, TTT=b: 0, th]
+   [x::/::o/::, TTT=b: 1, th]
+]
+ [::/::x/::, TTT=r:0,
+   [,TTT* % this is just cheating :(
+    [o::/::x/::, TTT=b:1]
+    [:o:/::x/::, TTT=b:0]
+   ]
+ ]
+ [:x:/::/::, TTT=r:-2
+   [:x:o/::/::, TTT=b:-1, th]
+   [:x:/:o:/::, TTT=b:-2]
+   [:x:/::/:o:, TTT=b: 0, th]
+   [:x:/::/o::, TTT=b:-1, th]
+   [:x:/o::/::, TTT=b: 0, th]
+ ]
+]
+\end{forest}
+\end{document}
+```
 
 ### BlogDiagrams
 
@@ -8244,6 +8679,106 @@ x	y	z	size\\
 \end{document}
 ```
 
+### ReportDiagrams
+
+![ReportDiagrams](ReportDiagrams/bar-chart.png?raw=true "bar-chart")
+
+```tex
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{url}
+\DeclareUrlCommand\function{\urlstyle{sf}}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{siunitx}
+
+\definecolor{chart Idle}{gray}{.6}
+\definecolor{chart Poor}{RGB}{242,28,28}
+\definecolor{chart Ok}{RGB}{248,172,37}
+\definecolor{chart Ideal}{RGB}{1,151,0}
+\definecolor{chart Over}{RGB}{0,125,234}
+
+\newdimen\tempdim
+\newcommand*{\Triangle}{%
+  \settoheight{\tempdim}{L}%
+  \tikz[x=\tempdim, y=\tempdim]\draw(0,0) -- (.5,.5) -- (0,1) --cycle;%
+}
+\newcommand*{\ChartLegend}[1]{%
+  \ifdim\lastkern=1sp %
+    \hspace{1em}%
+  \fi
+  \ChartBox{0.75em}{#1}%
+  \,#1%
+  \kern-1sp\kern1sp\ignorespaces
+}
+\newcommand*{\ChartBox}[2]{%
+  \begingroup
+    \settoheight{\tempdim}{L}%
+    \edef\tempheight{\the\tempdim}%
+    \settodepth{\tempdim}{g}%
+    \edef\tempdepth{\the\tempdim}%
+    \tikz[
+      baseline=0pt,
+      inner sep=0pt,
+    ]
+    \node[
+      fill={chart #2},
+      draw,
+      rounded corners=1pt,
+      anchor=base,
+    ]{%
+      \vphantom{g\"A}%
+      \pgfmathsetlength{\tempdim}{#1}%
+      \kern\tempdim\relax
+    };%
+  \endgroup
+}
+
+\begin{document}
+\sffamily
+\renewcommand*{\arraystretch}{1.2}
+\newcommand*{\chart}[2]{%
+  #1 & \ChartBox{55mm/3.420*#1}{#2}%
+}
+\noindent
+\begin{tabular}{>{\Triangle\,}lS[mode=text,detect-family,table-format=1.3]@{\,s~}l}
+\toprule
+\multicolumn{1}{c}{%
+  \multirow{2}{*}{Source Function\,/\,Function\,/\,Call Stack}%
+}&
+  \multicolumn{2}{c}{CPU Time by Utilization}\\
+\multicolumn{1}{c}{}& \multicolumn{2}{l}{%
+  \ChartLegend{Idle}
+  \ChartLegend{Poor}
+  \ChartLegend{Ok}
+  \ChartLegend{Ideal}
+  \ChartLegend{Over}
+}\\
+\midrule
+\relax[Loop at line 151 in \function{divergence_part_1}] &
+  \chart{3.420}{Poor} \\
+\relax[Loop at line 1071 in \function{radiation_fvm}] &
+  \chart{3.270}{Poor} \\
+\function{scalar_face_value} &
+  \chart{3.090}{Poor} \\
+\relax[Loop at line 102 in \function{get_match}] &
+  \chart{1.700}{Poor} \\
+\function{get_sensible_enthalpy_diff} &
+  \chart{1.250}{Poor} \\
+\function{compare_vec3} &
+  \chart{1.140}{Poor} \\
+\bottomrule
+\end{tabular}
+\end{document}
+```
+
 ### ReportDiagrams/ENGR003-004
 
 ![ReportDiagrams/ENGR003-004](ReportDiagrams/ENGR003-004/gasCost.png?raw=true "gasCost")
@@ -9458,5 +9993,112 @@ content/.style={fill=yellow,circle,opacity=0.5} ]
 \node[week] at (49,0) {WEEK8};  
 \end{tikzpicture}
 \end{document}      
+```
+
+### ReportDiagrams
+
+![ReportDiagrams](ReportDiagrams/flow-chart.png?raw=true "flow-chart")
+
+```tex
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,
+                calc, chains,
+                quotes,
+                positioning,
+                shapes.geometric}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    node distance = 8mm and 16mm,
+      start chain = A going below,
+      base/.style = {draw, minimum width=32mm, minimum height=8mm,
+                     align=center, on chain=A},
+ startstop/.style = {base, rectangle, rounded corners, fill=red!30},
+   process/.style = {base, rectangle, fill=orange!30},
+        io/.style = {base, trapezium, 
+                     trapezium left angle=70, trapezium right angle=110,
+                     fill=blue!30},
+  decision/.style = {base, diamond, fill=green!30},
+  every edge quotes/.style = {auto=right}]
+                    ]
+\node [startstop]       {Read Video};            % <-- A-1
+\node [process]         {Extract Frames};
+\node [io]              {Read Frame};
+\node [decision]        {Completed?};
+\node [process]         {Save Watermarked Video};
+\node [process]         {Stop};             % <-- A-6
+%
+\node [process,                             % <-- A-7
+       right=of A-4]    {Get Next Frame};
+%%
+\draw [arrows=-Stealth] 
+    (A-1) edge["read data"]          (A-2)
+    (A-2) edge["get watermark"]    (A-3)
+    (A-3) edge[text width=3cm,"apply watermark to all frames "]       (A-4)
+    (A-4) edge["yes"]            (A-5)
+    (A-5) edge["exit"]          (A-6)
+    (A-4) edge["no"']          (A-7)       % <-- by ' is swapped label position
+    (A-7) |- ($(A-2.south east)!0.5!(A-3.north east)$)
+          -| ([xshift=7mm] A-3.north)
+    ;
+  \end{tikzpicture}
+\end{document}
+```
+
+![ReportDiagrams](ReportDiagrams/fontawesomediagram.png?raw=true "fontawesomediagram")
+
+```tex
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc, chains,positioning}
+\usepackage{fontawesome}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    start chain = going right,
+    bin/.style={
+      %draw,
+      % text width=6mm,
+      inner sep=5pt,
+      %fill=blue!20,
+      on chain
+    }
+]
+% Move label below icon
+\node[] (mob) {\LARGE{\faMobilePhone}};
+\node[right = 2cm of mob] (cam) {\LARGE{\faCamera}};
+\node[right = 2cm of cam] (lap) {\LARGE \faLaptop};
+\node[below = 0.1 cm of mob] (moblabel) {\tiny{Phone}};
+\node[below = 0.1 cm of cam] (camlabel) {\tiny{Camera}};
+\node[below = 0.1 cm of lap] (laplabel) {\tiny{Server}};
+
+\node[bin,below left=of lap] (c1) {\tiny{Cardboard}};
+\node[bin] (c2) {\tiny{Food}};
+\node[bin] (c3) {\tiny{Glass}};
+\node[bin] (c4) {\tiny{$\cdots$}};
+\node[bin] (c5) {\tiny{Landfill}};
+
+\path[every node/.style={font=\sffamily\small}]
+      (laplabel) edge node[right] {} (c1)
+      (laplabel) edge node[left] {} (c2)
+      (laplabel) edge node[] {} (c3)
+      (laplabel) edge node[] {} (c5);
+
+\node[below = 0.1 cm of c3] (label) {\tiny{Categories}};
+
+% \draw[thick] (c3) -> (moblabel);
+
+ \path[->]          (c1)  edge   [bend left=50, below]   node {\tiny{send result to phone}} (moblabel);
+ \path[->]          (mob)  edge   [below]   node {\tiny{take picture}} (cam);
+  \path[->]          (cam)  edge [below]   node {\tiny{send picture}} (lap);
+\draw[thick,dotted]     ($(c1.north west)+(0.025,-0.125)$) rectangle ($(c5.north east)+(0.25,-0.35)$);
+\end{tikzpicture}
+
+\end{document}
+
 ```
 

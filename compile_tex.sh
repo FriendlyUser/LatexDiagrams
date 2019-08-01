@@ -45,16 +45,23 @@ if [[ "$GEN_README" > 1 || "$M_PDF2PNG" > 2 || "$USE_LTMK" > 1 ]]; then
 fi
 
 # Not sure how to get find tot ignore .git while maintaining the same functionality, so moving it outside and then back after script is done
-mv .git ../ 
+IGN_FOLDER_LIST='.git .circleci'
 dir=$(pwd)
 if [ $USE_LTMK -eq 1 ]
 then
   for d in $(find $dir -maxdepth 4 -type d)
   do
-      echo $d
-      cd $d
-      latexmk -pdflatex=lualatex -pdf
-      cd $dir
+      curr_dir=$(basename $d)
+      echo $curr_dir
+      if [[ " $IGN_FOLDER_LIST " =~ .*\ $d\ .* ]]; then
+        echo "Not processing this folder, no tex files"
+        echo $d
+      else
+        echo $d
+        cd $d
+        latexmk -pdflatex=lualatex -pdf
+        cd $dir
+      fi
   done
 fi
 
