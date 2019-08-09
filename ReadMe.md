@@ -4,17 +4,19 @@ This repo contains all the diagrams I have generated for my academic career at t
 
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
 
+% Move non my pictures to different folder and perhaps try to add original url for accreditation.
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
-  * [ControlSystems/CSI](#controlsystems-csi)
-  * [ControlSystems/CSII](#controlsystems-csii)
+  * [ControlSystems/CSI](#csi)
+  * [ControlSystems/CSII](#csii)
   * [DSP](#dsp)
   * [DVP](#dvp)
   * [ElectroMag](#electromag)
   * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
   * [PCC](#pcc)
-  * [ReportDiagrams/ENGR003-004](#reportdiagrams-engr003-004)
-  * [ReportDiagrams/ENGR446](#reportdiagrams-engr446)
+  * [ReportDiagrams/ENGR003-004](reportdiagramsengr003-004)
+  * [ReportDiagrams/ENGR446](reportdiagramsengr446)
+  * [ReportDiagrams/Miscellanous](reportdiagramsmiscellanous)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -2308,7 +2310,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXLink{B}{C}			% First added -- G1
 \bXComp{D}{C}			% Second adder
 \bXChain[4]{D}%
-	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+
 \bXLink{C}{D}
 %\bXLink{E}{G2}
 %\bXLink{G2}{adder4}		% G2 to adder
@@ -2367,7 +2370,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput{E}{C}
 \bXLink[$C(s)$]{C}{E}
 \bXReturn{C-E}{B}{}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -2408,7 +2412,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput[4]{E}{C}
 \bXLink[$R(s) \quad $]{A}{C}
 \bXLink[$\quad C(s)$]{C}{E}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -6574,7 +6579,8 @@ single arrow head extend=.4cm,}}
 				\end{umlcallself}
 		\end{umlfragment}
 	\end{umlseqdiag}
-\end{tikzpicture}
+\end{tikzpicture}
+
 
 \end{document}
 ```
@@ -9459,4 +9465,3 @@ content/.style={fill=yellow,circle,opacity=0.5} ]
 \end{tikzpicture}
 \end{document}      
 ```
-

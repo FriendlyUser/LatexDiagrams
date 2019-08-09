@@ -9,7 +9,8 @@
   * [ElectroMag](#electromag)
   * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
   * [PCC](#pcc)
-  * [ReportDiagrams/ENGR003-004](#engr003-004)
-  * [ReportDiagrams/ENGR446](#engr446)
+  * [ReportDiagrams/ENGR003-004](reportdiagramsengr003-004)
+  * [ReportDiagrams/ENGR446](reportdiagramsengr446)
+  * [ReportDiagrams/Miscellanous](reportdiagramsmiscellanous)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
