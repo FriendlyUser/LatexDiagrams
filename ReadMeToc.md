@@ -1,5 +1,9 @@
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
-% Move non my pictures to different folder and perhaps try to add original url for accreditation.
+
+TODO: Move non my pictures to different folder and perhaps try to add original url for accreditation.
+
+For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/dli-vue-docs/) created using the saber static site generator.
+
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
   * [ControlSystems/CSI](#csi)

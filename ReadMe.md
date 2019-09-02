@@ -1,9 +1,12 @@
 ## Latex Diagrams
-This repo contains all the diagrams I have generated for my academic career at the University Of Victoria.
-
+This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow.
 
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
-% Move non my pictures to different folder and perhaps try to add original url for accreditation.
+
+TODO: Move non my pictures to different folder and perhaps try to add original url for accreditation.
+
+For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/dli-vue-docs/) created using the saber static site generator.
+
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
   * [ControlSystems/CSI](#csi)
@@ -2744,7 +2747,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXLink{B}{C}			% First added -- G1
 \bXComp{D}{C}			% Second adder
 \bXChain[4]{D}%
-	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+
 \bXLink{C}{D}
 %\bXLink{E}{G2}
 %\bXLink{G2}{adder4}		% G2 to adder
@@ -2803,7 +2807,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput{E}{C}
 \bXLink[$C(s)$]{C}{E}
 \bXReturn{C-E}{B}{}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -2844,7 +2849,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput[4]{E}{C}
 \bXLink[$R(s) \quad $]{A}{C}
 \bXLink[$\quad C(s)$]{C}{E}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -7010,7 +7016,8 @@ single arrow head extend=.4cm,}}
 				\end{umlcallself}
 		\end{umlfragment}
 	\end{umlseqdiag}
-\end{tikzpicture}
+\end{tikzpicture}
+
 
 \end{document}
 ```

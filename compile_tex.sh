@@ -98,7 +98,7 @@ then
   rm $OUTPUT_FILE
   echo "## Latex Diagrams" >> $OUTPUT_FILE
 
-  echo "This repo contains all the diagrams I have generated for my academic career at the University Of Victoria." >> $OUTPUT_FILE
+  echo "This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow." >> $OUTPUT_FILE
   echo "" >> $OUTPUT_FILE
 
   echo "" >> $OUTPUT_FILE
