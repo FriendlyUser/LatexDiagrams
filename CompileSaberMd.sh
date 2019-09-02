@@ -88,7 +88,7 @@ then
     echo "title: $image_file" >> $single_file_output
     cur_date=date
     echo "date: 2019-08-31" >> $single_file_output
-    echo "layout: standard" >> $single_file_output
+    echo "layout: plain" >> $single_file_output
     echo "---" >> $single_file_output
 
     echo "![$rel_folder_path]($image_file \""$rel_image_path"\")" >> $single_file_output 
