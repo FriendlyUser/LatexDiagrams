@@ -106,7 +106,7 @@ then
     echo "---" >> $single_file_output
 
     echo "### Keywords" >> $single_file_output
-    echo "excerpt: $long_words" | tr "\n" " " >>  $single_file_output 
+    echo "$long_words" | tr "\n" " " >>  $single_file_output 
     echo "" >>  $single_file_output
     echo "![$rel_folder_path]($image_file \""$rel_image_path"\")" >> $single_file_output 
     echo "" >> $single_file_output
