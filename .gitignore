@@ -264,3 +264,6 @@ send.txt
 *.zip
 
 saber
+# temp files
+temp.file
+parse.file

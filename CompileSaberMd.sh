@@ -87,10 +87,26 @@ then
     echo "---" >> $single_file_output
     echo "title: $image_file" >> $single_file_output
     cur_date=date
-    echo "date: 2019-08-31" >> $single_file_output
+    echo "date: $cur_date" >> $single_file_output
     echo "layout: test" >> $single_file_output
+    # temp copy of file
+    # Copy first 20 lines 
+    TEMPFILE="temp.file"
+    SMALLFILE="parse.file"
+    head -10 $tex >> $TEMPFILE 
+    tr -d '\n' < "temp.file" >> $SMALLFILE
+    words=$(grep -o -E '\w+' "temp.file" | sort -u -f)
+    stripped_words=$(printf '%s' "$words" | sed 's/[0-9]//g')
+    purged_words=$(printf '%s' "$stripped_words" | sed  's/em//g; s/pt/ab/g; s///g; s/documentclass//g; 
+      s/usepackage//g; s/usetikzlibrary//g; s/and//g;')
+    long_words=$(printf '%s' "$purged_words" | sed -E 's/\b\w{1,3}\b//g')
+    rm $TEMPFILE
+    rm $SMALLFILE
     echo "---" >> $single_file_output
 
+    echo "### Keywords" >> $single_file_output
+    echo "excerpt: $long_words" | tr "\n" " " >>  $single_file_output 
+    echo "" >>  $single_file_output
     echo "![$rel_folder_path]($image_file \""$rel_image_path"\")" >> $single_file_output 
     echo "" >> $single_file_output
     ### Add code to markdown file
