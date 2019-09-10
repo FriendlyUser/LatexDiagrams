@@ -86,9 +86,10 @@ then
     # Yaml header, saber throws errrors without one of these in the md files
     echo "---" >> $single_file_output
     echo "title: $image_file" >> $single_file_output
-    cur_date=date
-    echo "date: $cur_date" >> $single_file_output
-    echo "layout: test" >> $single_file_output
+    cur_date=$(date +%s)
+    DATE_HREAD=$(date -d @$cur_date +"%Y-%m-%d %H:%M:%S")
+    echo "date: $DATE_HREAD" >> $single_file_output
+    echo "layout: plain" >> $single_file_output
     # temp copy of file
     # Copy first 20 lines 
     TEMPFILE="temp.file"
