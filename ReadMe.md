@@ -5,7 +5,9 @@ This repo contains all the diagrams I have generated for my academic career, for
 
 TODO: Move non my pictures to different folder and perhaps try to add original url for accreditation.
 
-For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/dli-vue-docs/) created using the saber static site generator.
+For a list of links to files see [dli-vue-docs](http://dli-vue-docs.surge.sh/) created using the saber static site generator.
+
+TODO: Replace with site on github pages when javascript loads properly in saber.
 
 - [Latex Diagrams](#latex-diagrams)
   * [BlogDiagrams](#blogdiagrams)
