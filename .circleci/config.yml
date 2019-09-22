@@ -24,8 +24,21 @@ jobs:
           root: .
           path: .
 
+  # think about restricting to master, but whatever, I don't update that much
+  trigger:
+    docker:
+      - image: node:latest
+    working_directory: ~/docs
+    steps:
+      - run:
+          name: "Trigger saber npx build"
+          command: "curl -u ${CIRCLE_API_KEY}: -d build_parameters[CIRCLE_JOB]=start_workflows https://circleci.com/api/v1.1/project/github/FriendlyUser/dli-vue-docs/tree/master"
+
 workflows:
   version: 2
   build_and_test:
     jobs:
       - latex
+      - trigger:
+          requires:
+            - latex
