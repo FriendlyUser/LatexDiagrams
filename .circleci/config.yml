@@ -32,7 +32,7 @@ jobs:
     steps:
       - run:
           name: "Trigger saber npx build"
-          command: "curl -u ${CIRCLE_API_KEY}: -d build_parameters[CIRCLE_JOB]=saber https://circleci.com/api/v1.1/project/github/FriendlyUser/dli-vue-docs/tree/master"
+          command: "curl -u ${CIRCLE_API_TOKEN}: -d build_parameters[CIRCLE_JOB]=saber https://circleci.com/api/v1.1/project/github/FriendlyUser/dli-vue-docs/tree/master"
 
 workflows:
   version: 2
