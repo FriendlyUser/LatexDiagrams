@@ -32,7 +32,7 @@ jobs:
     steps:
       - run:
           name: "Trigger saber npx build"
-          command: "curl -u ${CIRCLE_API_TOKEN}: -d https://circleci.com/api/v1.1/project/github/FriendlyUser/dli-vue-docs/tree/master"
+          command: "curl -X POST https://circleci.com/api/v1.1/project/github/FriendlyUser/dli-vue-docs/build?circle=token=${CIRCLE_API_TOKEN}"
 
 workflows:
   version: 2
@@ -42,3 +42,7 @@ workflows:
       - trigger:
           requires:
             - latex
+          filters:
+            branches:
+              only:
+                - master
