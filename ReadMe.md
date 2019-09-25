@@ -1,6 +1,7 @@
 ## Latex Diagrams
 This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow.
 
+
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
 
 TODO: Move non my pictures to different folder and perhaps try to add original url for accreditation.
@@ -21,6 +22,130 @@ For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/d
   * [ReportDiagrams/Miscellanous](#reportdiagramsmiscellanous)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+### AlgDS
+
+![AlgDS](AlgDS/DS.png?raw=true "DS")
+
+```tex
+\documentclass[tikz,border=5pt, varwidth=false, preview=true]{standalone}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usetikzlibrary{positioning, calc, arrows}
+\definecolor{purpleVue}{rgb}{0.6,0.5,0.9}
+\usepackage{varwidth}
+\begin{document}
+\begin{tikzpicture}[text height=1.5ex,text depth=.25ex]
+% Root Node
+\node[draw, rounded corners, rectangle, minimum height= 25em, minimum width=55em, label={[anchor=north]north:{\Large Data Structures}}] (DS) {};
+
+% Linear Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Linear}}] at ([xshift=5.5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+DS.west) (L){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] L.west) {{\vbox {
+\begin{itemize}
+\item Lists
+\item Sets
+\item Tuples
+\item Queues
+\item Stacks
+\item Heaps
+\end{itemize}}
+}};
+
+% % Non Linear Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large NonLinear}}] at ([xshift=5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+L.east) (NL){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] NL.west) {{\vbox {
+\begin{itemize}
+\item Trees
+\item Tables
+\item Containers
+\end{itemize}}
+}};
+
+% Homogenous Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Homogenous}}] at ([xshift=5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+NL.east) (Ho){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] Ho.west) {{\vbox {
+\begin{itemize}
+\item 2D Arrays
+\item MultiDArrays
+\end{itemize}}
+}};
+
+% Heterogeneous
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Heterogeneous}}] at ([xshift=5em, yshift=0em]
+Ho.east) (He){};
+\node[draw=none] at ([xshift=4.5em, yshift=-3em] He.west) {
+{
+\setlength{\fboxsep}{0pt}%
+  \setlength{\fboxrule}{0pt}%
+\framebox{\begin{varwidth}{\linewidth}
+\begin{itemize}
+\item Linked Lists
+\item Ordered Lists
+\item Unordered Lists
+\end{itemize}\end{varwidth}}
+}};
+
+% % Heterogeneous
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Heterogeneous}}] at ([xshift=5em, yshift=0em]
+He.east) (Dy){};
+\node[draw=none] at ([xshift=3.5em, yshift=-3em] Dy.west)  {
+{
+% This is a better way to set items in a list, such that it doesn't impact the size of the tikzpicture
+\setlength{\fboxsep}{0pt}%
+  \setlength{\fboxrule}{0pt}%
+\framebox{\begin{varwidth}{\linewidth}
+\begin{itemize}
+\item Dictionaries
+\item Treesets
+\item Sequences
+\end{itemize}\end{varwidth}}
+}};
+\end{tikzpicture}
+\end{document}
+```
 
 ### ArtificialIntelligence
 
@@ -2747,8 +2872,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXLink{B}{C}			% First added -- G1
 \bXComp{D}{C}			% Second adder
 \bXChain[4]{D}%
-	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
-
+	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
 \bXLink{C}{D}
 %\bXLink{E}{G2}
 %\bXLink{G2}{adder4}		% G2 to adder
@@ -2807,8 +2931,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput{E}{C}
 \bXLink[$C(s)$]{C}{E}
 \bXReturn{C-E}{B}{}
-\end{tikzpicture}
-
+\end{tikzpicture}
 \end{document}
 ```
 
@@ -2849,8 +2972,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput[4]{E}{C}
 \bXLink[$R(s) \quad $]{A}{C}
 \bXLink[$\quad C(s)$]{C}{E}
-\end{tikzpicture}
-
+\end{tikzpicture}
 \end{document}
 ```
 
@@ -7016,8 +7138,7 @@ single arrow head extend=.4cm,}}
 				\end{umlcallself}
 		\end{umlfragment}
 	\end{umlseqdiag}
-\end{tikzpicture}
-
+\end{tikzpicture}
 
 \end{document}
 ```
@@ -10481,5 +10602,53 @@ BProcess.south) (pluginAPI){Plugin API};
 
 ```
 
+### software
 
+![software](software/httpcontrol.png?raw=true "httpcontrol")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath,tikz}
+\usetikzlibrary{
+    shapes,
+    shapes.geometric,
+    shapes.symbols,
+    shapes.arrows,
+    shapes.multipart,
+    shapes.callouts,
+    shapes.misc,
+    positioning}
+
+\definecolor{purpleVue}{rgb}{0.6,0.5,0.9}
+
+\definecolor{orangeVue}{rgb}{0.975,0.7,0.2}
+
+\definecolor{greenVue}{rgb}{0.15,0.65,0.4}
+\definecolor{redVue}{rgb}{0.95,0.45,0.55}
+\begin{document}
+
+\begin{tikzpicture}
+\node [draw, fill=green, text=white, circle, text width=4em, align=center] (client) {HTTP Client};
+\node [draw, fill=gray, text=white, rounded rectangle, text width=4em, align=center, right=1em of client] (http) { \small{HTTP Request}};
+\node[fill=blue, draw, shape=diamond, text=white, right=1em of http] (c1) {Controller};
+\node[fill=blue, draw, shape=diamond, text=white, right=1em of c1] (c2) {Controller};
+\node[fill=blue, draw, shape=diamond, text=white, right=1em of c2] (c3) {Controller};
+
+% 401 response
+\node[fill=red, draw, shape=rounded rectangle, text=white, below left=3em and -0.5em of c1] (401) {401 Unauthorized};
+% 200 response
+\node[fill=green, draw, shape=rounded rectangle, text=white, below right=3em and 4em of 401] (200) {200 ok};
+% Paths last
+
+\path[draw,dashed, color=gray] (client) -- (http) -- (c1) -- (c2) -- (c3);
+
+\path[draw, dashed, color=gray] (c2) |- (401) (401) -| (client);
+
+\path[draw, dashed, color=gray] (c3) |- (200) (200) -| (client);
+\end{tikzpicture}
+
+\end{document}
+
+```
 
