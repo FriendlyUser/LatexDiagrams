@@ -1,13 +1,15 @@
 ## Latex Diagrams
 This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow.
 
-[![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
 
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
 
-TODO: Move non my pictures to different folder and perhaps try to add original url for accreditation.
+Willing to make custom diagrams for small fee, or even for free depending on the situation.
+
+**TODO**: Move non my pictures to different folder and perhaps try to add original url for accreditation.
 
 For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/dli-vue-docs/) created using the saber static site generator.
+
 
 - [Latex Diagrams](#latex-diagrams)
   * [Algorithms-Data Structures](#algds)
@@ -27,24 +29,129 @@ For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/d
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
-For a list of links to files see [dli-vue-docs](http://dli-vue-docs.surge.sh/) created using the saber static site generator.
+### AlgDS
 
-TODO: Replace with site on github pages when javascript loads properly in saber.
+![AlgDS](AlgDS/DS.png?raw=true "DS")
 
-- [Latex Diagrams](#latex-diagrams)
-  * [BlogDiagrams](#blogdiagrams)
-  * [ControlSystems/CSI](#csi)
-  * [ControlSystems/CSII](#csii)
-  * [DSP](#dsp)
-  * [DVP](#dvp)
-  * [ElectroMag](#electromag)
-  * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
-  * [PCC](#pcc)
-  * [ReportDiagrams/ENGR003-004](#reportdiagramsengr003-004)
-  * [ReportDiagrams/ENGR446](#reportdiagramsengr446)
-  * [ReportDiagrams/Miscellanous](#reportdiagramsmiscellanous)
+```tex
+\documentclass[tikz,border=5pt, varwidth=false, preview=true]{standalone}
+\usepackage{tikz}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usetikzlibrary{positioning, calc, arrows}
+\definecolor{purpleVue}{rgb}{0.6,0.5,0.9}
+\usepackage{varwidth}
+\begin{document}
+\begin{tikzpicture}[text height=1.5ex,text depth=.25ex]
+% Root Node
+\node[draw, rounded corners, rectangle, minimum height= 25em, minimum width=55em, label={[anchor=north]north:{\Large Data Structures}}] (DS) {};
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+% Linear Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Linear}}] at ([xshift=5.5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+DS.west) (L){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] L.west) {{\vbox {
+\begin{itemize}
+\item Lists
+\item Sets
+\item Tuples
+\item Queues
+\item Stacks
+\item Heaps
+\end{itemize}}
+}};
+
+% % Non Linear Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large NonLinear}}] at ([xshift=5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+L.east) (NL){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] NL.west) {{\vbox {
+\begin{itemize}
+\item Trees
+\item Tables
+\item Containers
+\end{itemize}}
+}};
+
+% Homogenous Node
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Homogenous}}] at ([xshift=5em, yshift=0em]
+% See https://tex.stackexchange.com/questions/27843/level-of-boldness-changeable
+NL.east) (Ho){};
+\node[draw=none] at ([xshift=17em, yshift=-6em] Ho.west) {{\vbox {
+\begin{itemize}
+\item 2D Arrays
+\item MultiDArrays
+\end{itemize}}
+}};
+
+% Heterogeneous
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Heterogeneous}}] at ([xshift=5em, yshift=0em]
+Ho.east) (He){};
+\node[draw=none] at ([xshift=4.5em, yshift=-3em] He.west) {
+{
+\setlength{\fboxsep}{0pt}%
+  \setlength{\fboxrule}{0pt}%
+\framebox{\begin{varwidth}{\linewidth}
+\begin{itemize}
+\item Linked Lists
+\item Ordered Lists
+\item Unordered Lists
+\end{itemize}\end{varwidth}}
+}};
+
+% % Heterogeneous
+\node[rounded corners, %fill=black,
+text depth = 5em, minimum width=10em,
+draw,
+double=purpleVue, %% here
+double distance =1pt,    %% here
+%font=\Large, 
+minimum height= 15em,
+text=purpleVue, label={[anchor=north]north:{\large Heterogeneous}}] at ([xshift=5em, yshift=0em]
+He.east) (Dy){};
+\node[draw=none] at ([xshift=3.5em, yshift=-3em] Dy.west)  {
+{
+% This is a better way to set items in a list, such that it doesn't impact the size of the tikzpicture
+\setlength{\fboxsep}{0pt}%
+  \setlength{\fboxrule}{0pt}%
+\framebox{\begin{varwidth}{\linewidth}
+\begin{itemize}
+\item Dictionaries
+\item Treesets
+\item Sequences
+\end{itemize}\end{varwidth}}
+}};
+\end{tikzpicture}
+\end{document}
+```
 
 ### ArtificialIntelligence
 
@@ -2771,8 +2878,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXLink{B}{C}			% First added -- G1
 \bXComp{D}{C}			% Second adder
 \bXChain[4]{D}%
-	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
-
+	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
 \bXLink{C}{D}
 %\bXLink{E}{G2}
 %\bXLink{G2}{adder4}		% G2 to adder
@@ -2831,8 +2937,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput{E}{C}
 \bXLink[$C(s)$]{C}{E}
 \bXReturn{C-E}{B}{}
-\end{tikzpicture}
-
+\end{tikzpicture}
 \end{document}
 ```
 
@@ -2873,8 +2978,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXOutput[4]{E}{C}
 \bXLink[$R(s) \quad $]{A}{C}
 \bXLink[$\quad C(s)$]{C}{E}
-\end{tikzpicture}
-
+\end{tikzpicture}
 \end{document}
 ```
 
@@ -7040,8 +7144,7 @@ single arrow head extend=.4cm,}}
 				\end{umlcallself}
 		\end{umlfragment}
 	\end{umlseqdiag}
-\end{tikzpicture}
-
+\end{tikzpicture}
 
 \end{document}
 ```
@@ -10505,5 +10608,90 @@ BProcess.south) (pluginAPI){Plugin API};
 
 ```
 
+### software
 
+![software](software/dblayers.png?raw=true "dblayers")
+
+```tex
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{shapes, positioning}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+\begin{document}
+	\begin{tikzpicture}
+	\node[draw, rectangle,fill=aqua!50!blue!10
+	, text width=4cm,minimum height=3cm,minimum width=20cm, align=center, label={[anchor=north, inner sep=0pt, yshift=-0.6em, text=black]north:\LARGE{View Level}}] at 
+	(0,0) (rect) {};
+	
+	\node[draw, rectangle,fill=aqua!50!blue!40
+	, text width=1cm,minimum height=1cm,minimum width=2cm, align=center] at 
+	([xshift=10em, yshift=-1em]rect.west) (v1) {view 1};
+	\node[draw, rectangle,fill=aqua!50!blue!40
+	, text width=1cm,minimum height=1cm,minimum width=2cm, align=center] at 
+	([xshift=8em]v1.east) (v2) {view 2};
+	\node[draw=none, align=center] at 
+	([xshift=6em]v2.east) (v3) {$\cdots$};
+	\node[draw, rectangle,fill=aqua!50!blue!40
+	, text width=1cm,minimum height=1cm,minimum width=2cm, align=center] at 
+	([xshift=8em]v3.east) (v4) {view 4};
+	
+	\node[draw, rectangle,fill=aqua!50!blue!40
+	, text width=1cm,minimum height=1cm,minimum width=2cm, align=center] at 
+	([yshift=-5em]rect.south) (ll) {Logical level};
+	\node[draw, rectangle,fill=aqua!50!blue!40
+	, text width=2cm,minimum height=1cm,minimum width=2cm, align=center] at 
+	([yshift=-5em]ll.south) (pl) {Physical level};
+	
+	\draw (rect) -- (ll);
+	\draw (ll) -- (pl);
+	\end{tikzpicture}
+	
+\end{document}
+
+```
+
+![software](software/designProcess.png?raw=true "designProcess")
+
+```tex
+\documentclass[tikz,border=0]{standalone} 
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usetikzlibrary{shadows}
+\begin{document}
+\begin{tikzpicture}[level distance=1.5cm,
+level 1/.style={sibling distance=3.5cm},
+level 2/.style={sibling distance=1cm}]
+\tikzstyle{every node}=[circle, draw, fill=blue!30]
+% Preamble:
+\tikzset{no shadows/.style={general shadow/.style=}}
+every label/.append style = {
+     label distance=1em,
+     font=\scriptsize,
+     every shadow/.style={opacity=0}, % <- add this
+  }
+\node (Root) [circular drop shadow, label={[label distance=0.5cm]0:Frame Opportunities}] {}
+    child {
+    node[circular drop shadow, label={[left, label distance=-1cm]0:Form Insights}] {} 
+    child { 
+        node[circular drop shadow, xshift=-4.5em, label={[left, label distance=-1cm]0:Make Observations}] {} 
+        child { node[circular drop shadow, xshift=-4.5em, label={[left, label distance=-1cm]0:Define the problem}] {} }
+    }
+}
+child {
+    node[circular drop shadow, label={[right, label distance=1cm]0:Generate Ideas}] {}
+    child { 
+        node[circular drop shadow, xshift=4.5em, label={[right, label distance=1cm]0:Refine Solutions}] {} 
+        child { node[circular drop shadow, xshift=4.5em, label={[right, label distance=1cm]0:Try Prototypes}] {} }
+    }
+};
+
+% Harcoded line
+\draw [blue!30,dash dot] (-8,-1) -- (8,-1);
+\node[draw=none, fill=none, text width= 2cm, align=center] at (-7.25, -1) {\textbf{Opportunity Problem}};
+\end{tikzpicture}
+\end{document}
+```
 
