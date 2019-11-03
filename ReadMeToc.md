@@ -21,6 +21,6 @@ For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/d
   * [ReportDiagrams/ENGR003-004](#reportdiagramsengr003-004)
   * [ReportDiagrams/ENGR446](#reportdiagramsengr446)
   * [ReportDiagrams/Miscellanous](#reportdiagramsmiscellanous)
-  *[Software](#software)
+  * [Software](#software)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
