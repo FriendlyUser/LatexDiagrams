@@ -17,6 +17,7 @@ For a list of links to files see [dli-vue-docs](https://friendlyuser.github.io/d
   * [DVP](#dvp)
   * [ElectroMag](#electromag)
   * [EngineeringSoftwareDesign](#engineeringsoftwaredesign)
+  * [Miscallenous](#miscallenous)
   * [PCC](#pcc)
   * [ReportDiagrams/ENGR003-004](#reportdiagramsengr003-004)
   * [ReportDiagrams/ENGR446](#reportdiagramsengr446)
