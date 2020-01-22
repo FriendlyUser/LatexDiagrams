@@ -1,0 +1,99 @@
+% Flutter in Action Eric Windmill
+% Litereally the first page
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\tikzset{
+    graynode/.style={shape=rectangle, fill=gray!25},
+    bluenode/.style={shape=rectangle, draw=blue, line width=2},
+    greennode/.style={shape=rectangle, draw=green, line width=2},
+    rednode/.style={shape=rectangle, draw=red, line width=2},
+    lineCustom/.style={
+        thick, 
+        color=black,
+        -latex
+    },
+}
+\begin{tikzpicture}
+% Widget Content Bar
+\node[rectangle,draw,minimum width=5in, minimum height=5.5in, fill=none] (content) {};
+% Header bar
+\node[graynode,draw, minimum width=5in, anchor=east] (header) at (content.north east) {\small{ \textbf{Widget Lifecycles}}};
+
+% Stateless widgets
+\node[rectangle, fill=gray!25, draw, text=black, text centered, below right = 3em and 0.75em of content.north west] (stateless) {\textbf{Stateless widget}};
+\node[rectangle, fill=gray!15, draw, text=black, text centered, below = 2em of stateless.south] (statelessCon) {Constructor};
+\node[rectangle, fill=gray!50, draw, text=black, text centered, below = 2em of statelessCon.south] (statelessBuild) { build() };
+\node[draw=none, fill=none, below left = 1em and 2em of statelessBuild] (buildLoop) {};
+\node[below right=-1.5em and 4em of buildLoop, text width=8em] {Rebuilds when configuration changes};
+% Stateless arrows
+\draw[lineCustom] (stateless.south) -- (statelessCon);
+\draw[lineCustom] (statelessCon) -- (statelessBuild);
+\draw[lineCustom, -] (statelessBuild.south) |- (buildLoop.west);
+\draw[lineCustom] (buildLoop.west) |- (statelessBuild.west);
+
+% Stateful widgets before state
+\node[rectangle, fill=gray!25, draw, text=black, text centered, below left = 3em and 8em of content.north east] (stateful) {\textbf{Stateful widget}};
+\node[rectangle, fill=gray!15, draw, text=black, text centered, below = 2em of stateful.south] (statefulCon) {Constructor};
+\node[rectangle, fill=gray!50, draw, text=black, text centered, below = 2em of statefulCon.south] (createState) { createState() };
+\node[draw=none, fill=none, below left = 1em and 2em of createState] (createStateLoop) {};
+% Stateless arrows
+\draw[lineCustom] (stateful.south) -- (statefulCon);
+\draw[lineCustom] (statefulCon) -- (createState);
+\draw[lineCustom, -] (createState.south) |- (createStateLoop.west);
+\draw[lineCustom] (createStateLoop.west) |- (createState.west);
+
+% Stateful widgets after states
+\node[above right=-0.75em and 5.25em of createStateLoop, text width=12em] (stateObjText){Produces a State Object};
+
+% Arrow
+\draw[lineCustom] (createState.east) to [bend left] (stateObjText);
+
+% State Object
+\node[draw, rectangle, below = 5em of createState, fill=gray!20] (stateObj){\textbf{State object}};
+
+\draw[lineCustom] (stateObjText.south) to [bend right] (stateObj);
+
+% Mounted 
+\node[draw=gray, rectangle, below = 1em of stateObj, fill=gray!20] (mounted){(Mounted)};
+
+% initState()
+\node[draw=gray, rectangle, below = 1.75em of mounted, fill=gray!50] (initState){initState()};
+
+% mounted -> initState()
+\draw[lineCustom] (mounted.south) to  (initState);
+
+% Dirty State
+\node[draw=gray, rectangle, below = 1.75em of initState, fill=gray!20] (dirtyState){(Dirty State)};
+
+\draw[lineCustom] (initState.south) to  (dirtyState);
+
+\node[draw=gray, rectangle, below = 2em of dirtyState, fill=gray!50] (statefulBuild){build()};
+\node[draw=gray, rectangle, left = 2em of statefulBuild, fill=gray!50] (widgetDidUpdate){widgetDidUpdate()};
+\node[draw=gray, rectangle, right = 2em of statefulBuild, fill=gray!50] (setState){setState()};
+
+\node[below=4em of widgetDidUpdate, text width=9em, align=center] (configuration){When it recieves new configuration};
+
+% CleanState
+\node[draw=gray, rectangle, below = 2em of statefulBuild, fill=gray!20] (cleanState){(Clean State)};
+
+\node[below=4em of setState, text width=6em, align=center] (internalState){When internal State Changes};
+
+% dispose
+\node[draw=gray, rectangle, below = 2em of cleanState, fill=gray!50] (dispose){dispose()};
+
+% Down Arrows
+\draw[lineCustom] (dirtyState.south) to (statefulBuild);
+\draw[lineCustom] (statefulBuild.south) to (cleanState);
+\draw[lineCustom] (cleanState.south) to  (dispose);
+
+% Right Angle Arrows
+\draw[lineCustom] (cleanState.west) -| (widgetDidUpdate);
+\draw[lineCustom] (widgetDidUpdate.north) |- (dirtyState.west);
+
+\draw[lineCustom] (dirtyState.east) -| (setState.north);
+\draw[lineCustom] (setState.south) |- (cleanState.east);
+\end{tikzpicture}
+\end{document}
