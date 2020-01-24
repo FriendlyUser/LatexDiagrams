@@ -33,11 +33,11 @@ jobs:
       - run:
           name: "Trigger saber npx build"
           command: | 
-            curl -X POST https://circleci.com/api/v2/project/FriendlyUser/dli-vue-docs/pipeline \
+            curl -X POST https://circleci.com/api/v2/project/gh/FriendlyUser/dli-vue-docs/pipeline?circle_token=${CIRCLE_API_TOKEN} \
             -H 'Content-Type: application/json' \
             -H 'Accept: application/json' \
-            -H 'x-attribution-login: ${CIRCLE_API_TOKEN}' \
-            -H 'x-attribution-actor-id: davidli012345@gmail.com'
+            -H 'x-attribution-login: Circle CI' \
+            -H 'x-attribution-actor-id: Latex Diagrams'
 
 workflows:
   version: 2
