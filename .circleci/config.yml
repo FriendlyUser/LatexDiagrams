@@ -34,10 +34,11 @@ jobs:
           name: "Trigger saber npx build"
           command: | 
             curl -X POST https://circleci.com/api/v2/project/gh/FriendlyUser/dli-vue-docs/pipeline?circle_token=${CIRCLE_API_TOKEN} \
+            -H 'Circle-Token: ${CIRCLE_API_TOKEN}' \
             -H 'Content-Type: application/json' \
             -H 'Accept: application/json' \
             -H 'x-attribution-login: Circle CI' \
-            -H 'x-attribution-actor-id: Latex Diagrams'
+            -H 'x-attribution-actor-id: TFT'
 
 workflows:
   version: 2
