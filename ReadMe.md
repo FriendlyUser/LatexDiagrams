@@ -1,5 +1,5 @@
 ## Latex Diagrams
-This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow.
+This repo contains all the diagrams I have generated for my academic career, some I have made for practise and referenced from stack overflow.
 
 
 [![CircleCI](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master.svg?style=svg)](https://circleci.com/gh/FriendlyUser/LatexDiagrams/tree/master)
