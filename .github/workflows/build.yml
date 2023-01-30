@@ -75,7 +75,11 @@ jobs:
           path: dli-vue-docs/public
           name: output
       # build latex diagram part 2
-
+      - name: Purge git folder
+        run: |
+          cd dli-vue-docs
+          rm -rf .git
+          ls
       # push to gh pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -83,4 +87,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dli-vue-docs/public
-          CLEAN: true
+          CLEAN: false
