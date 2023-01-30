@@ -79,7 +79,7 @@ jobs:
           
       - name: make git
         run: |
-          git init
+          cd public ../
       # build latex diagram part 2
       # - name: Purge git folder
       #   run: |
@@ -91,5 +91,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           BRANCH: gh-pages
-          FOLDER: dli-vue-docs/public
+          FOLDER: public
           CLEAN: false
