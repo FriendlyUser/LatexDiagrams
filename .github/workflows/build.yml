@@ -26,9 +26,9 @@ jobs:
       # push back to repo
       - name: Commit files
         run: |
+          mkdir ~/.git
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          mkdir ~/.git
           git add ReadMe.md || true
           git commit -m "Update ReadMe.md" || true
       - name: Push changes
