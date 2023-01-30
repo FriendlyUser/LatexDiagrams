@@ -45,9 +45,9 @@ jobs:
       # mv saber folder to dli-vue-docs
       - name: Move saber folder
         run: |
-          mv saber/pages dli-vue-docs
+          mv saber/pages/* dli-vue-docs/pages/
           mv static dli-vue-docs
-          mv saber dli-vue-docs
+          mv saber dli-vue-docs || true
       
       - name: setup node
         run: |
