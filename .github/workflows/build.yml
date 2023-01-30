@@ -23,6 +23,16 @@ jobs:
           chmod +x ./compile_tex.sh && ./compile_tex.sh
           ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
 
+      # push back to repo
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ReadMe.md || true
+          git commit -m "Update ReadMe.md" || true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
