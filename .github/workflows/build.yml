@@ -45,10 +45,15 @@ jobs:
       # mv saber folder to dli-vue-docs
       - name: Move saber folder
         run: |
-          mv saber/pages/* dli-vue-docs/pages/
-          mv saber/static dli-vue-docs || true
+          cp -R saber/pages/* dli-vue-docs/pages/
+          ls saber/static/software || true
+          cp -R saber/static dli-vue-docs || true
           mv saber dli-vue-docs || true
-      
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: saber
+          name: saber
       - name: setup node
         run: |
           cd dli-vue-docs
@@ -68,3 +73,12 @@ jobs:
           path: dli-vue-docs/public
           name: output
       # build latex diagram part 2
+
+      # push to gh pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dli-vue-docs/public
+          CLEAN: true
