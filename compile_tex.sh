@@ -89,7 +89,6 @@ then
             sed -i 's/rights="none"/rights="read|write"/g' /etc/ImageMagick-6/policy.xml
 
             convert -density 300 -depth 8 -quality 150 $pdf $new_image
-            exit 1
           else
             magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
           fi
