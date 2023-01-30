@@ -45,7 +45,7 @@ if [[ "$GEN_README" > 1 || "$M_PDF2PNG" > 2 || "$USE_LTMK" > 1 ]]; then
 fi
 
 # Not sure how to get find tot ignore .git while maintaining the same functionality, so moving it outside and then back after script is done
-mv .git ../
+# mv .git ../
 IGN_FOLDER_LIST='.git .circleci'
 dir=$(pwd)
 if [ $USE_LTMK -eq 1 ]
@@ -140,4 +140,4 @@ then
   done
 fi
 
-mv ../.git .
+# mv ../.git .
