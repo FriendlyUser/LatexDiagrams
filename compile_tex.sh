@@ -85,6 +85,9 @@ then
           # check if magick exists
           if ! [ -x "$(command -v magick)" ]; then
             echo 'Error: magick is not installed.' >&2
+            # find line <policy domain="coder" rights="none" pattern="PDF" /> in /etc/ImageMagick-6/policy.xml and change to <policy domain="coder" rights="read|write" pattern="PDF" />
+            sed -i 's/rights="none"/rights="read|write"/g' /etc/ImageMagick-6/policy.xml
+
             convert -density 300 -depth 8 -quality 150 $pdf $new_image
             exit 1
           else
