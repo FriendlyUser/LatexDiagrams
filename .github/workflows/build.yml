@@ -71,12 +71,8 @@ jobs:
           rm -rf .git
           ls
           mv public ../
-
-      - name: Persist artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          path: public
-          name: output
+          cd ../
+          ls 
           
       # build latex diagram part 2
       # - name: Purge git folder
@@ -85,8 +81,16 @@ jobs:
       #     rm -rf .git
       #     ls
       # push to gh pages
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - uses: crazy-max/ghaction-github-pages@v3
         with:
-          BRANCH: gh-pages
-          FOLDER: public
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: public
+          name: output
+
