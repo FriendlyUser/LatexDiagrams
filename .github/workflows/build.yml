@@ -70,16 +70,14 @@ jobs:
           cp assets/ads.txt public || true
           rm -rf .git
           ls
+          mv public ../
 
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: dli-vue-docs/public
+          path: public
           name: output
           
-      - name: make git
-        run: |
-          cd public ../
       # build latex diagram part 2
       # - name: Purge git folder
       #   run: |
@@ -92,4 +90,3 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: public
-          CLEAN: false
