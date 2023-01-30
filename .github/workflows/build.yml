@@ -46,7 +46,7 @@ jobs:
       - name: Move saber folder
         run: |
           mv saber/pages/* dli-vue-docs/pages/
-          mv static dli-vue-docs
+          mv saber/static dli-vue-docs || true
           mv saber dli-vue-docs || true
       
       - name: setup node
@@ -54,4 +54,17 @@ jobs:
           cd dli-vue-docs
           ls
           npm install
+
+      - name: build app
+        run: |
+          cd dli-vue-docs
+          npm run build
+          cp assets/ads.txt public || true
+          ls
+
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: dli-vue-docs/public
+          name: output
       # build latex diagram part 2
