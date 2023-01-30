@@ -64,9 +64,11 @@ jobs:
 
       - name: build app
         run: |
+          rm -rf .git
           cd dli-vue-docs
           npm run build
           cp assets/ads.txt public || true
+          rm -rf .git
           ls
 
       - name: Persist artifacts
@@ -74,6 +76,10 @@ jobs:
         with:
           path: dli-vue-docs/public
           name: output
+          
+      - name: make git
+        run: |
+          git init
       # build latex diagram part 2
       # - name: Purge git folder
       #   run: |
