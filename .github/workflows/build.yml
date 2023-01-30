@@ -19,7 +19,9 @@ jobs:
           apt-get update && apt-get install xpdf imagemagick git -y
 
       - name: Compile TeX
-        run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
+        run: |
+          chmod +x ./compile_tex.sh && ./compile_tex.sh
+          ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
 
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
@@ -45,9 +47,9 @@ jobs:
       # mv saber folder to dli-vue-docs
       - name: Move saber folder
         run: |
-          cp -R saber/pages/* dli-vue-docs/pages/
+          mv saber/pages/* dli-vue-docs/pages/
           ls saber/static/software || true
-          cp -R saber/static dli-vue-docs || true
+          mv saber/static dli-vue-docs || true
           mv saber dli-vue-docs || true
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
