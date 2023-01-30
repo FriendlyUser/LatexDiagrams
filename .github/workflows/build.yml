@@ -1,0 +1,58 @@
+name: Full Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+
+    steps:
+       container:
+        image: docker://grandfleet/dolwarp:v0.70
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install xpdf imagemagick git -y
+
+      - name: Compile TeX
+        run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
+
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: .
+          name: latex-artifact
+      - name: Compile Saber docs
+        run: chmod +x ./CompileSaberMd.sh && ./CompileSaberMd.sh
+
+      # setup node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+
+      # git clone https://github.com/FriendlyUser/dli-vue-docs
+      -  name: Checkout dli-vue-docs
+         uses: actions/checkout@v2
+         with:
+           repository: FriendlyUser/dli-vue-docs
+           path: dli-vue-docs
+
+      # mv saber folder to dli-vue-docs
+      - name: Move saber folder
+        run: |
+          mv saber/pages dli-vue-docs
+          mv static dli-vue-docs
+          mv saber dli-vue-docs
+      
+      - name: setup node
+        run: |
+          cd dli-vue-docs
+          ls
+          npm install
+      # build latex diagram part 2
