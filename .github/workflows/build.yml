@@ -26,6 +26,7 @@ jobs:
       # push back to repo
       - name: Commit files
         run: |
+          mkdir ~/.git
           git add ReadMe.md || true
           git commit -m "Update ReadMe.md" || true
       - name: Push changes
