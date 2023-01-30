@@ -82,7 +82,14 @@ then
           echo "$new_image exists skipping file."
       else 
           echo "$new_image does not exist, converting pdf to png."
-          magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
+          # check if magick exists
+          if ! [ -x "$(command -v magick)" ]; then
+            echo 'Error: magick is not installed.' >&2
+            convert -density 300 -depth 8 -quality 150 $pdf $new_image
+            exit 1
+          else
+            magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
+          fi
       fi
     else
       pdftopng -png $pdf $new_name

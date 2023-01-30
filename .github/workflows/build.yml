@@ -54,7 +54,7 @@ jobs:
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: saber
+          path: dli-vue-docs
           name: saber
       - name: setup node
         run: |
