@@ -8,10 +8,9 @@ on:
 jobs:
   latex:
     runs-on: ubuntu-latest
-
+    container:
+      image: docker://grandfleet/dolwarp:v0.70
     steps:
-       container:
-        image: docker://grandfleet/dolwarp:v0.70
       - name: Checkout code
         uses: actions/checkout@v2
 
