@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/latex
     # Make pdf documents with tex
     steps:
-      - run: apt-get update && apt-get install xpdf imagemagick -y
+      - run: apt-get update && apt-get install xpdf imagemagick git -y
       - checkout
       - run: chmod +x ./compile_tex.sh && ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
       - persist_to_workspace:
