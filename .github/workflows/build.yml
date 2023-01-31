@@ -24,7 +24,7 @@ jobs:
         with:
           id: latex
           path: .
-          name: latex-artifact
+          name: latex
   buildfiles:
     needs: buildtex
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
       - name: Download Latex Artifacts
         uses: actions/download-artifact@v1
         with:
-          id: latex
+          name: latex
           path: .
       - name: Commit files
         run: >
