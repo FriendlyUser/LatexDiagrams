@@ -45,7 +45,7 @@ if [[ "$GEN_README" > 1 || "$M_PDF2PNG" > 2 || "$USE_LTMK" > 1 ]]; then
 fi
 
 # Not sure how to get find tot ignore .git while maintaining the same functionality, so moving it outside and then back after script is done
-mv .git ../
+# mv .git ../
 IGN_FOLDER_LIST='.git .circleci'
 dir=$(pwd)
 if [ $USE_LTMK -eq 1 ]
@@ -82,7 +82,16 @@ then
           echo "$new_image exists skipping file."
       else 
           echo "$new_image does not exist, converting pdf to png."
-          magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
+          # check if magick exists
+          if ! [ -x "$(command -v magick)" ]; then
+            echo 'Error: magick is not installed.' >&2
+            # find line <policy domain="coder" rights="none" pattern="PDF" /> in /etc/ImageMagick-6/policy.xml and change to <policy domain="coder" rights="read|write" pattern="PDF" />
+            sed -i 's/rights="none"/rights="read|write"/g' /etc/ImageMagick-6/policy.xml
+
+            convert -density 300 -depth 8 -quality 150 $pdf $new_image
+          else
+            magick convert -density 300 -depth 8 -quality 150 $pdf $new_image
+          fi
       fi
     else
       pdftopng -png $pdf $new_name
@@ -140,4 +149,4 @@ then
   done
 fi
 
-mv ../.git .
+# mv ../.git .

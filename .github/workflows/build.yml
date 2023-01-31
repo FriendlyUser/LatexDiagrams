@@ -1,0 +1,100 @@
+---
+name: Full Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  buildtex:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://grandfleet/dolwarp:v0.70
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install xpdf imagemagick git -y
+      - name: Compile TeX
+        run: |
+          chmod +x ./compile_tex.sh && ./compile_tex.sh
+          ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
+      - name: Persist Tex Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          id: latex
+          path: .
+          name: latex
+  buildfiles:
+    needs: buildtex
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Download Latex Artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: latex
+          path: .
+      - name: Commit files
+        run: >
+          mkdir ~/.git
+
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git config --local user.name "github-actions[bot]"
+
+          git add ReadMe.md || true
+
+          git commit -m "Update ReadMe.md" || true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+      - name: Compile Saber docs
+        run: chmod +x ./CompileSaberMd.sh && ./CompileSaberMd.sh
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+      - name: Checkout dli-vue-docs
+        uses: actions/checkout@v2
+        with:
+          repository: FriendlyUser/dli-vue-docs
+          path: dli-vue-docs
+      - name: Move saber folder
+        run: |
+          mv saber/pages/* dli-vue-docs/pages/
+          ls saber/static/software || true
+          mv saber/static dli-vue-docs || true
+          mv saber dli-vue-docs || true
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: dli-vue-docs
+          name: saber
+      - name: setup node
+        run: |
+          cd dli-vue-docs
+          ls
+          npm install
+      - name: build app
+        run: |
+          rm -rf .git
+          cd dli-vue-docs
+          npm run build
+          cp assets/ads.txt public || true
+          rm -rf .git
+          ls
+          mv public ../
+          cd ../
+          ls 
+      - uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: public
+          name: output
