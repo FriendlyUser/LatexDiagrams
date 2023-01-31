@@ -27,6 +27,7 @@ jobs:
       - name: Commit files
         run: |
           mkdir ~/.git
+          mkdir ~/.git/config
           rm -rf ~/.git/.gitconfig.lock || true
           rm -rf ~/.git/.gitlock || true
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
