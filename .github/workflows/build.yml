@@ -1,10 +1,9 @@
+---
 name: Full Build
-
 on:
   push:
     branches:
       - master
-
 jobs:
   buildtex:
     runs-on: ubuntu-latest
@@ -13,23 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Install dependencies
         run: |
           apt-get update && apt-get install xpdf imagemagick git -y
-
       - name: Compile TeX
         run: |
           chmod +x ./compile_tex.sh && ./compile_tex.sh
           ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
-
       - name: Persist Tex Artifacts
         uses: actions/upload-artifact@v1
         with:
           id: latex
           path: .
           name: latex-artifact
-
   buildfiles:
     needs: buildtex
     runs-on: ubuntu-latest
@@ -41,34 +36,30 @@ jobs:
         with:
           id: latex
           path: .
-
-    # push back to repo
       - name: Commit files
-        run: |
+        run: >
           mkdir ~/.git
+
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git config --local user.name "github-actions[bot]"
+
           git add ReadMe.md || true
+
           git commit -m "Update ReadMe.md" || true
       - name: Push changes
         uses: ad-m/github-push-action@master
       - name: Compile Saber docs
         run: chmod +x ./CompileSaberMd.sh && ./CompileSaberMd.sh
-
-      # setup node
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
-
-      # git clone https://github.com/FriendlyUser/dli-vue-docs
-      -  name: Checkout dli-vue-docs
+          node-version: 14.x
+      - name: Checkout dli-vue-docs
         uses: actions/checkout@v2
         with:
           repository: FriendlyUser/dli-vue-docs
           path: dli-vue-docs
-
-      # mv saber folder to dli-vue-docs
       - name: Move saber folder
         run: |
           mv saber/pages/* dli-vue-docs/pages/
@@ -85,7 +76,6 @@ jobs:
           cd dli-vue-docs
           ls
           npm install
-
       - name: build app
         run: |
           rm -rf .git
@@ -97,24 +87,14 @@ jobs:
           mv public ../
           cd ../
           ls 
-          
-      # build latex diagram part 2
-      # - name: Purge git folder
-      #   run: |
-      #     cd dli-vue-docs
-      #     rm -rf .git
-      #     ls
-      # push to gh pages
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
           build_dir: public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
           path: public
           name: output
-
