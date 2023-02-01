@@ -9,9 +9,6 @@ Willing to make custom diagrams for small fee, or even for free depending on the
 ## Donate
 If you would like to motivate me to spend more time improving open source projects please consider donating.
 
-[![Donate with Ethereum](https://en.cryptobadges.io/badge/big/0x9d18acAB9Fe749Cbf899B2FD63Bf25e64829bbF3)](https://en.cryptobadges.io/donate/0x9d18acAB9Fe749Cbf899B2FD63Bf25e64829bbF3)
-
-[![Donate with Bitcoin](https://en.cryptobadges.io/badge/big/1BMWhjCrTE3Dn94oHnrk6XMZAS3hjq3vdD)](https://en.cryptobadges.io/donate/1BMWhjCrTE3Dn94oHnrk6XMZAS3hjq3vdD)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Z6M6Y83D3URSU&item_name=Motivating+me+to+continue+to+produce+open+source+projects&currency_code=CAD)
 
@@ -6989,7 +6986,8 @@ single arrow head extend=.4cm,}}
 				\end{umlcallself}
 		\end{umlfragment}
 	\end{umlseqdiag}
-\end{tikzpicture}
+\end{tikzpicture}
+
 
 \end{document}
 ```
@@ -10162,7 +10160,8 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 \bXOutput[4]{E}{C}
 \bXLink[$R(s) \quad $]{A}{C}
 \bXLink[$\quad C(s)$]{C}{E}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -11139,7 +11138,8 @@ terminal/.style 2 args={draw,circle,inner sep=2pt,label={#1:#2}},
 \bXOutput{E}{C}
 \bXLink[$C(s)$]{C}{E}
 \bXReturn{C-E}{B}{}
-\end{tikzpicture}
+\end{tikzpicture}
+
 \end{document}
 ```
 
@@ -11265,7 +11265,8 @@ terminal/.style 2 args={draw,circle,inner sep=2pt,label={#1:#2}},
 \bXLink{B}{C}			% First added -- G1
 \bXComp{D}{C}			% Second adder
 \bXChain[4]{D}%
-	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+	{G2Feed/$\frac{G_2}{1+G_2H_2}$,H1G2unity/$1+\frac{H_1}{G_2}$,G3/$G_3$}
+
 \bXLink{C}{D}
 %\bXLink{E}{G2}
 %\bXLink{G2}{adder4}		% G2 to adder
