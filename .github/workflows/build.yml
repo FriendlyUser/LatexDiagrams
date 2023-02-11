@@ -82,7 +82,9 @@ jobs:
           cd dli-vue-docs
           npm run build
           cp assets/ads.txt public || true
+          echo "" >> .nojekyll || true
           rm -rf .git
+          mv .nojekyll public || true
           ls
           mv public ../
           cd ../
