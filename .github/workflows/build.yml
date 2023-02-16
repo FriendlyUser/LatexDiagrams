@@ -44,9 +44,9 @@ jobs:
 
           git config --local user.name "github-actions[bot]"
 
-          git add ReadMe.md || true
+          git add ReadMe.md *.png || true
 
-          git commit -m "Update ReadMe.md" || true
+          git commit -m "Update images and readme" || true
       - name: Push changes
         uses: ad-m/github-push-action@master
       - name: Compile Saber docs
@@ -82,7 +82,9 @@ jobs:
           cd dli-vue-docs
           npm run build
           cp assets/ads.txt public || true
+          echo "" >> .nojekyll || true
           rm -rf .git
+          mv .nojekyll public || true
           ls
           mv public ../
           cd ../
