@@ -88,15 +88,17 @@ jobs:
           ls || true
           cd ../ || true
           ls latex-diagrams-docs/static
+          ls latex-diagrams-docs/.next/static
       # add google adsense to all html pages?
+      
+      - name: Persist artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          path: latex-diagrams-docs
+          name: output
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
           build_dir: latex-diagrams-docs/static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Persist artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          path: latex-diagrams-docs/static
-          name: output
