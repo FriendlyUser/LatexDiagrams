@@ -75,28 +75,28 @@ jobs:
           cd latex-diagrams-docs
           ls
           npm install
+          npm install sharp
       - name: build app
         run: |
           rm -rf .git
           cd latex-diagrams-docs
           npm run build
-          cp assets/ads.txt static || true
+          echo "google.com, pub-2479144310234386, DIRECT, f08c47fec0942fa0" >> static/ads.txt || true
           echo "" >> .nojekyll || true
           rm -rf .git
           mv .nojekyll static || true
-          ls
-          mv public ../
-          cd ../
-          ls static
+          ls || true
+          cd ../ || true
+          ls latex-diagrams-docs/static
       # add google adsense to all html pages?
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
-          build_dir: static
+          build_dir: latex-diagrams-docs/static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: public
+          path: latex-diagrams-docs/static
           name: output
