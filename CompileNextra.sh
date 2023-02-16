@@ -118,7 +118,7 @@ then
       }}>Deploy to overleaf</a>' >> $single_file_output
     echo "\n" >> $single_file_output
     echo "" >>  $single_file_output
-    echo "![$rel_folder_path]($web_image_path \""$rel_image_path"\")" >> $single_file_output 
+    echo "![$rel_folder_path]($rel_folder_path/$rel_image_path.png \""$rel_image_path"\")" >> $single_file_output 
     echo "" >> $single_file_output
     ### Add code to markdown file
     echo "\`\`\`tex copy" >> $single_file_output

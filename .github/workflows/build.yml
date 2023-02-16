@@ -80,14 +80,15 @@ jobs:
           rm -rf .git
           cd latex-diagrams-docs
           npm run build
-          cp assets/ads.txt public || true
+          cp assets/ads.txt static || true
           echo "" >> .nojekyll || true
           rm -rf .git
-          mv .nojekyll public || true
+          mv .nojekyll static || true
           ls
           mv public ../
           cd ../
-          ls 
+          ls static
+      # add google adsense to all html pages?
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
