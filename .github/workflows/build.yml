@@ -22,7 +22,6 @@ jobs:
       - name: Persist Tex Artifacts
         uses: actions/upload-artifact@v1
         with:
-          id: latex
           path: .
           name: latex
   buildfiles:
@@ -54,15 +53,15 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
       - name: Checkout dli-vue-docs
         uses: actions/checkout@v2
         with:
           repository: FriendlyUser/latex-diagrams-docs
-          path: dli-vue-docs
+          path: latex-diagrams-docs
       - name: Move saber folder
         run: |
-          mv saber/pages/* dli-vue-docs/pages/
+          mv saber/pages/* latex-diagrams-docs/pages/
           ls saber/public/software || true
           mv saber/public latex-diagrams-docs || true
           mv saber latex-diagrams-docs || true
