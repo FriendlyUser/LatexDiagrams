@@ -50,7 +50,7 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
       - name: Compile Saber docs
-        run: chmod +x ./CompileSaberMd.sh && ./CompileSaberMd.sh
+        run: chmod +x ./CompileNextra.sh && ./CompileNextra.sh
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -58,28 +58,28 @@ jobs:
       - name: Checkout dli-vue-docs
         uses: actions/checkout@v2
         with:
-          repository: FriendlyUser/dli-vue-docs
+          repository: FriendlyUser/latex-diagrams-docs
           path: dli-vue-docs
       - name: Move saber folder
         run: |
           mv saber/pages/* dli-vue-docs/pages/
-          ls saber/static/software || true
-          mv saber/static dli-vue-docs || true
-          mv saber dli-vue-docs || true
+          ls saber/public/software || true
+          mv saber/public latex-diagrams-docs || true
+          mv saber latex-diagrams-docs || true
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: dli-vue-docs
-          name: saber
+          path: latex-diagrams-docs
+          name: nextra
       - name: setup node
         run: |
-          cd dli-vue-docs
+          cd latex-diagrams-docs
           ls
           npm install
       - name: build app
         run: |
           rm -rf .git
-          cd dli-vue-docs
+          cd latex-diagrams-docs
           npm run build
           cp assets/ads.txt public || true
           echo "" >> .nojekyll || true
@@ -92,7 +92,7 @@ jobs:
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
-          build_dir: public
+          build_dir: static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Persist artifacts
