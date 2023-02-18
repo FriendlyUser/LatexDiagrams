@@ -80,17 +80,16 @@ jobs:
         run: |
           rm -rf .git
           cd latex-diagrams-docs
-          npm run build
-          mkdir -p static || tru
+          npm run export
           touch static/ads.txt || true
-          echo "google.com, pub-2479144310234386, DIRECT, f08c47fec0942fa0" >> static/ads.txt || true
+          echo "google.com, pub-2479144310234386, DIRECT, f08c47fec0942fa0" >> out/ads.txt || true
           echo "" >> .nojekyll || true
           rm -rf .git
-          mv .nojekyll static || true
+          mv .nojekyll out || true
           ls || true
           cd ../ || true
-          ls latex-diagrams-docs/static
-          ls latex-diagrams-docs/.next/static
+          ls latex-diagrams-docs/out
+          ls latex-diagrams-docs/.next/out
       # add google adsense to all html pages?
       
       - name: Persist artifacts
@@ -101,6 +100,6 @@ jobs:
       - uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
-          build_dir: latex-diagrams-docs/static
+          build_dir: latex-diagrams-docs/out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
