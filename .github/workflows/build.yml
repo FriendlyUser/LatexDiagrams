@@ -22,7 +22,6 @@ jobs:
       - name: Persist Tex Artifacts
         uses: actions/upload-artifact@v1
         with:
-          id: latex
           path: .
           name: latex
   buildfiles:
@@ -50,53 +49,56 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
       - name: Compile Saber docs
-        run: chmod +x ./CompileSaberMd.sh && ./CompileSaberMd.sh
+        run: chmod +x ./CompileNextra.sh && ./CompileNextra.sh
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
       - name: Checkout dli-vue-docs
         uses: actions/checkout@v2
         with:
-          repository: FriendlyUser/dli-vue-docs
-          path: dli-vue-docs
+          repository: FriendlyUser/latex-diagrams-docs
+          path: latex-diagrams-docs
       - name: Move saber folder
         run: |
-          mv saber/pages/* dli-vue-docs/pages/
-          ls saber/static/software || true
-          mv saber/static dli-vue-docs || true
-          mv saber dli-vue-docs || true
+          mv saber/pages/* latex-diagrams-docs/pages/
+          ls saber/public/software || true
+          mv saber/public latex-diagrams-docs || true
+          mv saber latex-diagrams-docs || true
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: dli-vue-docs
-          name: saber
+          path: latex-diagrams-docs
+          name: nextra
       - name: setup node
         run: |
-          cd dli-vue-docs
+          cd latex-diagrams-docs
           ls
           npm install
+          npm install sharp
       - name: build app
         run: |
           rm -rf .git
-          cd dli-vue-docs
-          npm run build
-          cp assets/ads.txt public || true
+          cd latex-diagrams-docs
+          npm run export
+          touch static/ads.txt || true
+          echo "google.com, pub-2479144310234386, DIRECT, f08c47fec0942fa0" >> out/ads.txt || true
           echo "" >> .nojekyll || true
           rm -rf .git
-          mv .nojekyll public || true
-          ls
-          mv public ../
-          cd ../
-          ls 
-      - uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: gh-pages
-          build_dir: public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mv .nojekyll out || true
+          ls || true
+          cd ../ || true
+          ls latex-diagrams-docs/out
+      # add google adsense to all html pages?
+      
       - name: Persist artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: public
+          path: latex-diagrams-docs
           name: output
+      - uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: latex-diagrams-docs/out
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
