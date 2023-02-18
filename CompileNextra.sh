@@ -109,7 +109,7 @@ then
     echo "" >> $single_file_output
    
     # echo a link with TEX_FILE_BASE_URL and the relative path to the tex file
-    echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL\"/>" >> $single_file_output
+    echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL/$rel_folder_path/$rel_image_path.tex\"/>" >> $single_file_output
     echo "" >> $single_file_output
     echo "" >>  $single_file_output
     echo "![$rel_folder_path](/$rel_folder_path/$rel_image_path.png \""$rel_image_path"\")" >> $single_file_output 
