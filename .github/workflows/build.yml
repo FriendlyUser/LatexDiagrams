@@ -89,7 +89,6 @@ jobs:
           ls || true
           cd ../ || true
           ls latex-diagrams-docs/out
-          ls latex-diagrams-docs/.next/out
       # add google adsense to all html pages?
       
       - name: Persist artifacts
