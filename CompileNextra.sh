@@ -105,17 +105,10 @@ then
     echo "### Keywords" >> $single_file_output
     echo "$long_words" | tr "\n" " " >>  $single_file_output 
     echo "\n" >> $single_file_output
+    
+    echo "import {OverleafDeployButton} from '@/components/deployToOverleaf'" >> $single_file_output
     # echo a link with TEX_FILE_BASE_URL and the relative path to the tex file
-    echo '<a href="${TEX_FILE_BASE_URL}/${rel_folder_path}/${$rel_image_path}.tex" target="_blank" style={{
-        display: "inline-block",
-        backgroundColor: "green",
-        color: "white",
-        padding: "8px 16px",
-        borderRadius: "4px",
-        textDecoration: "none",
-        fontSize: "16px",
-        textAlign: "center"
-      }}>Deploy to overleaf</a>' >> $single_file_output
+    echo "<OverleafDeployButton texFilePath='$TEX_FILE_BASE_URL'/>" >> $single_file_output
     echo "\n" >> $single_file_output
     echo "" >>  $single_file_output
     echo "![$rel_folder_path](/$rel_folder_path/$rel_image_path.png \""$rel_image_path"\")" >> $single_file_output 
