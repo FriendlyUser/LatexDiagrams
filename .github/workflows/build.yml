@@ -1,9 +1,12 @@
----
 name: Full Build
 on:
   push:
     branches:
       - master
+
+env:
+  BASE_URL: /latex-diagrams-docs
+
 jobs:
   buildtex:
     runs-on: ubuntu-latest
