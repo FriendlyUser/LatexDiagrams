@@ -1,0 +1,6 @@
+The code above is a LaTeX document that begins with the declaration of the document class and page style, followed by the document content enclosed in the "document" environment.
+
+The content includes a centered title consisting of a large bold text "MATH0003 Integration & Differential Equations" and a smaller "Partial Fractions (Anton section 9.5)" line. It also contains a definition of a rational function, a proper rational function, and the method of integrating proper rational functions by splitting them up into partial fractions.
+
+The code includes a theorem about partial fractions decomposition and two questions about the process of finding the form and coefficients of the partial fractions. It also includes two rules, the Linear Factor Rule and the Quadratic Factor Rule, for finding the partial fractions decomposition for factors of a polynomial.
+

@@ -26,7 +26,7 @@ def main():
 
         for prompt 1: describe the code above. Do not output the code itself or provide similar examples to the source code.
 
-        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response. Do not provide examples.
+        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response. Do not provide examples. Do not attempt to correct code.
     
     respond with confirm if you understand.
     """
@@ -63,7 +63,7 @@ def main():
         
         if os.path.exists(keywords_txt) == False:
             # generate keywords
-            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text. Do not include the word latex or diagram in your response. Do not provide examples.")
+            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text. Do not include the word latex or diagram in your response.  Do not provide examples. Do not attempt to correct code.")
             # get output and save to keywords_txt
             tex_keywords = raw_resp['message']
             # save keywords to file
