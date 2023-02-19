@@ -61,7 +61,8 @@ jobs:
           path: latex-diagrams-docs
       - name: Move saber folder
         run: |
-          mv saber/pages/* latex-diagrams-docs/pages/
+          cp -R saber/pages/* latex-diagrams-docs/pages/
+          rm -rf saber/pages || true
           ls saber/public/software || true
           mv saber/public latex-diagrams-docs || true
           mv saber latex-diagrams-docs || true

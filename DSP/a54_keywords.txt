@@ -1,0 +1,2 @@
+tikz, pgfplots, filecontents, amsmath, ycomb, y-axis, x-axis, ylabel, xlabel, xtick, ymin, ymax, n, xn, yn.
+

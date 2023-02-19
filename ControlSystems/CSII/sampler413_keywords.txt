@@ -1,0 +1,2 @@
+documentclass, standalone, usepackage, tikz, amsmath, usetikzlibrary, positioning, shapes, arrows, calc, decorations.text, tikzset.
+
