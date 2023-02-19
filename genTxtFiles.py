@@ -26,12 +26,13 @@ def main():
 
         for prompt 1: describe the code above. Do not output the code itself or provide similar examples to the source code.
 
-        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response.
+        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response. Do not provide examples.
     
     respond with confirm if you understand.
     """
     api = ChatGPT(sessionToken)
     api.send_message(sample_prompt)
+    time.sleep(random.randint(2, 3))
     curr_count = 0
     max_count = 20
     for f in get_files():
@@ -62,7 +63,7 @@ def main():
         
         if os.path.exists(keywords_txt) == False:
             # generate keywords
-            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text.  Do not include the word latex or diagram in your response.")
+            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text. Do not include the word latex or diagram in your response. Do not provide examples.")
             # get output and save to keywords_txt
             tex_keywords = raw_resp['message']
             # save keywords to file

@@ -1,0 +1,2 @@
+pgfplots, addplot, domain, samples, smooth, blue, dashed, red, xlabel, ylabel, legend, legend entries.
+
