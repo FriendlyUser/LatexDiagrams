@@ -1,0 +1,10 @@
+The diagram shows the process of how a self-executing code, known as a smart contract, works. The smart contract is represented by the rectangular box on the left, labeled "SOURCE CODE". It is a computer program that automatically facilitates, verifies, and enforces the negotiation or performance of a contract. The code is stored on a computer network, often a blockchain.
+
+The second box from the left, labeled "TRANSPARENT", represents the idea that the terms of the contract are publicly available on the ledger, which is a decentralized, digital database. This allows anyone to see the terms of the contract and ensures transparency.
+
+The third box from the left, labeled "BLOCKCHAIN", represents the underlying technology that enables smart contracts to be stored on a distributed and decentralized network. When an event triggers the smart contract, such as the redemption of a ticket, the execution of the contract is automated, eliminating the need for intermediaries.
+
+The fourth box from the left, labeled "PAYMENT", represents the final step in the process. After the contract is executed, the accounts of the parties involved are updated and the amounts are transferred automatically based on the terms of the contract. The box contains an image of money being transferred, indicating the financial aspect of the contract.
+
+Overall, the diagram shows the various components and steps involved in the process of how a smart contract works, from its code to its execution and payment.
+

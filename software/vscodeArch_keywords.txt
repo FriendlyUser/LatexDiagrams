@@ -1,0 +1,2 @@
+tikzpicture, draw, node, circle, edge, style, dotted, loop, left, right, below, above, thick, bend left, bend right.
+

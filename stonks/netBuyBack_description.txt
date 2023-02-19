@@ -1,0 +1,10 @@
+This is a LaTeX document that produces a graph using the TikZ and pgfplots packages. The graph shows the estimated profit as a function of the netback per barrel of oil, with the x-axis representing the netback in dollars per barrel and the y-axis representing the profit in millions of Canadian dollars.
+
+The graph is generated using the "axis" environment provided by the pgfplots package. The "domain" option sets the range of values for the x-axis, and the "title", "xlabel", and "ylabel" options are used to set the title and labels for the graph.
+
+The "addplot" command is used to plot the function that represents the estimated profit, with the "mark" option set to "none" to remove the markers for each data point, and "samples" set to 100 to increase the smoothness of the plotted function.
+
+The "node" command is used to place a small circle at a specific point on the graph, which is accomplished using the "pin" option to provide additional text associated with the node.
+
+Finally, the "fill" and "outer sep" options are used to set the appearance of the node and the text label associated with it, respectively.
+

@@ -1,0 +1,2 @@
+latex, diagram, tikz, datatool, filecontents, node, style, filldraw, rectangle, opacity, foreach, anchor, minimum size, draw, line width, font, text, scale.
+

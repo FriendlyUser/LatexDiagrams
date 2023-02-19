@@ -1,0 +1,2 @@
+tikzpicture, axis, xlabel, ylabel, addplot, function, samples, node, fill, draw, circle, minimum, width, inner, sep, pin, outer, domain, title.
+

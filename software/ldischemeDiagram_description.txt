@@ -1,0 +1,10 @@
+The code is a LaTeX document that defines a standalone diagram using the TikZ package. The diagram depicts a pension scheme and the various entities involved in managing it.
+
+The document begins with the necessary packages and settings to create the diagram, including the input encoding, TikZ library, and color definitions.
+
+The diagram is defined using a `tikzpicture` environment with a set `node distance` of 5cm. Several styles are defined using `tikzset`, such as `connector` for the arrow styles used to connect the nodes, `rectangle connector` for the arrows that connect nodes with a right angle, and `straight connector` for the arrows that connect nodes directly.
+
+The diagram includes several nodes, each with a specific shape, draw style, fill color, and text content. The nodes represent the company, defined benefit pension scheme, asset manager, and liability-driven investment fund. The arrows connect these nodes to show the flow of money and management.
+
+Finally, the diagram includes four additional nodes that represent various investment options available to the fund: equities, bonds, gilts, and derivatives. These nodes are connected to the fund node using different arrow styles, and a text node is included to explain the investment options.
+
