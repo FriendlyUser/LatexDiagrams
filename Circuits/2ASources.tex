@@ -1,0 +1,13 @@
+\documentclass[tikz]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}
+	\draw (0,0) to[I,i>=$2\si{\ampere}$] (0,2) %% Note _>= instead of >=
+	to [short,-*] (2,2)
+	to [R=$50\si{\ohm}$,v=$v_o$](2,0);
+	\draw (2,2) to [R,l^=$1\si{\ohm}$] (4,2)
+	to [V,v<=$45 \si{\volt}$](4,0)
+	to [R,l^=$4\si{\ohm}$] (2,0);
+	\draw (0,0) to [short,-*] (2,0);
+\end{circuitikz}
+\end{document}

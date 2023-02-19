@@ -1,0 +1,11 @@
+\documentclass[tikz]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}
+	\draw (0,2) to[V,l_=$V_{TH} \equal 60 \si{\volt}$] (0,0); %% Note _>= instead of >=
+	\draw (0,2)to [R,l^=$R_{TH} \equal 1.5 \si{k\ohm}$,-o] (4,2)
+	node[label={[font=\footnotesize]right:$a$}] {};
+	\draw (0,0) to [short,-o] (4,0)
+	node[label={[font=\footnotesize]right:$b$}] {};
+\end{circuitikz}
+\end{document}

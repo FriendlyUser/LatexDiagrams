@@ -43,7 +43,7 @@ jobs:
 
           git config --local user.name "github-actions[bot]"
 
-          git add Reference.md *.png || true
+          git add *.png || true
 
           git commit -m "Update images and readme" || true
       - name: Push changes

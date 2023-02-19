@@ -1,0 +1,28 @@
+\documentclass[tikz]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}
+	\draw (0,2) to[V,v>=$100\si{\ampere}$] (0,0); %% Note _>= instead of >=
+	\draw (0,2) to [R,l^=$2.5 \si{k\ohm}$,i_>=$i_1$,-*] (2,2)
+	to [R=$625\si{\ohm}$,-*](2,0);
+	\draw (2,2) to [short] (4,2);
+	\draw (4,0)to [cI,l_=$10^{-3}v_2$] (4,2);
+	\draw (4,0)
+	to [R,l^=$4\si{\ohm}$] (2,0);
+	\draw (0,0) to [short,-*] (2,0);
+	
+	\draw (4,0) to [short,-*] (8,0);
+	\draw (8,2)to [cV,l_=$5000i_1$](8,0)
+	to [short] (10,0);
+	\draw (8,2)
+	to [R,l^=$4\si{k \ohm}$] (10,2)
+	to [R,l^=$6\si{k \ohm}$,v_>=$v_2$] (10,0)
+	to [short, -*] (12,0)
+	node[label={[font=\footnotesize]above:$b$}] {}
+	;
+	
+	\draw (10,2) to [short, -*] (12,2)
+	node[label={[font=\footnotesize]above:$a$}] {}
+	;
+\end{circuitikz}
+\end{document}

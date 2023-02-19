@@ -1,0 +1,15 @@
+\documentclass[tikz]{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{circuitikz}
+	\draw (0,2) to[V,l_=$4 \si{\volt}$] (0,0); %% Note _>= instead of >=
+	\draw (0,2)to [R,l^=$10 \si{\ohm}$] (2,2);
+	\draw (2,2)to [cV,l^=$3V_{ab}$] (4,2);
+	\draw (4,0) to  [I,l^=$2\si{\ampere}$](4,2);
+	\draw (4,2) to [short,-*] (6,2)
+		node[label={[font=\footnotesize]right:$a$}] {};
+	\draw (0,0) to [short,-*] (6,0)
+		node[label={[font=\footnotesize]right:$b$}] {};
+	\draw (6,2) to [open,v_>=$V_{ab}$] (6,0);
+\end{circuitikz}
+\end{document}
