@@ -32,6 +32,8 @@ def main():
     """
     api = ChatGPT(sessionToken)
     api.send_message(sample_prompt)
+    curr_count = 0
+    max_count = 10
     for f in get_files():
         # print(file)
         # get relative path to file
@@ -44,24 +46,34 @@ def main():
         # replace .tex with keywords_.txt
         keywords_txt = rel_path.replace('.tex', '_keywords.txt')
 
-        # check if description_txt and keywords_txt exist
+        # if both files exist skip
         if os.path.exists(description_txt) and os.path.exists(keywords_txt):
             continue
-        raw_resp = api.send_message(f"{tex_source} \n \n \n describe the code above.")
-        # replace .tex with description_.txt
-        tex_description = raw_resp['message']
-        # save description to file
-        with open(description_txt, 'w') as description_file:
-            description_file.write(tex_description)
-        # randomly sleep for 3 to 6 seconds
-        time.sleep(random.randint(3, 6))
-        # generate keywords
-        raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text.  Do not include the word latex or diagram in your response.")
-        # get output and save to keywords_txt
-        tex_keywords = raw_resp['message']
-        # save keywords to file
-        with open(keywords_txt, 'w') as keywords_file:
-            keywords_file.write(tex_keywords)
+        # check if description_txt and keywords_txt exist
+        if os.path.exists(description_txt) == False:
+            raw_resp = api.send_message(f"{tex_source} \n \n \n describe the code above.")
+            # replace .tex withnt description_.txt
+            tex_description = raw_resp['message']
+            # save description to file
+            with open(description_txt, 'w') as description_file:
+                description_file.write(tex_description)
+            # randomly sleep for 3 to 6 seconds
+            time.sleep(random.randint(3, 6))
+        
+        if os.path.exists(keywords_txt) == False:
+            # generate keywords
+            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text.  Do not include the word latex or diagram in your response.")
+            # get output and save to keywords_txt
+            tex_keywords = raw_resp['message']
+            # save keywords to file
+            with open(keywords_txt, 'w') as keywords_file:
+                keywords_file.write(tex_keywords)
+
+        # increase curr_count
+        curr_count += 1
+        # exit after 10 files
+        if curr_count >= max_count:
+            break
         time.sleep(random.randint(3, 6))
 
 
