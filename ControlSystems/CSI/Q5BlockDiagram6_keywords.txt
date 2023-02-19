@@ -1,0 +1,2 @@
+tikzpicture, bXInput, bXBloc, bXOutput, bXLink, s, G\_3, G\_2, H\_1, H\_2, H\_3, R(s), C(s)
+

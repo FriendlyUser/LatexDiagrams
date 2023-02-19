@@ -1,0 +1,20 @@
+"Missionaries and Cannibals" is a classic puzzle that involves three missionaries and three cannibals who are stranded on one side of a river. They have a small boat that can carry two people at a time. The puzzle requires them to find a way to transport all six people to the other side of the river without any of the missionaries being eaten by the cannibals.
+
+The rules for this puzzle are:
+
+1. The boat can carry a maximum of two people.
+2. If there are ever more cannibals than missionaries on one side of the river, the cannibals will eat the missionaries.
+3. All the people must reach the other side of the river to solve the puzzle.
+
+To solve this puzzle, the following steps can be taken:
+
+1. Start by transporting two cannibals to the other side of the river.
+2. One cannibal will remain on the other side of the river, while the other will return to the original side.
+3. Two missionaries will then be transported to the other side of the river.
+4. One missionary will remain on the other side of the river, while the other will return to the original side.
+5. Two cannibals will be transported to the other side of the river.
+6. One cannibal will remain on the other side of the river, while the other will return to the original side.
+7. Two missionaries will be transported to the other side of the river.
+8. Finally, one cannibal and one missionary will be transported to the other side of the river.
+
+At this point, all six people will have been transported to the other side of the river, and none of the missionaries will have been eaten by the cannibals.

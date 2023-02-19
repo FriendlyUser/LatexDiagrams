@@ -1,0 +1,2 @@
+tikzpicture, axis, axis x line, axis y line, every axis x label, every axis plot post, xlabel, ylabel, xtick, xmax, ymin, ymax, yticklabels, addplot, ycomb, table, coordinates, node, pin.
+

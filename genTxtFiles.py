@@ -24,16 +24,17 @@ def main():
     sample_prompt = f"""
     You will be given a series of latex source code for diagrams followed by two prompts
 
-        for prompt 1: describe the code above. Do not output the code itself or provide similar examples to the source code.
+        for prompt 1: describe the code above. Ignore syntax and incomplete code.
 
-        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response.
+        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response. Do not provide examples. Do not attempt to correct code. Do not provide code either. Make sure keywords are at least 3 letters.
     
     respond with confirm if you understand.
     """
     api = ChatGPT(sessionToken)
     api.send_message(sample_prompt)
+    time.sleep(random.randint(2, 3))
     curr_count = 0
-    max_count = 10
+    max_count = 20
     for f in get_files():
         # print(file)
         # get relative path to file
@@ -49,9 +50,11 @@ def main():
         # if both files exist skip
         if os.path.exists(description_txt) and os.path.exists(keywords_txt):
             continue
+        # api.send_message(f"{tex_source} \n \n \n describe the code.")
+        api.send_message(f"{tex_source}")
         # check if description_txt and keywords_txt exist
         if os.path.exists(description_txt) == False:
-            raw_resp = api.send_message(f"{tex_source} \n \n \n describe the code above.")
+            raw_resp = api.send_message(f"describe the code.")
             # replace .tex withnt description_.txt
             tex_description = raw_resp['message']
             # save description to file
@@ -62,7 +65,7 @@ def main():
         
         if os.path.exists(keywords_txt) == False:
             # generate keywords
-            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text.  Do not include the word latex or diagram in your response.")
+            raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text. Do not include the word latex or diagram in your response.  Do not provide examples. Do not attempt to correct code. Do not provide code either. Make sure keywords are at least 3 letters.")
             # get output and save to keywords_txt
             tex_keywords = raw_resp['message']
             # save keywords to file

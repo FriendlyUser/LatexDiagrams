@@ -1,0 +1,22 @@
+\documentclass[tikz]{standalone}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\begin{circuitikz}[american voltages]
+	% Voltage source
+	\draw (0,0) to [V, v>=$20 \si{\volt}$](0, 6) to (6, 6)
+	% Left half bridge
+	to [R, l_=$2 \si{k\ohm}$, *-*] (3,3) % Top left resistor
+	to [R, l_=$5 \si{k\ohm}$, -*] (6,0);  % Bottom left resistor
+	% Right half bridge
+	\draw (6,6)
+	to [R, l_=$1 \si{k\ohm}$, -*] (9, 3) % Top right resistor
+	to [R, l_=$30 \si{k\ohm}$, -*] (6,0)  % Bottom left resistor
+	% Draw connection to (-) terminal of voltage source
+	to (6, 0) to (0,0);
+	
+	% Draw voltmeter
+	\draw (3, 3) to [R, l_=$5 \si{k\ohm}$,i_=$i_o$, -*] (9, 3);
+\end{circuitikz}
+\end{document}

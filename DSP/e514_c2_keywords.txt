@@ -1,0 +1,2 @@
+tikz, pgfplots, amsmath, filecontents, standalone, axis, height, width, axis x line, axis y line, every axis x label, xlabel, xtick, ymin, ymax, xmax, xmin, addplot, ycomb, plot coordinates, node, label.
+

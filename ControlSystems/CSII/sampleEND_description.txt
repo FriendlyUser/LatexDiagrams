@@ -1,0 +1,8 @@
+The given diagram seems to be a digital control system which consists of a feedback loop. The signal $r(t)$ is the reference signal and $y(t)$ is the output signal. The system involves a digital controller $G(z)$, and a plant with a transfer function $K$.
+
+The first block in the system is the summing block which takes the reference signal $r(t)$ and the feedback signal $y(t)$, computes their difference $e(t)$, and provides this error signal as an input to the controller.
+
+The controller $G(z)$ is responsible for generating the control signal to be applied to the plant. The plant has a transfer function of $K$. The output of the plant is fed back through the summing block to generate the feedback signal $y(t)$, which is subtracted from the reference signal to compute the error signal $e(t)$.
+
+The system also has two sampling points, indicated by the dotted lines with labels $\delta\_\tau$. These sampling points indicate the instants at which the reference signal and the feedback signal are sampled and held constant for one sampling period $\tau$.
+

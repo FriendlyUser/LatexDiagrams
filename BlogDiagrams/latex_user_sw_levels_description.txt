@@ -1,0 +1,6 @@
+A software architecture composed of multiple layers. It is divided into two main sections, the "User Level" and the "Blockchain/Ethereum Level."
+
+The "User Level" section is drawn in a 3D-like isometric view, with a slanted perspective that is set by the commands that follow \newcommand. The different agents or components of the system are drawn as circles with fill color set to red, and are labeled with names such as "UI/UX," "API," and "Database."
+
+The "Blockchain/Ethereum Level" section is also drawn in a slanted perspective, set by the same commands, and is placed beneath the "User Level." This section shows different agents or components of a blockchain-based system, such as "Dapp," "IPFS," "Metamask," and "Solidity." The connections between these components are illustrated using arrows, which indicate the flow of data or interaction between them.
+

@@ -1,0 +1,2 @@
+tikz, pgfplots, filecontents, amsmath, ycomb, black, thick, table, axis x line, axis y line, every axis x label, every axis y label, mark options, fill=black, xlabel, ylabel, xtick, xmax, ymin, ymax.
+

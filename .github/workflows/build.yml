@@ -24,6 +24,7 @@ jobs:
         with:
           path: .
           name: latex
+
   buildfiles:
     needs: buildtex
     runs-on: ubuntu-latest
@@ -35,6 +36,7 @@ jobs:
         with:
           name: latex
           path: .
+      # reason files are committed here, is because of the other docker image not having git
       - name: Commit files
         run: >
           mkdir ~/.git
@@ -43,9 +45,9 @@ jobs:
 
           git config --local user.name "github-actions[bot]"
 
-          git add Reference.md *.png || true
+          git add *.png || true
 
-          git commit -m "Update images and readme" || true
+          git commit -m "Update images" || true
       - name: Push changes
         uses: ad-m/github-push-action@master
       - name: Compile Saber docs
@@ -61,7 +63,8 @@ jobs:
           path: latex-diagrams-docs
       - name: Move saber folder
         run: |
-          mv saber/pages/* latex-diagrams-docs/pages/
+          cp -R saber/pages/* latex-diagrams-docs/pages/
+          rm -rf saber/pages || true
           ls saber/public/software || true
           mv saber/public latex-diagrams-docs || true
           mv saber latex-diagrams-docs || true

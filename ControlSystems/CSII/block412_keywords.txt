@@ -1,0 +1,2 @@
+rectangle, draw, fill, node, above, right, left, below, inner sep.
+

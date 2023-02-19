@@ -1,0 +1,5 @@
+This defines a block diagram using the "blox" package in LaTeX. The block diagram represents a control system with multiple components such as adders, blocks, and branches. The system takes an input signal represented by node "A" and processes it through various components such as $G_1$, $G_2$, $H_1$, $H_2$, $G_3$, and $H_3$ to produce an output signal represented by node "end".
+
+The code uses various functions from the "blox" package to create the different components of the block diagram. The "\bXInput" function creates an input node, "\bXComp" creates a summing point, and "\bXBloc" creates a block with a transfer function. The "\bXLink" function is used to connect nodes and components with lines, and the "\bXBranchx" and "\bXBranchy" functions create branches in the diagram.
+
+Also it defines a custom function called "connect" which creates an arc over a line at the intersection of two other lines. This function is used to connect components that are not directly in line with each other.

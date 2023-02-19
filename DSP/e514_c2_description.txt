@@ -1,0 +1,8 @@
+This LaTeX code generates a plot of a discrete-time signal using the TikZ and pgfplots packages. The signal is plotted on a two-dimensional axis with frequency ($f$) on the horizontal axis and amplitude on the vertical axis.
+
+The plot is defined inside a `tikzpicture` environment, which is embedded within an `axis` environment defined by pgfplots. Several options are specified for the `axis` environment, including the height, width, axis labels, tick marks, and ranges for the horizontal and vertical axes.
+
+The signal is represented by a series of discrete samples plotted as vertical lines using the `\addplot` command. The signal values are specified as coordinates in the `(x,y)` format, where `x` is the frequency and `y` is the amplitude. The `\node` command is used to place labels at specific points on the plot to indicate the value of each sample.
+
+Overall, this code generates a simple plot of a discrete-time signal with eight non-zero samples and one negative sample at a specific frequency.
+

@@ -1,0 +1,8 @@
+This is a LaTeX code that generates two plots side by side using the `tikzpicture` environment and the `pgfplots` package. The two plots represent discrete-time signals `x[n]` and `y[n]` using stem plots. The signals are stored in separate data files `dataX.dat` and `dataY.dat`, respectively.
+
+The code begins by defining the document class and loading necessary packages, such as `tikz`, `pgfplots`, `filecontents`, and `amsmath`. Then, the two data files are defined using the `filecontents` environment.
+
+Each plot is created using the `axis` environment from `pgfplots`, and the options are set using key-value pairs. The `x[n]` plot is first defined and then the `y[n]` plot is defined in the second `tikzpicture` environment.
+
+Finally, the code ends with the `end{document}` command, indicating the end of the document.
+

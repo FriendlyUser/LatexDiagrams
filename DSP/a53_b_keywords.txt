@@ -1,0 +1,2 @@
+tikzpicture, axis, xlabel, ylabel, xtick, ymin, ymax, addplot, ycomb, black, thick, table.
+
