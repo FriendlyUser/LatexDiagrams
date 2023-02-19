@@ -1,0 +1,2 @@
+pgfplots, fillbetween, tikzpicture, axis, plot, addplot, dashed, red, red!20, name path, samples, xlabel, ylabel, xmin, xmax, ymin, ymax, axis x line, axis y line, ticks.
+

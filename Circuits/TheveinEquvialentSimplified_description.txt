@@ -1,0 +1,2 @@
+This code is a LaTeX document that uses the `circuitikz` package to draw a circuit diagram. The circuit consists of a voltage source `V_TH` connected to a resistor `R_TH` in series. The voltage source is labeled with the voltage value `60 V`, and the resistor is labeled with the resistance value `1.5 kohm`. The nodes on either end of the circuit are labeled `a` and `b`, respectively, using the `label` option. The resulting diagram shows a simple circuit with a voltage source and a resistor.
+

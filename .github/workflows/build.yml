@@ -1,9 +1,12 @@
----
 name: Full Build
 on:
   push:
     branches:
       - master
+
+env:
+  BASE_URL: /latex-diagrams-docs
+
 jobs:
   buildtex:
     runs-on: ubuntu-latest
@@ -55,8 +58,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-      - name: Checkout dli-vue-docs
+          node-version: 19.6
+      - name: Checkout latex-diagrams-docs
         uses: actions/checkout@v2
         with:
           repository: FriendlyUser/latex-diagrams-docs

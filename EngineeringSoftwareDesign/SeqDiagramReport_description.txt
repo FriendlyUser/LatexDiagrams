@@ -1,0 +1,8 @@
+This code generates a UML sequence diagram using the TikZ-UML package. The diagram depicts a server-client game where players can spawn, move, and shoot bullets. The diagram shows the interactions between the two players and the server through various calls.
+
+The actors in the sequence diagram are "Player A" and "Player B," and the object is the "Server." The first call in the diagram represents the spawning of a new player. If a player spawns after another player, then an update is made to both players.
+
+The second call depicts Player B shooting a bullet and updating both players with the changes. The third call represents Player A moving, with the server updating both players again. The fourth call, which is inside a loop fragment, depicts the server's continuous game loop where it spawns health packs and updates both players with the changes.
+
+The code uses TikZ to create the diagram, and the tikz-uml package to generate UML-specific syntax, such as actors, objects, and calls. The code also creates three layers, the foreground, main, and background, for styling and ordering purposes.
+

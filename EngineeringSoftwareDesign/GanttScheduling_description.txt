@@ -1,0 +1,6 @@
+The code defines a Gantt chart using the `pgfgantt` package. The Gantt chart visualizes a schedule of tasks that run on a single CPU, with some tasks requiring I/O and others not. The chart is defined in a `ganttchart` environment, with various options set for the appearance of the chart. The chart is divided into units of 0.35cm for the x-axis and 1.4cm for the y-axis. The chart has vertical gray lines every unit and bars are drawn inline with no group borders. The y-axis titles are set to a height of 0.5cm.
+
+The Gantt chart displays a total of 32 units of time, with the time intervals labeled on the top of the chart. There are two groups of tasks displayed: CPU and I/O. The CPU tasks are colored in red, green, and blue, and the I/O tasks are colored in red and green. Some tasks are followed by a number in parentheses that indicates the time duration of the task.
+
+There are three processes represented on the chart: $P\_1$, $P\_2$, and $P\_3$. Each process is represented by a series of bars with different colors representing the different phases of the process. The chart indicates the times when the processes are executing, waiting for I/O, or in an idle state. There are also three instances of a milestone represented on the chart with a small dot and a label on the left.
+

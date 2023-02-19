@@ -1,0 +1,2 @@
+tikz, tikz-3dplot, patterns, coordinate, draw, dashed, arrow, thick, node, anchor.
+

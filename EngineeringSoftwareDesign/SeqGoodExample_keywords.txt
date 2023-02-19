@@ -1,0 +1,2 @@
+latex, tikz-uml, umlobject, umlseqdiag, umlfragment, umlcallself, umlcall, umlfpart, umlsdnode
+

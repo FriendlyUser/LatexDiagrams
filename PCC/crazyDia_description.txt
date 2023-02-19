@@ -1,0 +1,8 @@
+This code defines a TikZ picture environment that can be used to draw a hypercube graph. A hypercube graph is a graph where each vertex is connected to its neighbors by an edge, forming a cube-like shape. In this case, the hypercube graph has 8 vertices, which are labeled using a binary notation (0 or 1) with an underscore separator (for example, 0\_0, 0\_1, 1\_0, etc.).
+
+The hypercube graph is drawn using the TikZ library, and the nodes are represented as circles filled with blue color. The edges are drawn using blue lines. The nodes are arranged in a way that each node is connected to four neighbors.
+
+The code also defines a way to label each node in the graph with its binary notation. The labels are drawn below each node, and the text color of the label can be customized. Additionally, the code defines a way to draw the hypercube graph with adjustable wall height, roof overhang, and roof angle.
+
+To use the code, you can adjust the hypercube parameters in the `pics/hypercube` style, such as the wall height, roof overhang, and roof angle. To add node labels, you can use the `pics/hclabels` style and provide the node index, the label text, and the text color as arguments. Finally, the TikZ picture environment can be used to draw the hypercube graph and the node labels.
+

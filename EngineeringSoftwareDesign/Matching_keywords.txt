@@ -1,0 +1,2 @@
+latex, tikz, xparse, tikzmark, decorations, calc, overlays, remember picture, draw, arrow, pic, define color, itemize, ex, em.
+

@@ -1,0 +1,2 @@
+latex, circuitikz, graphicx, mathrsfs, latexsym, amssymb, amsmath, documentclass, newcommand, standalone, draw, V, R, node, color, l, to, bent, equal, phi.
+

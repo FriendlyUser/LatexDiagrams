@@ -1,0 +1,6 @@
+This code generates a sequence diagram using the `tikz-uml` package in LaTeX. The diagram shows a sequence of interactions between three entities: an actor named `user`, an object named `AudioService`, and another object named `Settings`.
+
+The diagram shows a message being sent from the `user` to the `AudioService` object with the operation name `handleMessage()`. The `AudioService` object then sends a message to itself with the operation name `persistVolume()`. This operation involves sending a message to the `Settings` object to store some data. The `Settings` object sends two messages to itself to store the data.
+
+Finally, the code adds a node to the diagram to display a message label below the `a-op` object (which corresponds to the `persistVolume()` operation). The message label reads `MSG_PERSIST_VOLUME`, and is displayed in a smaller font size.
+

@@ -1,0 +1,2 @@
+circuitikz, graphicx, mathrsfs, amssymb, amsmath, circuit, circuit diagram, circuit components, electric circuit, electric circuit diagram, resistor, voltage source, current source, switch, node, path, coordinates, labels, arrows, colors.
+

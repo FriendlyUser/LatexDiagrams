@@ -1,0 +1,2 @@
+document, standalone, circuitikz, graphicx, mathrsfs, latexsym, amssymb, amsmath, tikzlibrary, bending, node, draw, to, V, R, l, v, color, blue, phi, bend
+

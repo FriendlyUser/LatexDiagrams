@@ -1,0 +1,2 @@
+The code creates a block diagram using the "blox" package, where the blocks are connected in a chain. The "steinmetz" package is used to typeset the phase symbol. The "positioning" library is used to position the blocks. The diagram represents a simple pipelined processor consisting of five stages, identified as "IF", "ID", "EXE", "Mem", and "WB". The blocks are labeled with the corresponding stage names, except for the second block which is labeled as "$ID\phase{RR}$". The input block is labeled as "E".
+

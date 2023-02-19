@@ -1,0 +1,2 @@
+circuitikz, graphicx, mathrsfs, latexsym, amssymb, amsmath, voltage source, reluctance, node, arc
+

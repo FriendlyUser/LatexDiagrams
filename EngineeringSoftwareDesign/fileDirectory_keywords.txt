@@ -1,0 +1,2 @@
+latex, tikz, circuit, electrical circuit, circuitikz, resistor, capacitor, inductor, ground, current source, voltage source.
+

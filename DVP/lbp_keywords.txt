@@ -1,0 +1,2 @@
+latex, tikz, xcolor, positioning, backgrounds, circle, draw, fill, minimum size, pics, pattern, node, scale, text width, align.
+

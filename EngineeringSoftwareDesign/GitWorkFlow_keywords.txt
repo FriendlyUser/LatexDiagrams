@@ -1,0 +1,2 @@
+tikz, standalone, calc, fadings, shapes, arrows, shadows, backgrounds, positioning, node, draw, ultra thick, gray, pgfonlayer, fill, dashed, shorten, rectangle, align, minimum height, minimum width, font, xshift, yshift, shape border rotate,foreach, general shadow, single arrow, single arrow head extend.
+
