@@ -1,0 +1,8 @@
+The code above is a LaTeX document that creates a table comparing different continuous integration tools: Travis CI, GitLab CI, and CircleCI.
+
+The document uses the `standalone` document class and loads several packages, including `xcolor`, `tabu`, and `colortbl`. It defines the row colors to be used in the table using the `taburowcolors` command with the colors `orange` and `black!20`.
+
+The table itself is defined using the `tabu` environment with four columns, one of which is right-aligned and has an orange background with black text. The other columns use the `X` column type to fill the remaining space equally. The table has a black background with the header row having a darker background of `black!80`. The table cells have a small font size of `sffamily\footnotesize` and a row separation of `6pt`.
+
+The table compares the three CI tools with respect to their use of Docker images, support for private builds, and ease of use. The corresponding cells are marked as "Yes", "No", or "Yes (Education)".
+

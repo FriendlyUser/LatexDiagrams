@@ -3,6 +3,8 @@
 
 import os
 import subprocess
+import random
+import time
 from pyChatGPT import ChatGPT
 
 
@@ -18,29 +20,50 @@ def get_files():
 
 def main():
     # seed prompt
-    sessionToken = '1234567890'
+    sessionToken = os.getenv("CHATGPT_TOKEN")
     sample_prompt = f"""
     You will be given a series of latex source code for diagrams followed by two prompts
 
-        for prompt 1: describe latex diagram
+        for prompt 1: describe the code above. Do not output the code itself or provide similar examples to the source code.
 
-        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text.
+        for prompt 2: what are the keywords for the latex diagram in a comma separated list with no other text. Do not include the word latex or diagram or documentclass or usepackage in your response.
     
     respond with confirm if you understand.
     """
-    api = ChatGPT()
+    api = ChatGPT(sessionToken)
+    api.send_message(sample_prompt)
     for f in get_files():
         # print(file)
         # get relative path to file
         rel_path = os.path.relpath(f, path)
-        print(rel_path)
-        # replace .tex with description_.txt
+        # read text file
+        with open(f, 'r') as raw_tex_file:
+            tex_source = raw_tex_file.read()
+
         description_txt = rel_path.replace('.tex', '_description.txt')
         # replace .tex with keywords_.txt
         keywords_txt = rel_path.replace('.tex', '_keywords.txt')
-        # remove filename from path
-        # rel_path = os.path.dirname(rel_path)
-        # print(rel_path)
+
+        # check if description_txt and keywords_txt exist
+        if os.path.exists(description_txt) and os.path.exists(keywords_txt):
+            continue
+        raw_resp = api.send_message(f"{tex_source} \n \n \n describe the code above.")
+        # replace .tex with description_.txt
+        tex_description = raw_resp['message']
+        # save description to file
+        with open(description_txt, 'w') as description_file:
+            description_file.write(tex_description)
+        # randomly sleep for 3 to 6 seconds
+        time.sleep(random.randint(3, 6))
+        # generate keywords
+        raw_resp = api.send_message(f"what are the keywords for the latex diagram above in a comma separated list with no other text.  Do not include the word latex or diagram in your response.")
+        # get output and save to keywords_txt
+        tex_keywords = raw_resp['message']
+        # save keywords to file
+        with open(keywords_txt, 'w') as keywords_file:
+            keywords_file.write(tex_keywords)
+        time.sleep(random.randint(3, 6))
+
 
 if __name__ == '__main__':
     main()

@@ -267,3 +267,4 @@ saber
 # temp files
 temp.file
 parse.file
+.env

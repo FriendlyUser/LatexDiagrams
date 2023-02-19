@@ -1,0 +1,4 @@
+The TikZ code is creating a matrix of nodes with different styles, with some styles defining a background color, a box style and a title style. There is also a style to create a cylinder shape that is not used in the current code.
+
+The matrix of nodes is named "stack" and has 5 columns, and the nodes are filled row-wise. The first row of the matrix is empty, and the second row has three nodes with no shadows. The third row has five nodes, where the first three have no shadows, the fourth node has a blue background, and the fifth node has no shadows. The fourth row has six nodes, where the first four have no shadows, the fifth node has a blue background, and the sixth node has no shadows. The fifth row has five nodes with no shadows. The middle node in the third row and the fifth node in the fourth row have titles in white font color. The first and last column are empty, and there is a horizontal space of 1cm between the fourth and fifth column.
+

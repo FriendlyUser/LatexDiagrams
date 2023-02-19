@@ -1,0 +1,2 @@
+tikz, table, border, array, tabularx, tcolorbox, rowcolors, enhanced, notitle, clip upper, fontupper, cellcolor, color, textbf.
+

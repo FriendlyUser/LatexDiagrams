@@ -1,0 +1,2 @@
+smartdiagram, tikz, shapes.geometric, calc, planet, satellite, connected constellation diagram, build a dapp, set up truffle box, build smart contracts, automated testing, build front end, ci/cd, documentation, polishing.
+
