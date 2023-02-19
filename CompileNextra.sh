@@ -106,7 +106,7 @@ then
     echo "" >> $single_file_output
     # description file with $rel_folder_path/$rel_image_path
     description_file=$rel_folder_path/${rel_image_path}_description.txt
-    if [ -f description_file ]
+    if [ -f $description_file ]
     then
       echo "# Description" >> $single_file_output
       cat $description_file >> $single_file_output
@@ -128,9 +128,6 @@ then
     echo "## Source Code" >> $single_file_output
     echo "" >> $single_file_output
    
-    # echo a link with TEX_FILE_BASE_URL and the relative path to the tex file
-    echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL/$rel_folder_path/$rel_image_path.tex\"/>" >> $single_file_output
-    echo "" >> $single_file_output
     echo "" >>  $single_file_output
     echo "![$rel_folder_path](/$rel_folder_path/$rel_image_path.png \""$rel_image_path"\")" >> $single_file_output 
     echo "" >> $single_file_output
@@ -139,6 +136,8 @@ then
     cat $rel_path_file >> $single_file_output
     echo "" >> $single_file_output
     echo "\`\`\`" >> $single_file_output
+    echo "" >> $single_file_output
+    echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL/$rel_folder_path/$rel_image_path.tex\"/>" >> $single_file_output
     echo "" >> $single_file_output
     # Go to directory with pdf files
     # Go back to root directory
