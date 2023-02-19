@@ -1,0 +1,2 @@
+pgfplots, tikzpicture, scatter, only marks, mark options, visualization, legend, table, row, sep, crcr, xlabel, ylabel, zlabel, view, axis, background, fill, white, xmajorgrids, ymajorgrids, zmajorgrids, mark size, color, mycolor1, width, height, scale, axis line, legend style.
+

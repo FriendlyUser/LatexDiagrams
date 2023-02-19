@@ -1,0 +1,2 @@
+latex, tikz, graph, bar chart, colors, legend, table, tabular, multirow, siunitx, chart, function.
+
