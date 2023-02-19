@@ -1,3 +1,5 @@
+% this code diagram illustrates the Missionaries and cannibals problem
+
 \documentclass[tikz]{standalone}
 \usepackage{ifthen}
 \usepackage{fontawesome}
@@ -174,12 +176,12 @@
 					\nodepart{three}
 				};
 				% Cannibals left, implementation using ifthenelse, kept for reference
-				%\ifthenelse{\equal{#1}{0}}
-				%{\foreach \x in {}}
-				%{ \ifthenelse{\equal{#1}{1}}
+				% \ifthenelse{\equal{#1}{0}}
+				% {\foreach \x in {}}
+				% { \ifthenelse{\equal{#1}{1}}
 				%	{\foreach \x in {0,1}}
 				%	{\foreach \x in {1,...,#1}}
-				%}
+				% }
 				% Cannibals left
 				\drawitem{#1}{root.one}{\faHandScissorsO}{red}{0.15cm}{0cm};
 				% Missionaries left

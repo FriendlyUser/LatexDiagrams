@@ -1,0 +1,2 @@
+standalone, blox, tikz, positioning, equal, intersections, tkz-euclide, connect, let, veclen, atan2, insert path, bXInput, bXComp, bXLink, bXBloc, bXChain, bXBranchx, bXBranchy, draw, node, right, center, path, name, intersections, of.
+

@@ -81,7 +81,7 @@ jobs:
           rm -rf .git
           cd latex-diagrams-docs
           npm run export
-          touch static/ads.txt || true
+          echo "grandfleet.eu.org" >> out/CNAME || true
           echo "google.com, pub-2479144310234386, DIRECT, f08c47fec0942fa0" >> out/ads.txt || true
           echo "" >> .nojekyll || true
           rm -rf .git

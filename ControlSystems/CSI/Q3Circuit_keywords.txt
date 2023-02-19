@@ -1,0 +1,2 @@
+circuitikz, graphicx, mathrsfs, latexsym, amssymb, amsmath, op amp, C, R, ground
+
