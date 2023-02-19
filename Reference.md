@@ -2676,6 +2676,7 @@ terminal/.style 2 args={draw,circle,inner sep=2pt,label={#1:#2}},
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram2-2.png?raw=true "Q5BlockDiagram2-2")
 
 ```tex
+% standalone diagram for block diagrams
 \documentclass{standalone}
 
 \usepackage{blox}
@@ -2757,7 +2758,7 @@ terminal/.style 2 args={draw,circle,inner sep=2pt,label={#1:#2}},
 \draw[->,connect=(adder3down.center) to (E) over (inter) by 3pt ];
 
 \bXLinkxy{BranEndReturn}{B}
- %\bXLinkyx{Bran2}{H2Block}
+
 \end{tikzpicture}
 \end{document}
 ```
@@ -3172,6 +3173,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram.png?raw=true "Q5BlockDiagram")
 
 ```tex
+% Block diagram in control system
 \documentclass{standalone}
 
 \usepackage{blox}
@@ -3253,7 +3255,6 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \draw[->,connect=(adder3down.center) to (E) over (inter) by 3pt ];
 
 \bXLinkxy{BranEndReturn}{B}
- %\bXLinkyx{Bran2}{H2Block}
 \end{tikzpicture}
 \end{document}
 ```
@@ -6993,6 +6994,8 @@ He.east) (Dy){};
 ![ArtificialIntelligence](ArtificialIntelligence/can_mis.png?raw=true "can_mis")
 
 ```tex
+% this code diagram illustrates the Missionaries and cannibals problem
+
 \documentclass[tikz]{standalone}
 \usepackage{ifthen}
 \usepackage{fontawesome}
@@ -7169,12 +7172,12 @@ He.east) (Dy){};
 					\nodepart{three}
 				};
 				% Cannibals left, implementation using ifthenelse, kept for reference
-				%\ifthenelse{\equal{#1}{0}}
-				%{\foreach \x in {}}
-				%{ \ifthenelse{\equal{#1}{1}}
+				% \ifthenelse{\equal{#1}{0}}
+				% {\foreach \x in {}}
+				% { \ifthenelse{\equal{#1}{1}}
 				%	{\foreach \x in {0,1}}
 				%	{\foreach \x in {1,...,#1}}
-				%}
+				% }
 				% Cannibals left
 				\drawitem{#1}{root.one}{\faHandScissorsO}{red}{0.15cm}{0cm};
 				% Missionaries left
@@ -9124,6 +9127,8 @@ x	y	z	size\\
 ![BlogDiagrams](BlogDiagrams/webApp.png?raw=true "webApp")
 
 ```tex
+% this diagram shows how webpack works
+
 \documentclass[tikz,border=3.14mm]{standalone}
 \usetikzlibrary{shapes.geometric,shapes.symbols,fit,positioning,shadows}
 % https://tex.stackexchange.com/a/12039/121799
@@ -9344,17 +9349,16 @@ sep=10pt,label={below:{Browser}}](fit5){};
 ![BlogDiagrams](BlogDiagrams/latex_user_sw_levels.png?raw=true "latex_user_sw_levels")
 
 ```tex
-% Interaction diagram, LaTeX user level and TeX system software level
-% Author: Agostino De Marco
-% Based on diagram from Marco Miani and Pascal Seppecher.
+% Latex diagram illustrating how web3 and metamask work together and their interactions
+
 \documentclass{article}
 \usepackage{tikz}
-%%%<
+
 \usepackage{verbatim}
 \usepackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{5pt}%
-%%%>
+
 \usetikzlibrary{positioning}
 
 \newcommand{\yslant}{0.5}
@@ -9392,7 +9396,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
 			(1.0,2) node[above=-3pt, scale=0.9] {\textsf{\bfseries file}}			
 			(3.5,2) node[above=-5pt, scale=0.9] {\textsf{\bfseries hash}}
 			(6.25,2) node[above=-5pt, scale=0.9] {\textsf{\bfseries interacts}}
-			%(6.25,2) node[xshift=-1ex,below=-5pt, scale=0.9] {\textsf{\bfseries pdf2ps}}
+
 			(3.5,3.8) node[xshift=2ex,below=-5pt, scale=0.9] {\textsf{\bfseries logic contained in}}
 			(4.3,3.0) node[xshift=2ex,below=-5pt, scale=0.9] {\textsf{\bfseries complements}}
 			(1.3,0.1) node[above=-2pt, scale=1.1] {\textbf{Blockchain/Ethereum Level}}
@@ -9450,6 +9454,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
 	\end{scope} 
 \end{tikzpicture}
 \end{document}
+% code end
 ```
 
 ![BlogDiagrams](BlogDiagrams/buildingDapp.png?raw=true "buildingDapp")
@@ -9702,7 +9707,6 @@ sep=10pt,label={below:{Browser}}](fit5){};
     ]
     {
     |[no shadows]| & & & [1cm] & & |[no shadows]| \\ % #5
-    %RCP main & Authoring & Browsing & Publishing & Search&|[no shadows]| \\
     |[no shadows]| & & |[no shadows]| & |[no shadows]|&  &|[no shadows]| \\
      |[no shadows]|  &  |[no shadows]|  &  |[no shadows]|  &|[no shadows]| & |[no shadows]|& |[box=blue(pigment)]| Web3 \\
      |[no shadows]|& |[no shadows]| &|[no shadows]| & |[no shadows]| &|[no shadows]| & |[box=blue(pigment)]| Truffle \\
@@ -9717,41 +9721,17 @@ sep=10pt,label={below:{Browser}}](fit5){};
 	\widernode[widebox=mainnet]{stack-3-1}{stack-3-3}{Infura}{Ethereum}
 	
     \widernode{stack-3-4}{stack-3-5}{Metamask}{MM}
-  % \widernode{stack-3-6}{stack-3-6}{Web3}{AA}
   	\widernode[widebox=rinkeby]{stack-4-1}{stack-4-3}{Solidity}{Solidity}
     \widernode{stack-4-4}{stack-4-5}{Webpack}{BB}
-  %  \widernode{stack-4-6}{stack-4-6}{Truffle}{CC}
     
     \widernode[widebox=kovan]{stack-5-1}{stack-5-3}{IPFS}{IPFS}
     \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
-  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
-    
-    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
-    %\widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
-    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
-    %\widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
-    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
-
-
-%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
-%
-
-    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
-
-%
-%
-
-%
 		
 		\begin{pgfonlayer}{background}
 		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
 		            \node [back,
 		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
-		            ] {};
-		            %\node [backgroundN,
-		            %    fit=(stack-3-5) ] {};
-		            %\node [backgroundNN,draw, drop shadow,
-		            %    fit=(stack-3-5) ] {};                                       
+		            ] {};                                   
 	   \end{pgfonlayer}
 	   
 	   %    % smth to create an arbitrary block with a border and shadow
@@ -9760,22 +9740,14 @@ sep=10pt,label={below:{Browser}}](fit5){};
 	           \coordinate (aux) at ([xshift=1mm]stack-5-3.east);
 	               \node [background,
 	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
-	               ] {};
-	               %\node [backgroundN,
-	               %    fit=(stack-3-5) ] {};
-	               %\node [backgroundNN,draw, drop shadow,
-	               %    fit=(stack-3-5) ] {};                                       
+	               ] {};                                     
 	           \end{pgfonlayer}
 	  
        \begin{pgfonlayer}{background}
        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
            \node [background,
                fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
-           ] {};
-           %\node [backgroundN,
-           %    fit=(stack-3-5) ] {};
-           %\node [backgroundNN,draw, drop shadow,
-           %    fit=(stack-3-5) ] {};                                       
+           ] {};                                   
        \end{pgfonlayer}
     \end{tikzpicture}
 
@@ -9785,6 +9757,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
 ![BlogDiagrams](BlogDiagrams/tech-stack.png?raw=true "tech-stack")
 
 ```tex
+% this code draws an layer tech architecture
 \documentclass[border=3mm]{standalone}
     \usepackage{tikz}
     \usetikzlibrary{backgrounds,shadows,positioning,fit,matrix,shapes.geometric, shapes.arrows} % add shadows #1
@@ -9798,10 +9771,6 @@ sep=10pt,label={below:{Browser}}](fit5){};
     \tikzset{background/.style={rectangle, fill=red!10, inner sep=0.2cm},
               backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
               backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
-	
-	\tikzset{back/.style={rectangle, fill=blue!10, inner sep=0.2cm},
-	              backgroundN/.style={rectangle, fill=white, inner sep=0.3cm},
-	              backgroundNN/.style={rectangle, fill=red!10, inner sep=0.2cm}}
 	              	
     \definecolor{mybluei}{RGB}{124,156,205}
     \definecolor{myblueii}{RGB}{73,121,193}
@@ -9889,34 +9858,14 @@ sep=10pt,label={below:{Browser}}](fit5){};
     
     \widernode[widebox=kovan]{stack-5-1}{stack-5-3}{IPFS}{IPFS}
     \widernode{stack-5-4}{stack-5-5}{Drizzle}{DC}
-  %  \widernode{stack-5-6}{stack-5-6}{React}{MC23}
-    
-    %\widernode[widebox=pinkpearl]{stack-4-1}{stack-4-1}{Exchanger}{UMA23}
-    %\widernode[widebox=pinkpearl]{stack-4-2}{stack-4-3}{StoreFront}{UMA}
-    %\widernode{stack-4-4}{stack-4-5}{Export/Import}{ExImp}
-    %\widernode[widebox=pinkpearl]{stack-5-2}{stack-5-3}{ERC721}{EMF}
-    %\widernode[widebox=mygreen]{stack-6-1}{stack-6-5}{RCP Runtime}{RCPrun}
 
-
-%    \widernode[widebox, text width=1.5cm, align=center]{stack-2-6}{stack-3-6}{Normal text works}{NTWorks}
-%
-
-    %\node [fit={(stack.south west)(stack.south east)},boxstyle=myblueii,draw=black,inner sep=0pt,below=3pt of stack.south,anchor=north,label={[mylabel]center:Java Runtime}] (JavaR) {};
-
-%
-%
-
-%
 		
 		\begin{pgfonlayer}{background}
 		        \coordinate (aux) at ([xshift=1mm]stack-5-6.east);
 		            \node [back,
 		                fit=(stack-1-1) (stack-5-1) (aux), draw, drop shadow,
 		            ] {};
-		            %\node [backgroundN,
-		            %    fit=(stack-3-5) ] {};
-		            %\node [backgroundNN,draw, drop shadow,
-		            %    fit=(stack-3-5) ] {};                                       
+                                  
 	   \end{pgfonlayer}
 	   
 	   %    % smth to create an arbitrary block with a border and shadow
@@ -9926,10 +9875,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
 	               \node [background,
 	                   fit=(stack-2-1) (stack-5-1) (aux), draw, drop shadow,
 	               ] {};
-	               %\node [backgroundN,
-	               %    fit=(stack-3-5) ] {};
-	               %\node [backgroundNN,draw, drop shadow,
-	               %    fit=(stack-3-5) ] {};                                       
+                                    
 	           \end{pgfonlayer}
 	  
        \begin{pgfonlayer}{background}
@@ -9937,10 +9883,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
            \node [background,
                fit=(stack-2-4) (stack-5-4) (aux), draw, drop shadow,
            ] {};
-           %\node [backgroundN,
-           %    fit=(stack-3-5) ] {};
-           %\node [backgroundNN,draw, drop shadow,
-           %    fit=(stack-3-5) ] {};                                       
+                                    
        \end{pgfonlayer}
     \end{tikzpicture}
 
@@ -10065,123 +10008,9 @@ Easy To Use & \color{black}Yes & \color{black}Yes & \color{black}Yes \\
      ]
    ]
 \end{forest}
-%\begin{forest}
-%  family tree,
-%   [Grandparent, fill=darkgray, text=Silver, double=Silver, draw=darkgray
-%     [Parent 1, branch shade=from blue!80 to blue!20
-%       [Child 1
-%         [Grandchild 1]
-%       ]
-%     ]
-%     [Parent 2, branch shade=from WildStrawberry!80 to WildStrawberry!20
-%       [Child 2
-%         [Grandchild 2]
-%       ]
-%     ]
-%     [Parent 3, branch shade=from ForestGreen!80 to ForestGreen!20
-%       [Child 3
-%         [Grandchild 3]
-%       ]
-%     ]
-%   ]
-%\end{forest}
+
 \end{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\documentclass[border=10pt]{standalone}
-%\usepackage{tikz}
-%\usepackage{forest}
-%\begin{document}
-%\begin{forest}
-%  roundish filling/.style={%
-%    draw=#1,
-%    inner color=#1!25,
-%    outer color=#1,
-%  },
-%  for tree={%
-%    double,
-%    rounded corners,
-%  },
-%  where level=0{% for the root node
-%    minimum size=20pt,
-%    roundish filling=red,
-%    ultra thick,
-%  }{%
-%    if level=1{% middle nodes
-%      minimum size=15pt,
-%      semithick,
-%      roundish filling=blue!50!cyan,
-%    }
-%    {% remaining nodes
-%      delay={%
-%        if n children=0{%
-%          label/.wrap pgfmath arg={-90:#1}{content},
-%          !u.s sep'+=5pt,
-%          !uu.s sep'+=10pt,
-%          content=,
-%        }{},
-%      },
-%      green!75!black,
-%      circle,
-%      fill,
-%      fill opacity=.5,
-%      draw opacity=1,
-%      draw,
-%      minimum size=5pt,
-%      inner sep=0pt,
-%    },
-%  },
-%  [ChatBot
-%    [B [C][Ch]]
-%    [D [Dd][E][F][Ff [black]]]
-%  ]
-%\end{forest}
-%\end{document}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Reference Decision tree
-% Author: Stefan Kottwitz
-% https://www.packtpub.com/hardware-and-creative/latex-cookbook
-%\documentclass[border=10pt]{standalone}
-%\usepackage{tikz}
-%\tikzset{
-%  treenode/.style = {shape=rectangle, rounded corners,
-%                     draw, align=center,
-%                     top color=white, bottom color=blue!20},
-%  root/.style     = {treenode, font=\Large, bottom color=red!30},
-%  env/.style      = {treenode, font=\ttfamily\normalsize},
-%  dummy/.style    = {circle,draw}
-%}
-%\begin{document}
-%\begin{tikzpicture}
-%  [
-%    grow                    = down,
-%    sibling distance        = 6em,
-%    level distance          = 10em,
-%    edge from parent/.style = {draw, -latex},
-%    every node/.style       = {font=\footnotesize},
-%    sloped
-%  ]
-%  \node [root] {Formula}
-%    child { node [env] {equation}
-%      edge from parent node [below] {single-line?} }
-%    child { node [dummy] {}
-%      child { node [dummy] {}
-%        child { node [env] {align\\flalign}
-%          edge from parent node [above] {at relation sign?} }
-%        child { node [env] {alignat}
-%          edge from parent node [above] {at several}
-%                           node [below] {places?} }
-%        child { node [env] {gather}
-%                edge from parent node [above] {centered?} }
-%        edge from parent node [below] {aligned?} }
-%      child { node [env] {multline}
-%              edge from parent node [above, align=center]
-%                {first left,\\centered,}
-%              node [below] {last right}}
-%              edge from parent node [above] {multi-line?} };
-%\end{tikzpicture}
-%\end{document}
 ```
 
 ### DSP
