@@ -104,19 +104,26 @@ then
     echo "import {OverleafDeployButton} from \"@/components/deployToOverleaf\"" >> $single_file_output
     echo "" >> $single_file_output
     echo "" >> $single_file_output
-    if [ -f $rel_folder_path/description.txt ]
+    # description file with $rel_folder_path/$rel_image_path
+    description_file=$rel_folder_path/${rel_image_path}_description.txt
+    if [ -f description_file ]
     then
-      echo "### Description" >> $single_file_output
-      cat $rel_folder_path/description.txt >> $single_file_output
+      echo "# Description" >> $single_file_output
+      cat $description_file >> $single_file_output
       echo "" >> $single_file_output
     fi
+    echo "" >> $single_file_output
+    keywords_file=$rel_folder_path/${rel_image_path}_keywords.txt
     # check if file keywords.txt exists
-    if [ -f $rel_folder_path/keywords.txt ]
+    if [ -f $keywords_file ]
     then
-      echo "### Keywords" >> $single_file_output
-      cat $rel_folder_path/keywords.txt >> $single_file_output
+      echo "## Keywords" >> $single_file_output
+      cat $keywords_file >> $single_file_output
       echo "" >> $single_file_output
     fi
+    echo "" >> $single_file_output
+    echo "## Source Code" >> $single_file_output
+    echo "" >> $single_file_output
    
     # echo a link with TEX_FILE_BASE_URL and the relative path to the tex file
     echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL/$rel_folder_path/$rel_image_path.tex\"/>" >> $single_file_output
