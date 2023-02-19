@@ -1,0 +1,12 @@
+This is a LaTeX code that produces a 3D diagram and two equations with descriptions.
+
+The document class is `standalone`, which generates a tightly cropped output without margins. The packages `tikz` and `bm` are loaded. The `ragged2e` package with the option `raggedrightboxes` is also included.
+
+The code starts by defining the 3D environment using the `tikzpicture` environment with the `x`, `y`, and `z` axis directions. The axes are drawn using the `draw` command with different line styles and colors. A propagation vector is also drawn using the `draw` and `node` commands.
+
+Two different waves are then plotted using the `plot` command with a domain and a number of samples. Two arrows are also drawn for each point on the wave using a `foreach` loop.
+
+Two labeled nodes, $\bm{E}$ and $\bm{B}$, are added using the `node` command.
+
+The second part of the code contains two `minipage` environments. The first one contains an equation and a table with descriptions, while the second one includes another equation and a table with descriptions.
+

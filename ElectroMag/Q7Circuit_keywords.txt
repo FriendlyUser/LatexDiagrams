@@ -1,0 +1,2 @@
+circuit, tikz, resistor, inductor, voltage, current, color, gray, purple, orange, red, blue, green, math, subscript, label.
+

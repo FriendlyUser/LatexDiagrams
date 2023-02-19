@@ -1,0 +1,2 @@
+circuitikz, graphicx, mathrsfs, amssymb, amsmath, circuit, vector, resistor, voltage, node, label.
+
