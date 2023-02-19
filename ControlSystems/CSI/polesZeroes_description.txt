@@ -1,6 +1,5 @@
-The code above is a LaTeX document that generates a standalone TikZ picture. The TikZ package is used to draw a plot with axes representing the real part of a complex number ($\sigma$) and the imaginary part of a complex number ($j\omega\_d$) in the complex plane.
+The code above is a LaTeX document that generates a standalone TikZ picture. The TikZ package is used to draw a plot with axes representing the real part of a complex number ($\sigma$) and the imaginary part of a complex number ($j\omega_d$) in the complex plane.
 
-The code draws the axes and marks the origin with a cross-out circle. It also draws dashed lines representing the angle $\theta=120^o$ from the positive $\sigma$ axis, and another dashed line representing the angle $\theta=30^o$ from the positive $j\omega\_d$ axis. The code also marks several points on the plot, including a point at $(0,0)$, a point at $(j2\sqrt{3},0)$, a point at $(-2,0)$, and a point at $(-4,0)$.
+The code draws the axes and marks the origin with a cross-out circle. It also draws dashed lines representing the angle $\theta=120^o$ from the positive $\sigma$ axis, and another dashed line representing the angle $\theta=30^o$ from the positive $j\omega\_d$ axis. The code also marks several points on the plot, including a point at (0,0), a point at $(j^2\sqrt{3},0)$, a point at $(-2,0)$, and a point at -4,0).
 
 Overall, the code is generating a visual representation of a complex number system and illustrating the locations of certain points and angles within that system.
-
