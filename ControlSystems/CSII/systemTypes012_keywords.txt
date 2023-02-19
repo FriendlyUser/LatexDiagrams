@@ -1,0 +1,2 @@
+tikz, amsmath, amssymb, graphicx, booktabs, tabularx, circuitikz, positioning, shapes, arrows, draw, fill, rectangle, minimum height, minimum width, circle, node distance, coordinate, auto, input, output.
+

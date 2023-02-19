@@ -111,6 +111,9 @@ then
       echo "# Description" >> $single_file_output
       cat $description_file >> $single_file_output
       echo "" >> $single_file_output
+      echo "Description file: $description_file"
+    else
+      echo "No description file found for $description_file"
     fi
     echo "" >> $single_file_output
     keywords_file=$rel_folder_path/${rel_image_path}_keywords.txt

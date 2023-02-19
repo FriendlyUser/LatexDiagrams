@@ -1,0 +1,16 @@
+\documentclass{standalone}% 'crop' is the default for v1.0, before it was 'preview'
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[domain=50:150,  title={Estimated Profit},
+      xlabel={Netback per barrel of oil},
+      ylabel={Million of dollars \$ (CAD)}]
+    \addplot[mark=none, samples=100, red] function {0.66*x};
+        \node [fill, draw, circle, minimum width=3pt, inner sep=0pt, pin={[fill=white, outer sep=2pt]}] at (0,35) {};
+    \node[outer sep=2pt,fill=white] at (2.5, 155) {\$90 Oil};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

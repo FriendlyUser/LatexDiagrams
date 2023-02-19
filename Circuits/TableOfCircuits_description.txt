@@ -1,0 +1,8 @@
+The code is a LaTeX document that creates a table with three columns. The first column contains circuit diagrams created using the circuitikz package, which is used for drawing electrical circuits. The second column contains block diagrams created using the tikz package, which is a powerful package for creating graphics and diagrams. The third column contains the gain equations for each circuit.
+
+The first circuit in the table is a non-inverting op-amp amplifier circuit, which takes an input voltage $v\_1$ and amplifies it to produce an output voltage $v\_o$. The gain of this circuit is given by the equation $K\_1 = \frac{Z\_1 + Z\_2}{Z\_2}$.
+
+The second circuit in the table is an inverting op-amp amplifier circuit, which also takes an input voltage $v\_1$ and amplifies it to produce an output voltage $v\_o$, but with an inverted polarity. The gain of this circuit is given by the equation $K\_2 = -\frac{Z\_2}{Z\_1}$.
+
+The third circuit in the table is a summing op-amp amplifier circuit, which takes multiple input voltages $v\_1$, $v\_2$, and $v\_3$, and sums them to produce an output voltage $v\_o$. The gain of this circuit is given by the equation $K\_3 = -\frac{R\_f}{R\_1} - \frac{R\_f}{R\_2} - \frac{R\_f}{R\_3}$, where $R\_f$ is the feedback resistor and $R\_1$, $R\_2$, and $R\_3$ are the input resistors.
+

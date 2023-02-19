@@ -1,0 +1,2 @@
+circuitikz, siunitx, voltage source, resistor, current-controlled voltage source, current source, open circuit.
+

@@ -1,0 +1,6 @@
+This code generates a plot of the rectangular function with given parameters a and b. It uses the `standalone` document class and loads the `pgfplots` package for plotting.
+
+The plot is defined within the `tikzpicture` environment and is created using the `axis` environment with various options such as `width`, `height`, `xticklabels`, `ymax`, and `xmax`. The x and y axis lines are drawn using `-stealth` style and the title of the plot is set as "Rectangular Function".
+
+The rectangular function is plotted using the `\addplot` command with the `const plot` option which connects the given coordinates with straight lines. The function is defined by a set of coordinates given as an argument to the command. The `xlabel` and `ylabel` are also defined and positioned near the ticks.
+

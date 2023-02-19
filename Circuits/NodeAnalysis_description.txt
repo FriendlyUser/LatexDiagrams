@@ -1,0 +1,4 @@
+This is a LaTeX code that generates a circuit diagram using the `circuitikz` package. The circuit diagram depicts a voltage source connected to two half bridges, with a voltmeter connected across one of the resistors in the right half bridge. The `siunitx` and `amsmath` packages are also included.
+
+The circuit diagram consists of several components and parameters specified using various `circuitikz` commands. The voltage source is created using the `V` command, with a voltage of 20 volts and labeled with the `v` parameter. The resistors are created using the `R` command, with their values specified using the `l` parameter, and their orientation specified using the `-` and `*` parameters. The voltmeter is created using another `R` command, and is labeled with the `i` parameter. The `american voltages` option is used to display voltages in the diagram in the American style.
+

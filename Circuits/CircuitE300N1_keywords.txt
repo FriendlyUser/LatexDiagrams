@@ -1,0 +1,2 @@
+Circuit, diagram, circuitikz, resistors, voltage, current, colors.
+
