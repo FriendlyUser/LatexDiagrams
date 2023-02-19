@@ -1,0 +1,11 @@
+The Laplace transform of a signal $f(t)$ is defined as $F(s)=\mathcal{L}{f(t)}=\int\_0^{\infty}f(t)e^{-st}dt$.
+
+In this block diagram, $R(s)$ represents the Laplace transform of the reference input signal, $G\_1(s)$, $G\_2(s)$, and $G\_3(s)$ represent the transfer functions of the systems, and $H\_1(s)$, $H\_2(s)$, and $H\_3(s)$ represent the transfer functions of the feedback paths.
+
+The block diagram can be represented mathematically as:
+$$C(s)=G\_3(s)(R(s)-G\_2(s)H\_1(s)C(s))-G\_1(s)H\_2(s)C(s)$$
+
+The signal flow through the diagram is as follows: The reference input $R(s)$ is fed to the summing junction where it is added to the feedback signal $-G\_2(s)H\_1(s)C(s)$ to produce the error signal. The error signal is then fed through the transfer function $G\_3(s)$ to produce the output signal $C(s)$.
+
+The feedback signal is also fed through the transfer function $H\_2(s)$ and then added to the output of $G\_1(s)$. The resulting signal is then fed through the transfer function $H\_3(s)$ and subtracted from the error signal at the summing junction.
+

@@ -1,0 +1,2 @@
+tikzpicture, node, draw, rectangle, coordinate, path, fill, red, blue, black, thick, dashed, right, left, above, below.
+
