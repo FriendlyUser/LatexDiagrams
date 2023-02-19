@@ -89,24 +89,34 @@ then
     # Yaml header, saber throws errors without one of these in the md files
     # temp copy of file
     # Copy first 20 lines 
-    TEMPFILE="temp.file"
-    SMALLFILE="parse.file"
-    # need a better system for keyword extraction
-    head -10 $tex >> $TEMPFILE 
-    tr -d '\n' < "temp.file" >> $SMALLFILE
-    words=$(grep -o -E '\w+' "temp.file" | sort -u -f)
-    stripped_words=$(printf '%s' "$words" | sed 's/[0-9]//g')
-    purged_words=$(printf '%s' "$stripped_words" | sed  's/em//g; s/pt/ab/g; s///g; s/documentclass//g; 
-      s/usepackage//g; s/usetikzlibrary//g; s/and//g;')
-    long_words=$(printf '%s' "$purged_words" | sed -E 's/\b\w{1,3}\b//g')
-    rm $TEMPFILE
-    rm $SMALLFILE
+    # TEMPFILE="temp.file"
+    # SMALLFILE="parse.file"
+    # # need a better system for keyword extraction
+    # head -10 $tex >> $TEMPFILE 
+    # tr -d '\n' < "temp.file" >> $SMALLFILE
+    # words=$(grep -o -E '\w+' "temp.file" | sort -u -f)
+    # stripped_words=$(printf '%s' "$words" | sed 's/[0-9]//g')
+    # purged_words=$(printf '%s' "$stripped_words" | sed  's/em//g; s/pt/ab/g; s///g; s/documentclass//g; 
+    #   s/usepackage//g; s/usetikzlibrary//g; s/and//g;')
+    # long_words=$(printf '%s' "$purged_words" | sed -E 's/\b\w{1,3}\b//g')
+    # rm $TEMPFILE
+    # rm $SMALLFILE
     echo "import {OverleafDeployButton} from \"@/components/deployToOverleaf\"" >> $single_file_output
     echo "" >> $single_file_output
     echo "" >> $single_file_output
-    echo "### Keywords" >> $single_file_output
-    echo "$long_words" | tr "\n" " " >>  $single_file_output 
-    echo "" >> $single_file_output
+    if [ -f $rel_folder_path/description.txt ]
+    then
+      echo "### Description" >> $single_file_output
+      cat $rel_folder_path/description.txt >> $single_file_output
+      echo "" >> $single_file_output
+    fi
+    # check if file keywords.txt exists
+    if [ -f $rel_folder_path/keywords.txt ]
+    then
+      echo "### Keywords" >> $single_file_output
+      cat $rel_folder_path/keywords.txt >> $single_file_output
+      echo "" >> $single_file_output
+    fi
    
     # echo a link with TEX_FILE_BASE_URL and the relative path to the tex file
     echo "<OverleafDeployButton texFilePath=\"$TEX_FILE_BASE_URL/$rel_folder_path/$rel_image_path.tex\"/>" >> $single_file_output
