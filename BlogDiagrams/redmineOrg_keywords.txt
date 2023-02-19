@@ -1,0 +1,2 @@
+tikzpicture, draw, rectangle, node, below, right, left, above, text, midway, coordinate, line, thick, fill, circle, inner sep, outer sep.
+

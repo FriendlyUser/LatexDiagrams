@@ -1,0 +1,2 @@
+standalone, fontawesome, tikz, matrix, positioning, color, iblock, oblock, label, faRss, Bitbucket, Github, Gitlab, Tech Books, Games, Rep & Elo, EthDev, BChain, AI, Code, Tracking, Web Hooks, Redmine, Apis, Trello, faBook, faGamepad, faStackOverflow, faReddit, faBitcoin, faTrophy, faCode, faThLarge, faTicket.
+

@@ -18,7 +18,7 @@ jobs:
       - name: Compile TeX
         run: |
           chmod +x ./compile_tex.sh && ./compile_tex.sh
-          ./compile_tex.sh -p 2 -l 1 -r 1 -o ReadMe.md
+          ./compile_tex.sh -p 2 -l 1 -r 1 -o Reference.md
       - name: Persist Tex Artifacts
         uses: actions/upload-artifact@v1
         with:
@@ -43,7 +43,7 @@ jobs:
 
           git config --local user.name "github-actions[bot]"
 
-          git add ReadMe.md *.png || true
+          git add Reference.md *.png || true
 
           git commit -m "Update images and readme" || true
       - name: Push changes

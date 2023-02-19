@@ -1,0 +1,2 @@
+tikz, arrows, shadows, positioning, nodes, font, styles, rectangle, draw, text width, centered, minimum height, drop shadow, fill, rounded corners, line, latex, termination, population, parents, offspring, random initialization, survivor selection, crossover, inversion, mutation, features, maximum features.
+
