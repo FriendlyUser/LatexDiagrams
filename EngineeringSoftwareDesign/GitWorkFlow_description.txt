@@ -1,0 +1,12 @@
+This code defines a LaTeX document with a `tikzpicture` environment that draws a diagram illustrating the basic Git workflow. The `tikz` package and several of its libraries are loaded, including `calc`, `fadings`, `shapes.arrows`, `shadows`, and `backgrounds`.
+
+The `tikzset` command defines three styles: `bubble`, which is a rectangular node with rounded corners and a fill color, `arrowfill`, which is used to create a gradient fill for the arrow shapes, and `arrowstyle`, which is a style for the arrow shapes themselves.
+
+The `tikzfading` command defines a fading named `arrowfading`, which is used in the `arrowfill` style.
+
+Within the `tikzpicture` environment, four `bubble` nodes are defined for the working directory, staging area, local repository, and remote repository, each with a different fill color. The `above` option is used to add labels for the "Remote" and "Local" repositories.
+
+Four types of arrows are defined: `git add`, `git commit`, `git push`, and `git fetch`. These arrows are created using the `arrowstyle` style, with different heights and rotation angles. They are positioned using the `$(...)!0.5!(...)$` syntax to determine the midpoint of the line between two nodes, and the `xshift` and `yshift` options to adjust the arrow positions.
+
+Finally, a gray background is added to the diagram using the `pgfonlayer` environment, and a dashed line is drawn to separate the local and remote repository sections.
+

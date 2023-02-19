@@ -1,0 +1,6 @@
+This is a LaTeX code that creates a timeline diagram using TikZ library. It starts with defining the document class as "standalone" with a font size of 6pt, and loading the TikZ and fullpage packages.
+
+Then, a TikZ picture environment is started, which draws a horizontal line and vertical lines at specific points on the x-axis. The nodes, which are rectangular shapes containing text, are drawn at the bottom of the diagram for each event on the timeline. The nodes are aligned at the bottom of the diagram, with a text width of up to 100pt, and an above or below label that specifies the date of the event. The text of the first and last nodes is bolded, highlighting the beginning and end of the timeline.
+
+Finally, the picture is closed, and the code finishes with the end of the document.
+

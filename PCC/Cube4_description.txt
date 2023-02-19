@@ -1,0 +1,12 @@
+This is a LaTeX code that produces a 3D diagram using the TikZ package.
+
+First, it loads the TikZ and tikz-3dplot packages and the patterns library. Then, it sets the main coordinate system using the `tdplotsetmaincoords` command.
+
+Next, it defines the values of three variables: `\BigSide`, `\SmallSide`, and `\CalcSide`. These variables are used to create the vertices of a triangular pyramid.
+
+After that, it sets the coordinates of three points (`sxl`, `syl`, and `szl`) using the `\coordinate` command.
+
+Then, it draws the x, y, and z axes, which are dashed lines that intersect at the origin. Each axis is labeled with an arrow and a letter.
+
+Finally, it draws the triangular pyramid by connecting the vertices with thick lines using the `\draw` command. The resulting 3D diagram shows the triangular pyramid from different angles.
+

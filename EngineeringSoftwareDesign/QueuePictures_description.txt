@@ -1,0 +1,12 @@
+This is a LaTeX code that generates a diagram using TikZ package.
+
+First, the document class is set to "standalone", which means that the output will be a single, cropped image.
+
+Then, the TikZ and "calc" libraries are imported.
+
+A new command called "\cells" is defined that takes three parameters: the total number of cells, the number of grey cells, and the index for the "front" cell. The command creates a row of cells, with each cell labeled with a number. The grey cells are filled with a dark color to distinguish them from the other cells. The "front" and "back" cells are labeled with the text "front" and "back", respectively.
+
+Two styles are defined using the "\tikzset" command: "cell" and "shaded cell". The "cell" style sets the minimum width and height of the cell and the "shaded cell" style inherits from the "cell" style and fills the cell with a dark color.
+
+Finally, a TikZ picture is created using the "\begin{tikzpicture}" command. The "\cells" command is called with the parameters 8, 7, and 0, which generates a row of 8 cells with 7 shaded cells starting at index 0. Each cell is then labeled with a number using a loop that uses the "\node" command to add a label to each cell. The resulting diagram shows a row of 8 cells, with 7 shaded cells and numbers labeled in each cell.
+
