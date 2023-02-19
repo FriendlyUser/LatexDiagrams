@@ -903,9 +903,9 @@ s,3:25;
 ![ControlSystems/CSII](ControlSystems/CSII/block410.png?raw=true "block410")
 
 ```tex
+% Simple Latex diagram for control system
 
-\documentclass[%
-% border=1pt
+\documentclass[
 border={-25pt 0pt 0pt 0pt} % left bottom right top
 ]{standalone}
 \usepackage{tikz}
@@ -1259,6 +1259,15 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 ![ControlSystems/CSII](ControlSystems/CSII/460A3SamplerTesting.png?raw=true "460A3SamplerTesting")
 
 ```tex
+% latex diagram produces diagram for the following question
+% Obtain the closed-loop pulse transfer function of the system shown in the figure below.
+% Final Answer:
+% 
+% \begin{align*}
+% & C^\ast(s) = \frac{G_2^\ast(s)G_1^\ast(s)R^\ast(s)}{1 +G_2^\ast(s)+G_1^\ast(s)
+%  \left[G_2H(s)\right]^\ast} \quad  C(z) =  \frac{R(z)G_2(z) G_1(z)}{1 +G_2(z)+G_1(z)
+%  \left[G_2H(z)\right]} %\\
+% \end{align*}
 
 \documentclass{standalone}
 \usepackage{tikz}
@@ -1339,6 +1348,9 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 ![ControlSystems/CSII](ControlSystems/CSII/B48RLocus.png?raw=true "B48RLocus")
 
 ```tex
+   % Plot generated in matlab for the following question
+   % question: Consider the digital control system Plot the root loci as the gain K is varied from $0$ to $\infty$.
+   
    \documentclass{standalone}
    \usepackage{pgfplots}
    % Manually removed entries to plot a "better" root locus in latex, of course using matlab 2 tikz is much better.
@@ -1599,6 +1611,17 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 ![ControlSystems/CSII](ControlSystems/CSII/B4-8.png?raw=true "B4-8")
 
 ```tex
+% Latex diagram produces diagram for the following question
+% Consider the digital control system shown below. Plot the root loci as the gain K is varied from $0$ to $\infty$. Determine the critical value of gain K for stability. The sampling period is 0.1 sec, or $T=0.1$ What value of gain K will yield a damping ration $\zeta$ of the closed-loop poles equal to 0.5? With gain K set to yield $\zeta=0.5$, determine the damped natural frequency $\omega_d$ and the number of samples per cycle of damped sinusoidal oscillation.
+
+% Numerical Answer in latex
+% When $K=0.0646, \zeta=0.5$ with the pole at $z=0.771+j0.277=|0.8192|e^{j19.7620^\circ}$. 
+% \begin{align*}
+% z=  & |e^{-T(\zeta \omega_n)} |e^{T \omega_d} = |0.8192|e^{j19.7620^\circ} \\
+% & \omega_n = \frac{\ln(0.8192)}{(-0.1)(0.5)}=3.98854 = 4 \ \text{rad/s} \\
+% & \omega_d = \frac{(19.7629^\circ)}{0.1} = 3.449 \quad  \omega_d = \omega_n \sqrt{1-\zeta^2}=3.988 (0.866025)=3.4537 \ \text{rad/s} \\
+% & \text{Number of Samples per Cycle } = \frac{360^\circ}{T\omega_d}=\frac{360^\circ}{19.7629^\circ}=18.22
+% \end{align*}
 
 \documentclass[%
 % border=1pt
@@ -2102,6 +2125,7 @@ border={-25pt 0pt 0pt 0pt} % left bottom right top
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram2.png?raw=true "Q5BlockDiagram2")
 
 ```tex
+% standalone diagram for block diagrams
 \documentclass{standalone}
 
 \usepackage{blox}
@@ -3173,7 +3197,8 @@ where the $A_i$ and $B_i$ are constants to be determined.
 ![ControlSystems/CSI](ControlSystems/CSI/Q5BlockDiagram.png?raw=true "Q5BlockDiagram")
 
 ```tex
-% Block diagram in control system
+% Block diagram in control system - complete
+
 \documentclass{standalone}
 
 \usepackage{blox}
@@ -3257,6 +3282,7 @@ where the $A_i$ and $B_i$ are constants to be determined.
 \bXLinkxy{BranEndReturn}{B}
 \end{tikzpicture}
 \end{document}
+% end block control system
 ```
 
 ![ControlSystems/CSI](ControlSystems/CSI/Q6BlockDiagram6fin.png?raw=true "Q6BlockDiagram6fin")
@@ -6994,7 +7020,7 @@ He.east) (Dy){};
 ![ArtificialIntelligence](ArtificialIntelligence/can_mis.png?raw=true "can_mis")
 
 ```tex
-% this code diagram illustrates the Missionaries and cannibals problem
+% this COMPLETE code diagram illustrates the Missionaries and cannibals problem
 
 \documentclass[tikz]{standalone}
 \usepackage{ifthen}
@@ -7157,7 +7183,7 @@ He.east) (Dy){};
 	\fi
 }
 
-% \usepackage{fontawesome5}
+
 \begin{document}
 	
 	\tikzset{
@@ -7198,6 +7224,8 @@ He.east) (Dy){};
 	\end{tikzpicture}
 	
 \end{document}
+
+% END COMPLETE CODE
 ```
 
 ![ArtificialIntelligence](ArtificialIntelligence/crossover.png?raw=true "crossover")
@@ -9349,7 +9377,8 @@ sep=10pt,label={below:{Browser}}](fit5){};
 ![BlogDiagrams](BlogDiagrams/latex_user_sw_levels.png?raw=true "latex_user_sw_levels")
 
 ```tex
-% Latex diagram illustrating how web3 and metamask work together and their interactions
+% tikz diagram with a 3d perspective illustrating how web3
+% and metamask can interactive with IPFS and Solidity
 
 \documentclass{article}
 \usepackage{tikz}
@@ -9454,7 +9483,7 @@ sep=10pt,label={below:{Browser}}](fit5){};
 	\end{scope} 
 \end{tikzpicture}
 \end{document}
-% code end
+
 ```
 
 ![BlogDiagrams](BlogDiagrams/buildingDapp.png?raw=true "buildingDapp")
