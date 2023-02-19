@@ -1,0 +1,31 @@
+\documentclass[tikz]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows} 
+
+\begin{document}
+\tikzstyle{block} = [draw, fill=blue!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{controller} = [draw, fill=red!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+	\tikzstyle{input} = [coordinate]
+	\tikzstyle{output} = [coordinate]
+	\begin{tikzpicture}[auto, >=latex']
+	% Nodes
+	\node [input] (input) {};
+	\node [sum, right = 1cm of input] (sum) {};
+	\node [controller, right = 1cm of sum] (con1) {$\frac{s+p_c}{s+z_c}$};
+	\node [controller, right = 1cm of con1] (con2) {$K_D s + K_P$};
+	\node [block, right = 1cm of con2] (system2) {$\frac{k}{ms^2}$};
+	\node [output, right = 2cm of system2] (output) {};
+	\node [input, below = 0.5cm of con2] (m) {};
+	% Arrows
+	\draw [draw,->] (input) -- node {$Z_\re$} (sum);
+	\draw [->] (sum) -- (con1);
+	\draw [->] (con1) -- (con2);
+	\draw [->] (con2) -- node {$I$} (system2);
+	\draw [->] (system2) -- node (y) {$Z$}(output);
+	\draw [-] (y) |- (m) {} ;
+	\draw [->] (m) -| node[pos=0.99] {$-$}  node [near end] {} (sum);
+	\end{tikzpicture}  
+\end{document}
