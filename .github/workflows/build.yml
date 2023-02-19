@@ -25,6 +25,18 @@ jobs:
           path: .
           name: latex
 
+  buildfiles:
+    needs: buildtex
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Download Latex Artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: latex
+          path: .
+      # reason files are committed here, is because of the other docker image not having git
       - name: Commit files
         run: >
           mkdir ~/.git
@@ -38,17 +50,6 @@ jobs:
           git commit -m "Update images" || true
       - name: Push changes
         uses: ad-m/github-push-action@master
-  buildfiles:
-    needs: buildtex
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Download Latex Artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: latex
-          path: .
       - name: Compile Saber docs
         run: chmod +x ./CompileNextra.sh && ./CompileNextra.sh
       - name: Setup Node
