@@ -58,7 +58,7 @@ def main():
             # replace .tex withnt description_.txt
             tex_description = raw_resp['message']
             # save description to file
-            with open(description_txt, 'w') as description_file:
+            with open(description_txt, 'w', encoding="utf-8", errors="replace") as description_file:
                 description_file.write(tex_description)
             # randomly sleep for 3 to 6 seconds
             time.sleep(random.randint(3, 6))
@@ -69,7 +69,7 @@ def main():
             # get output and save to keywords_txt
             tex_keywords = raw_resp['message']
             # save keywords to file
-            with open(keywords_txt, 'w') as keywords_file:
+            with open(keywords_txt, 'w', encoding="utf-8", errors="replace") as keywords_file:
                 keywords_file.write(tex_keywords)
 
         # increase curr_count
