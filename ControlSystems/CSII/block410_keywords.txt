@@ -1,0 +1,2 @@
+tikz, graph, directed, edges, nodes, style, arrow, label, position, above, right, left, below, color, blue, red, dashed.
+

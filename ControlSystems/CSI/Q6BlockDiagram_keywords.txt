@@ -1,0 +1,2 @@
+documentclass, standalone, blox, tikz, positioning, newcommand, equal, intersections, tkz-euclide, tikzset, connect, insert path, let, veclen, atan2, abs, in, arc, bXInput, input, bXComp, adder1, bXLink, R(s), bXBloc, Gc, adder2, G1, bXSuma, adder3, G2, bXBranchy, adder3up3, D(s), bXBranchx, G2Right15, G3, G3Right15, G2Right15Down3, H1, outputDown10, H2, bXOutput, end, draw, arrow, dash.
+

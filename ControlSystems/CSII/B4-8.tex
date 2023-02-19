@@ -1,3 +1,14 @@
+% Diagram for B4-8
+% Question: Consider the digital control system shown below. Plot the root loci as the gain K is varied from $0$ to $\infty$. Determine the critical value of gain K for stability. The sampling period is 0.1 sec, or $T=0.1$ What value of gain K will yield a damping ration $\zeta$ of the closed-loop poles equal to 0.5? With gain K set to yield $\zeta=0.5$, determine the damped natural frequency $\omega_d$ and the number of samples per cycle of damped sinusoidal oscillation.
+
+% Answer
+% When $K=0.0646, \zeta=0.5$ with the pole at $z=0.771+j0.277=|0.8192|e^{j19.7620^\circ}$. 
+% \begin{align*}
+% z=  & |e^{-T(\zeta \omega_n)} |e^{T \omega_d} = |0.8192|e^{j19.7620^\circ} \\
+% & \omega_n = \frac{\ln(0.8192)}{(-0.1)(0.5)}=3.98854 = 4 \ \text{rad/s} \\
+% & \omega_d = \frac{(19.7629^\circ)}{0.1} = 3.449 \quad  \omega_d = \omega_n \sqrt{1-\zeta^2}=3.988 (0.866025)=3.4537 \ \text{rad/s} \\
+% & \text{Number of Samples per Cycle } = \frac{360^\circ}{T\omega_d}=\frac{360^\circ}{19.7629^\circ}=18.22
+% \end{align*}
 
 \documentclass[%
 % border=1pt

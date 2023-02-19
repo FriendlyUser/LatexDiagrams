@@ -33,7 +33,7 @@ def main():
     api = ChatGPT(sessionToken)
     api.send_message(sample_prompt)
     curr_count = 0
-    max_count = 10
+    max_count = 20
     for f in get_files():
         # print(file)
         # get relative path to file

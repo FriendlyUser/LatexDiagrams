@@ -1,0 +1,2 @@
+The code above produces a block diagram in LaTeX using the `blox` and `tikz` packages. The block diagram consists of three blocks: an input block labeled "A", a transfer function block labeled "C" with the transfer function $\frac{G\_2G\_3}{1+G\_1G\_2G\_3G\_cH\_2+G\_1G\_2H\_1}$, and an output block labeled "E". There are also two arrows with labels connecting the input block to the transfer function block and the transfer function block to the output block. The first arrow is labeled with "$R(s)$", and the second arrow is labeled with "$C(s)$".
+
