@@ -24,6 +24,20 @@ jobs:
         with:
           path: .
           name: latex
+
+      - name: Commit files
+        run: >
+          mkdir ~/.git
+
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git config --local user.name "github-actions[bot]"
+
+          git add *.png || true
+
+          git commit -m "Update images" || true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
   buildfiles:
     needs: buildtex
     runs-on: ubuntu-latest
@@ -35,19 +49,6 @@ jobs:
         with:
           name: latex
           path: .
-      - name: Commit files
-        run: >
-          mkdir ~/.git
-
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git config --local user.name "github-actions[bot]"
-
-          git add *.png || true
-
-          git commit -m "Update images and readme" || true
-      - name: Push changes
-        uses: ad-m/github-push-action@master
       - name: Compile Saber docs
         run: chmod +x ./CompileNextra.sh && ./CompileNextra.sh
       - name: Setup Node
