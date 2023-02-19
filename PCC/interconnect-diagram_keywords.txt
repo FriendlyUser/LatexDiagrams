@@ -1,0 +1,2 @@
+tikzpicture, node, draw, rectangle, fill, text, below, of, align, center, minimum height, minimum width, anchor, east, west.
+

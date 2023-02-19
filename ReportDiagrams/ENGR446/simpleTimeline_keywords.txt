@@ -1,0 +1,2 @@
+tikz, snakes, fullpage, documentclass, usepackage, begin, draw, foreach, nodes, textwidth, align, center, above, below, resizebox, end, caption, centering, figure, label, linewidth.
+

@@ -40,7 +40,7 @@ def main():
         # get relative path to file
         rel_path = os.path.relpath(f, path)
         # read text file
-        with open(f, 'r') as raw_tex_file:
+        with open(f, 'r', errors="ignore") as raw_tex_file:
             tex_source = raw_tex_file.read()
 
         description_txt = rel_path.replace('.tex', '_description.txt')

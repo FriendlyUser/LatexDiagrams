@@ -1,0 +1,6 @@
+The code is a LaTeX document that generates a diagram using the TikZ package. The diagram represents a high-level overview of the process of building a machine learning model for algorithmic trading.
+
+The diagram consists of several rectangular nodes and signal nodes connected by arrows, representing the flow of information and processes. The rectangular nodes represent the data sources, which are labeled as "Market", "Fundamental", and "Alternative". These nodes are connected to a series of signal nodes representing "Point in Time Adjustments" and "Factor & Feature Engineering". The final signal node at the bottom of the diagram represents the "Machine Learning Models" and is connected to another signal node representing the "Predictions". The final rectangular node at the end of the diagram represents the "Monitoring & Evaluation" of the model.
+
+The code defines several custom styles for the TikZ nodes, including a database style for the data source nodes and a signal style for the signal nodes. The code also defines several small tables, which are saved in boxes and used in the data source nodes to represent position information and order information.
+

@@ -1,0 +1,2 @@
+triangle, circle, node, edge, path, fill, draw, coordinate, above, below, left, right, midway, bend, to, rectangle, rounded corners, minimum size, inner sep, outer sep, anchor, text, font, size, color.
+

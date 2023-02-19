@@ -1,0 +1,2 @@
+tikz, standalone, node distance, positioning, circle, draw, black, fill, white, inner sep, minimum size, right of, above right of, above of, below right of, node, extension, blank node, below, small, arrow, thick.
+

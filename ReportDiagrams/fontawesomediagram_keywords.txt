@@ -1,0 +1,2 @@
+latex, tikz, chains, positioning, fontawesome, nodes, edges, categories, mobile, camera, laptop, waste, recycle, landfill.
+

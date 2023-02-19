@@ -1,0 +1,2 @@
+Latex, TikZ, matrix, positioning, nodes, styles, color, fill, line width, rounded corners, minimum height, align, text, font, text width, label, fontawesome, anchor.
+
