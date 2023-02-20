@@ -8,5 +8,5 @@ A new command called "\cells" is defined that takes three parameters: the total 
 
 Two styles are defined using the "\tikzset" command: "cell" and "shaded cell". The "cell" style sets the minimum width and height of the cell and the "shaded cell" style inherits from the "cell" style and fills the cell with a dark color.
 
-Finally, a TikZ picture is created using the "\begin{tikzpicture}" command. The "\cells" command is called with the parameters 8, 7, and 0, which generates a row of 8 cells with 7 shaded cells starting at index 0. Each cell is then labeled with a number using a loop that uses the "\node" command to add a label to each cell. The resulting diagram shows a row of 8 cells, with 7 shaded cells and numbers labeled in each cell.
+Finally, a TikZ picture is created using the "`\begin{tikzpicture}`" command. The "\cells" command is called with the parameters 8, 7, and 0, which generates a row of 8 cells with 7 shaded cells starting at index 0. Each cell is then labeled with a number using a loop that uses the "\node" command to add a label to each cell. The resulting diagram shows a row of 8 cells, with 7 shaded cells and numbers labeled in each cell.
 

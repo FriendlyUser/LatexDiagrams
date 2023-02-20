@@ -1,2 +1,2 @@
-tikz, pgfplots, filecontents, amsmath, standalone, axis, xcomb, plot coordinates, node.
+tikz, pgfplots, filecontents, amsmath, standalone, axis, xcomb, plot coordinates, node
 
