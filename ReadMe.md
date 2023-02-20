@@ -1,5 +1,5 @@
 ## Latex Diagrams
-This repo contains all the diagrams I have generated for my academic career, for fun and referenced from stack overflow.
+This repo contains all the diagrams I have generated for my academic career (university of victoria), for fun and referenced from stack overflow.
 
 Willing to make custom diagrams for small fee, or even for free depending on the situation.
 
