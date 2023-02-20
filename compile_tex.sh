@@ -60,7 +60,7 @@ then
       else
         echo $d
         cd $d
-        latexmk -pdflatex=lualatex -pdf
+        latexmk -pdflatex=lualatex -interaction=nonstopmode -pdf
         cd $dir
       fi
   done
