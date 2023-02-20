@@ -4,7 +4,7 @@ Within the "tikzpicture" environment, the code places several nodes using the "n
 
 The nodes are positioned relative to each other using the "right of", "above right of", and "above of" keywords. The "node distance" option is used to set the distance between nodes.
 
-The edges between the nodes are drawn using the "draw" command, with the "circle" option to make them curved. The edges are labeled with numbers using the "node" command, with the "above" option to place the label above the edge. The direction of the edge is specified using arrows, either "->" for a forward edge or "<-" for a backward edge. The edges are also labeled with the thickness using the "thick" option.
+The edges between the nodes are drawn using the "draw" command, with the "circle" option to make them curved. The edges are labeled with numbers using the "node" command, with the "above" option to place the label above the edge. The direction of the edge is specified using arrows. The edges are also labeled with the thickness using the "thick" option.
 
 Once compiled, this code will produce a standalone image of the directed graph with circular nodes and curved edges. The image will be saved as a PDF file.
 
