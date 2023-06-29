@@ -3,7 +3,9 @@ This repo contains all the diagrams I have generated for my academic career (uni
 
 Willing to make custom diagrams for small fee, or even for free depending on the situation.
 
-You can view all the diagrams at https://grandfleet.eu.org.
+You can view all the diagrams at https://grandfleet.eu.org. 
+
+Please create an issue if you feel extra diagrams should be created
 
 ## Donate
 If you would like to motivate me to spend more time improving open source projects please consider donating. Or contact me for opportunities.
